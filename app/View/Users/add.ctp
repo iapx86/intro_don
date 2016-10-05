@@ -5,13 +5,6 @@
 	<?php
 		echo $this->Form->input('username');
 		echo $this->Form->input('password');
-		echo $this->Form->input('sum_answer');
-		echo $this->Form->input('sum_correct');
-		echo $this->Form->input('rate');
-		echo $this->Form->input('sum_score');
-		echo $this->Form->input('gold_count');
-		echo $this->Form->input('silver_count');
-		echo $this->Form->input('blonze_count');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
