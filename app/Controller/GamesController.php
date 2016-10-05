@@ -113,4 +113,51 @@ class GamesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+/**
+ * start method
+ *
+ * @return void
+ */
+	public function start() {
+		if ($this->request->is('post')) {
+			$this->Game->create();
+			for ($correct = [], $i = 1; $i <= 10; $i++) {
+				do {
+					$id = rand(1, 100);
+				} while (in_array($id, $correct));
+				$correct[$i] = $id;
+			}
+			for ($i = 1; $i <= 10; $i++) {
+				$select[$i][rand(1, 4)] = $correct[$i];
+				for ($j = 1; $j <= 4; $j++) {
+					if (array_key_exists($j, $select[$i])) {
+						continue;
+					}
+					do {
+						$id = rand(1, 100);
+					} while (in_array($id, $select[$i]));
+					$select[$i][$j] = $id;
+				}
+			}
+			for ($i = 1; $i <= 10; $i++) {
+				$this->request->data['Game']['question'.$i.'_correct_songid'] = $correct[$i];
+				for ($j = 1; $j <= 4; $j++) {
+					$this->request->data['Game']['question'.$i.'_select'.$j.'_songid'] = $select[$i][$j];
+				}
+			}
+			if ($this->Game->save($this->request->data)) {
+				$this->Session->write('Game.id', $this->Game->id);
+				for ($i = 1; $i <= 10; $i++) {
+					$this->Session->write('Game.question'.$i.'_correct_songid', $correct[$i]);
+					for ($j = 1; $j <= 4; $j++) {
+						$this->Session->write('Game.question'.$i.'_select'.$j.'_songid', $select[$i][$j]);
+					}
+				}
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Flash->error(__('The game could not be saved. Please, try again.'));
+			}
+		}
+	}
 }
