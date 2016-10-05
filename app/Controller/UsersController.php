@@ -62,6 +62,11 @@ class UsersController extends AppController {
 	public function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
+
+		$this->request->data = $this->User->reNew();
+		
+		// $this->User->saveAll($this->request->data['User']);
+		debug($this->request->data);
 	}
 
 /**
