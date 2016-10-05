@@ -10,6 +10,17 @@ App::uses('AppController', 'Controller');
  */
 class GamesController extends AppController {
 
+
+	public function isAuthorized($user) {
+			// 登録済ユーザーは投稿できる
+			if ($this->action === 'add') {
+					return true;
+			}
+
+			return parent::isAuthorized($user);
+	}
+
+
 /**
  * Components
  *
