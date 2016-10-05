@@ -10,10 +10,42 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController {
 
-	    public function beforeFilter() {
-        parent::beforeFilter();
-        $this->Auth->allow('add');
-    }
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('add', 'logout');
+	}
+
+	public function login() {
+		if ($this->request->is('post')) {
+				if ($this->Auth->login()) {
+						$this->redirect($this->Auth->redirect());
+				} else {
+						$this->Flash->error(__('Invalid username or password, try again'));
+				}
+			}
+	}
+
+	public function logout() {
+		$this->redirect($this->Auth->logout());
+	}
+
+
+
+// public function isAuthorized($user) {
+// 	 $loginuser = $this->Auth->user();
+
+//     // 投稿のオーナーは編集や削除ができる
+//     if (in_array($this->action, array('edit'))) {
+//         $postId = (int) $this->request->params['pass'][0];
+//         if ($this->Users->isOwnedBy($postId, $user['id'])) {
+//             return true;
+//         }
+//     }
+
+
+//     return parent::isAuthorized($user);
+// }
+
 
 /**
  * Components
@@ -86,6 +118,11 @@ class UsersController extends AppController {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			$this->request->data = $this->User->find('first', $options);
 		}
+		// debug($this->request);
+		// debug($this->request->params['pass'][0]);
+		// debug($loginuser);
+
+
 	}
 
 /**
