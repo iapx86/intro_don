@@ -3,7 +3,7 @@
 <?php echo $this->Form->create('User'); ?>
     <fieldset>
         <legend>
-            <?php echo __('Please enter your username and password'); ?>
+            <?php echo __('ユーザー名とパスワードを入力してください'); ?>
         </legend>
         <?php echo $this->Form->input('username');
         echo $this->Form->input('password');
