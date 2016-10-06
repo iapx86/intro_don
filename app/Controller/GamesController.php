@@ -10,6 +10,9 @@ App::uses('AppController', 'Controller');
  */
 class GamesController extends AppController {
 
+	public function beforeFilter() {
+		$this->Auth->allow();
+	}
 
 	public function isAuthorized($user) {
 			// 登録済ユーザーは投稿できる
@@ -149,16 +152,65 @@ class GamesController extends AppController {
 			}
 			if ($this->Game->save($this->request->data)) {
 				$this->Session->write('Game.id', $this->Game->id);
+				$this->Session->write('Game.question', 1);
 				for ($i = 1; $i <= 10; $i++) {
 					$this->Session->write('Game.question'.$i.'_correct_songid', $correct[$i]);
 					for ($j = 1; $j <= 4; $j++) {
 						$this->Session->write('Game.question'.$i.'_select'.$j.'_songid', $select[$i][$j]);
 					}
 				}
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'question'));
 			} else {
 				$this->Flash->error(__('The game could not be saved. Please, try again.'));
 			}
 		}
+	}
+
+/**
+ * question method
+ *
+ * @return void
+ */
+	public function question() {
+		$num = $this->Session->read('Game.question');
+		if ($num > 10) {
+			return $this->redirect(array('action' => 'result'));
+		}
+		$correct = $this->Session->read('Game.question'.$num.'_correct_songid');
+		for ($i = 1; $i <= 4; $i++) {
+			$select[$i] = $this->Session->read('Game.question'.$num.'_select'.$i.'_songid');
+		}
+		$this->set('question', $num);
+		$this->set('correct', $correct);
+		$this->set('select', $select);
+	}
+
+/**
+ * answer method
+ *
+ * @return void
+ */
+	public function answer($answer = null) {
+		$num = $this->Session->read('Game.question');
+		$correct = $this->Session->read('Game.question'.$num.'_correct_songid');
+		for ($i = 1; $i <= 4; $i++) {
+			$select[$i] = $this->Session->read('Game.question'.$num.'_select'.$i.'_songid');
+		}
+		$judge = $correct === $select[$answer];
+		$this->set('question', $num);
+		$this->set('correct', $correct);
+		$this->set('select', $select);
+		$this->set('answer', $answer);
+		$this->set('judge', $judge);
+		$this->Session->write('Game.question', $num + 1);
+	}
+
+/**
+ * result method
+ *
+ * @return void
+ */
+	public function result($answer = null) {
+		$this->Session->delete('Game');
 	}
 }
