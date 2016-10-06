@@ -37,5 +37,12 @@
 			&nbsp;
 		</dd>
 	</dl>
-	<?php echo $this->Form->postLink(__($question === 10 ? 'Result' : 'Next'), array('action' => 'question')); ?>
+	<?php
+	if ($question < 10) {
+		echo $this->Form->postLink(__('Next'), array('action' => 'question'));
+	}
+	else {
+		echo $this->Form->postLink(__('Result'), array('action' => 'result'));
+	}
+	?>
 </div>
