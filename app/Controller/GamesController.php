@@ -197,6 +197,7 @@ class GamesController extends AppController {
 			$select[$i] = $this->Session->read('Game.question'.$num.'_select'.$i.'_songid');
 		}
 		$judge = $correct === $select[$answer];
+		$this->Session->write('Game.question'.$num.'_judge', $judge);
 		$this->set('question', $num);
 		$this->set('correct', $correct);
 		$this->set('select', $select);
@@ -211,6 +212,14 @@ class GamesController extends AppController {
  * @return void
  */
 	public function result($answer = null) {
+		$correct = [];
+		$judge = [];
+		for ($i = 1; $i <= 10; $i++) {
+			$correct[$i] = $this->Session->read('Game.question'.$i.'_correct_songid');
+			$judge[$i] = $this->Session->read('Game.question'.$i.'_judge');
+		}
+		$this->set('correct', $correct);
+		$this->set('judge', $judge);
 		$this->Session->delete('Game');
 	}
 }
