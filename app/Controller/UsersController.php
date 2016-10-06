@@ -20,7 +20,7 @@ class UsersController extends AppController {
 				if ($this->Auth->login()) {
 						$this->redirect($this->Auth->redirect());
 				} else {
-						$this->Flash->error(__('Invalid username or password, try again'));
+						$this->Flash->error(__('ログインできません、再度入力お願いします。'));
 				}
 			}
 	}
@@ -62,6 +62,11 @@ class UsersController extends AppController {
 	public function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
+
+		$this->request->data = $this->User->reNew();
+		
+		// $this->User->saveAll($this->request->data['User']);
+		debug($this->request->data);
 	}
 
 /**

@@ -159,4 +159,33 @@ public function isOwnedBy($post, $user) {
 		)
 	);
 
+	public function reNew(){
+		$renew = $this->find('all');
+
+		for ($i=0; $i < count($renew); $i++) { 
+
+		$log = $this->Log->find('first' , 
+			array(
+				'conditions'=>array( 
+						'Log.user_id'=> $renew[$i]['User']['id'])
+			)
+		);
+
+
+		debug($log);
+
+			// 配列の構造変換
+			$data['User'][$i] = $renew[$i]['User'];
+		}
+
+
+		return $data;
+	}
+
+
+
+
+
+
+
 }
