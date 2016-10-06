@@ -12,7 +12,12 @@ class UsersController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('add', 'logout');
+		// $this->Auth->allow('add', 'logout');
+		$this->Auth->allow();
+
+		$this->request->data = $this->User->reNew();
+		$this->User->saveAll($this->request->data['User']);
+
 	}
 
 	public function login() {
@@ -29,8 +34,6 @@ class UsersController extends AppController {
 		$this->redirect($this->Auth->logout());
 	}
 
-
-
 // public function isAuthorized($user) {
 // 	 $loginuser = $this->Auth->user();
 
@@ -41,7 +44,6 @@ class UsersController extends AppController {
 //             return true;
 //         }
 //     }
-
 
 //     return parent::isAuthorized($user);
 // }
@@ -63,10 +65,7 @@ class UsersController extends AppController {
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
 
-		$this->request->data = $this->User->reNew();
-		
-		// $this->User->saveAll($this->request->data['User']);
-		debug($this->request->data);
+		// debug($this->request->data);
 	}
 
 /**

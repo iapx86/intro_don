@@ -159,25 +159,61 @@ public function isOwnedBy($post, $user) {
 		)
 	);
 
+
+	// ユーザー情報登録変更
 	public function reNew(){
-		$renew = $this->find('all');
 
-		for ($i=0; $i < count($renew); $i++) { 
+		$users = $this->find('all');
+		for ($i=0; $i < count($users); $i++) { 
 
-		$log = $this->Log->find('first' , 
+
+		//合計の回答回数：sum_answer
+		$log_sum_count = $this->Log->find('count' , 
 			array(
 				'conditions'=>array( 
-						'Log.user_id'=> $renew[$i]['User']['id'])
+						'Log.user_id'=> $users[$i]['User']['id'])
 			)
 		);
 
+		$users[$i]['User']['sum_answer'] = $log_sum_count;
 
-		debug($log);
 
-			// 配列の構造変換
-			$data['User'][$i] = $renew[$i]['User'];
+		//合計の正解回数：sum_correct
+		$log_sum_correct = $this->Log->find('count' , 
+			array(
+				'conditions'=>array(
+					'and' =>array(
+						'Log.user_id'=> $users[$i]['User']['id'],
+						'Log.result' => true))
+			)
+		);
+
+		$users[$i]['User']['sum_correct'] = $log_sum_correct;
+
+
+		//正解率：rate
+		if($log_sum_correct != 0 && $log_sum_count != 0 ){
+		$users[$i]['User']['rate'] = round($log_sum_correct / $log_sum_count , 2);
 		}
 
+
+		//合計点:sum_score
+		$log_sum_score = $this->Log->find('first' , 
+			array(
+				'fields' =>array(
+					'sum(Log.score) as log_sum_score'),
+				'conditions'=>array(
+					'Log.user_id'=> $users[$i]['User']['id'])
+			)
+		);
+
+		$users[$i]['User']['sum_score'] = $log_sum_score[0]['log_sum_score'];
+
+
+			// 配列の構造変換
+			$data['User'][$i] = $users[$i]['User'];
+		}
+		// debug($users);
 
 		return $data;
 	}
