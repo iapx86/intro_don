@@ -163,7 +163,11 @@ public function isOwnedBy($post, $user) {
 	// ユーザー情報登録変更
 	public function reNew(){
 
+		$data = null;
+
 		$users = $this->find('all');
+		if(isset($users)){
+
 		for ($i=0; $i < count($users); $i++) { 
 
 
@@ -213,9 +217,12 @@ public function isOwnedBy($post, $user) {
 			// 配列の構造変換
 			$data['User'][$i] = $users[$i]['User'];
 		}
-		// debug($users);
 
+	}
+		// debug($users);
 		return $data;
+
+
 	}
 
 

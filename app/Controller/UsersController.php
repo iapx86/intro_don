@@ -16,7 +16,9 @@ class UsersController extends AppController {
 		$this->Auth->allow();
 
 		$this->request->data = $this->User->reNew();
-		$this->User->saveAll($this->request->data['User']);
+		if($this->request->data){
+			$this->User->saveAll($this->request->data['User']);
+		}
 
 	}
 
