@@ -11,7 +11,7 @@ define('MAX_SELECT', 4);
  * @property FlashComponent $Flash
  */
 class GamesController extends AppController {
-	public $uses = Array('Game', 'Song');
+	public $uses = Array('Game', 'Song', 'Log');
 	public function beforeFilter() {
 		$this->Auth->allow();
 	}
@@ -190,6 +190,14 @@ class GamesController extends AppController {
 		$this->Session->write('Game.judge', $judge);
 		$this->set('judge', $judge);
 		$this->Session->write('Game.question', $num + 1);
+		$this->Log->create();
+		$this->Log->save(['Log' => [
+//			'user_id' =>
+			'game_id' => $this->Session->read('Game.id'),
+			'score' => $judge[$num] ? 10 : 0,
+			'botton_number' => $answer[$num],
+			'correct' => $judge[$num] ? 1 : 0,
+		]]);
 	}
 	/**
 	 * result method
