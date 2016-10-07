@@ -15,12 +15,12 @@
 		<?php endfor; ?>
 		<dt><?php echo __('answer'); ?></dt>
 		<dd>
-			<?php echo $answer; ?>
+			<?php echo $answer[$question]; ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('judge'); ?></dt>
 		<dd>
-			<?php echo $judge ? 'correct' : 'wrong'; ?>
+			<?php echo $judge[$question] ? 'correct' : 'wrong'; ?>
 			&nbsp;
 		</dd>
 	</dl>

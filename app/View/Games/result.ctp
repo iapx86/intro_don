@@ -1,5 +1,5 @@
 <div class="games result">
-<h2><?php echo __('Result '); ?></h2>
+	<h2><?php echo __('Result '); ?></h2>
 	<table>
 		<tr><th>#</th><th>title</th><th>judge</th></tr>
 		<?php for ($i = 1; $i <= MAX_QUESTION; $i++): ?>
