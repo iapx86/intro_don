@@ -1,0 +1,168 @@
+<?php
+
+$apiurl1 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=サザンオールスターズ&country=JP&entity=musicTrack";
+$apiurl2 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=福山雅治&country=JP&entity=musicTrack";
+$apiurl3 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=宇多田ヒカル&country=JP&entity=musicTrack";
+$apiurl4 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=浜崎あゆみ&country=JP&entity=musicTrack";
+$apiurl5 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=絢香&country=JP&entity=musicTrack";
+$apiurl6 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=プッチモニ&country=JP&entity=musicTrack";
+$apiurl7 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=宇多田ヒカル&country=JP&entity=musicTrack";
+$apiurl8 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=浜崎あゆみ&country=JP&entity=musicTrack";
+$apiurl9 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=桑田佳祐&country=JP&entity=musicTrack";
+$apiurl10 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=モーニング娘。&country=JP&entity=musicTrack";
+$apiurl11 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=コブクロ&country=JP&entity=musicTrack";
+$apiurl12 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=三木道三&country=JP&entity=musicTrack";
+$apiurl13 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=ポルノグラフィティ&country=JP&entity=musicTrack";
+$apiurl14 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=スキマスイッチ&country=JP&entity=musicTrack";
+$apiurl15 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=宇多田ヒカル&country=JP&entity=musicTrack";
+$apiurl16 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=森山直太朗&country=JP&entity=musicTrack";
+$apiurl17 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=RUI&country=JP&entity=musicTrack";
+$apiurl18 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=IWiSH&country=JP&entity=musicTrack";
+$apiurl19 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=DREAMSCOMETRUE&country=JP&entity=musicTrack";
+$apiurl20 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=ゆず&country=JP&entity=musicTrack";
+$apiurl21 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=福山雅治&country=JP&entity=musicTrack";
+$apiurl22 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=秦基博&country=JP&entity=musicTrack";
+$apiurl23 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=AI&country=JP&entity=musicTrack";
+$apiurl24 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=MYLITTLELOVER&country=JP&entity=musicTrack";
+$apiurl25 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=桑田佳祐＆MR.CHILDREN&country=JP&entity=musicTrack";
+$apiurl26 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=岡本真夜&country=JP&entity=musicTrack";
+$apiurl27 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=スピッツ&country=JP&entity=musicTrack";
+$apiurl28 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=B'z&country=JP&entity=musicTrack";
+$apiurl29 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=秦基博&country=JP&entity=musicTrack";
+$apiurl30 = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?term=globe&country=JP&entity=musicTrack";
+
+$json1 = json_decode(@file_get_contents($apiurl1),true);
+$json2 = json_decode(@file_get_contents($apiurl2),true);
+$json3 = json_decode(@file_get_contents($apiurl3),true);
+$json4 = json_decode(@file_get_contents($apiurl4),true);
+$json5 = json_decode(@file_get_contents($apiurl5),true);
+$json6 = json_decode(@file_get_contents($apiurl6),true);
+$json7 = json_decode(@file_get_contents($apiurl7),true);
+$json8 = json_decode(@file_get_contents($apiurl8),true);
+$json9 = json_decode(@file_get_contents($apiurl9),true);
+$json10 = json_decode(@file_get_contents($apiurl10),true);
+$json11 = json_decode(@file_get_contents($apiurl11),true);
+$json12 = json_decode(@file_get_contents($apiurl12),true);
+$json13 = json_decode(@file_get_contents($apiurl13),true);
+$json14 = json_decode(@file_get_contents($apiurl14),true);
+$json15 = json_decode(@file_get_contents($apiurl15),true);
+$json16 = json_decode(@file_get_contents($apiurl16),true);
+$json17 = json_decode(@file_get_contents($apiurl17),true);
+$json18 = json_decode(@file_get_contents($apiurl18),true);
+$json19 = json_decode(@file_get_contents($apiurl19),true);
+$json20 = json_decode(@file_get_contents($apiurl20),true);
+$json21 = json_decode(@file_get_contents($apiurl21),true);
+$json22 = json_decode(@file_get_contents($apiurl22),true);
+$json23 = json_decode(@file_get_contents($apiurl23),true);
+$json24 = json_decode(@file_get_contents($apiurl24),true);
+$json25 = json_decode(@file_get_contents($apiurl25),true);
+$json26 = json_decode(@file_get_contents($apiurl26),true);
+$json27 = json_decode(@file_get_contents($apiurl27),true);
+$json28 = json_decode(@file_get_contents($apiurl28),true);
+$json29 = json_decode(@file_get_contents($apiurl29),true);
+$json30 = json_decode(@file_get_contents($apiurl30),true);
+
+echo "<pre>";
+
+//echo var_dump($json1["results"]);
+//echo var_dump($json2["results"]);
+//echo var_dump($json3["results"]);
+//echo var_dump($json4["results"]);
+//echo var_dump($json5["results"]);
+//echo var_dump($json6["results"]);
+//echo var_dump($json7["results"]);
+//echo var_dump($json8["results"]);
+//echo var_dump($json9["results"]);
+//echo var_dump($json10["results"]);
+//echo var_dump($json11["results"]);
+//echo var_dump($json12["results"]);
+//echo var_dump($json13["results"]);
+//echo var_dump($json14["results"]);
+//echo var_dump($json15["results"]);
+//echo var_dump($json16["results"]);
+//echo var_dump($json17["results"]);
+//echo var_dump($json18["results"]);
+//echo var_dump($json19["results"]);
+//echo var_dump($json20["results"]);
+//echo var_dump($json21["results"]);
+//echo var_dump($json22["results"]);
+//echo var_dump($json23["results"]);
+//echo var_dump($json24["results"]);
+//echo var_dump($json25["results"]);
+//echo var_dump($json26["results"]);
+//echo var_dump($json27["results"]);
+//echo var_dump($json28["results"]);
+//echo var_dump($json29["results"]);
+//echo var_dump($json30["results"]);
+
+echo "</pre>";
+
+echo "<pre>";
+echo "<a href=" . $json1["results"][1]["previewUrl"] . ">TSUNAMI</a>";
+echo "<br>";
+echo "<a href=" . $json2["results"][2]["previewUrl"] . ">桜坂</a>";
+echo "<br>";
+echo "<a href=" . $json3["results"][25]["previewUrl"] . ">Wait&See～リスク～</a>";
+echo "<br>";
+echo "<a href=" . $json4["results"][16]["previewUrl"] . ">SEASONS</a>";
+echo "<br>";
+echo "<a href=" . $json5["results"][2]["previewUrl"] . ">三日月</a>";
+echo "<br>";
+echo "<a href=" . $json6["results"][0]["previewUrl"] . ">ちょこっとLOVE</a>";
+echo "<br>";
+echo "<a href=" . $json7["results"][21]["previewUrl"] . ">Can You Keep A Secret?</a>";
+echo "<br>";
+echo "<a href=" . $json8["results"][0]["previewUrl"] . ">M</a>";
+echo "<br>";
+echo "<a href=" . $json9["results"][5]["previewUrl"] . ">波乗りジョニー</a>";
+echo "<br>";
+echo "<a href=" . $json10["results"][0]["previewUrl"] . ">恋愛レボリューション21</a>";
+echo "<br>";
+echo "<a href=" . $json11["results"][5]["previewUrl"] . ">蕾</a>";
+echo "<br>";
+echo "<a href=" . $json12["results"][0]["previewUrl"] . ">Lifetime Respect</a>";
+echo "<br>";
+echo "<a href=" . $json13["results"][4]["previewUrl"] . ">アゲハ蝶</a>";
+echo "<br>";
+echo "<a href=" . $json14["results"][0]["previewUrl"] . ">奏</a>";
+echo "<br>";
+echo "<a href=" . $json15["results"][21]["previewUrl"] . ">COLORS</a>";
+echo "<br>";
+echo "<a href=" . $json16["results"][0]["previewUrl"] . ">さくら （独唱）</a>";
+echo "<br>";
+echo "<a href=" . $json17["results"][1]["previewUrl"] . ">月のしずく</a>";
+echo "<br>";
+echo "<a href=" . $json18["results"][0]["previewUrl"] . ">明日への扉</a>";
+echo "<br>";
+echo "<a href=" . $json19["results"][29]["previewUrl"] . ">LOVE LOVE LOVE</a>";
+echo "<br>";
+echo "<a href=" . $json20["results"][0]["previewUrl"] . ">栄光の架橋</a>";
+echo "<br>";
+echo "<a href=" . $json21["results"][9]["previewUrl"] . ">HELLO</a>";
+echo "<br>";
+echo "<a href=" . $json22["results"][4]["previewUrl"] . ">鱗</a>";
+echo "<br>";
+echo "<a href=" . $json23["results"][1]["previewUrl"] . ">Story</a>";
+echo "<br>";
+echo "<a href=" . $json24["results"][0]["previewUrl"] . ">Hello，Again～昔からある場所～</a>";
+echo "<br>";
+echo "<a href=" . $json25["results"][0]["previewUrl"] . ">奇跡の地球</a>";
+echo "<br>";
+echo "<a href=" . $json26["results"][20]["previewUrl"] . ">TOMORROW</a>";
+echo "<br>";
+echo "<a href=" . $json27["results"][2]["previewUrl"] . ">ロビンソン</a>";
+echo "<br>";
+echo "<a href=" . $json28["results"][5]["previewUrl"] . ">LOVE PHANTOM</a>";
+echo "<br>";
+echo "<a href=" . $json29["results"][0]["previewUrl"] . ">ひまわりの約束</a>";
+echo "<br>";
+echo "<a href=" . $json30["results"][0]["previewUrl"] . ">DEPARTURES</a>";
+
+echo "</pre>";
+
+?>
+
+<html>
+<body>
+</body>
+</html>
