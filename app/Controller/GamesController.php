@@ -1,5 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
+define('MAX_QUESTION', 10);
+define('MAX_SELECT', 4);
 /**
  * Games Controller
  *
@@ -130,15 +132,15 @@ class GamesController extends AppController {
 			$this->Game->create();
 			$songs = $this->Song->find('all');
 			$songs_count = count($songs);
-			for ($correct = [], $i = 1; $i <= 10; $i++) {
+			for ($correct = [], $i = 1; $i <= MAX_QUESTION; $i++) {
 				do {
 					$index = rand(0, $songs_count - 1);
 				} while (in_array($index, $correct));
 				$correct[$i] = $index;
 			}
-			for ($i = 1; $i <= 10; $i++) {
-				$select[$i][rand(1, 4)] = $correct[$i];
-				for ($j = 1; $j <= 4; $j++) {
+			for ($i = 1; $i <= MAX_QUESTION; $i++) {
+				$select[$i][rand(1, MAX_SELECT)] = $correct[$i];
+				for ($j = 1; $j <= MAX_SELECT; $j++) {
 					if (array_key_exists($j, $select[$i])) {
 						continue;
 					}
@@ -148,9 +150,9 @@ class GamesController extends AppController {
 					$select[$i][$j] = $index;
 				}
 			}
-			for ($i = 1; $i <= 10; $i++) {
+			for ($i = 1; $i <= MAX_QUESTION; $i++) {
 				$this->request->data['Game']['question'.$i.'_correct_songid'] = $songs[$correct[$i]]['Song']['id'];
-				for ($j = 1; $j <= 4; $j++) {
+				for ($j = 1; $j <= MAX_SELECT; $j++) {
 					$this->request->data['Game']['question'.$i.'_select'.$j.'_songid'] = $songs[$select[$i][$j]]['Song']['id'];
 				}
 			}
@@ -176,7 +178,7 @@ class GamesController extends AppController {
  */
 	public function question() {
 		$this->set('question', $num = $this->Session->read('Game.question'));
-		if ($num > 10) {
+		if ($num > MAX_QUESTION) {
 			return $this->redirect(array('action' => 'result'));
 		}
 		$this->set('correct', $this->Session->read('Game.correct'));

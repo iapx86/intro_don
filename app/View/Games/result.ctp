@@ -2,7 +2,7 @@
 <h2><?php echo __('Result '); ?></h2>
 	<table>
 		<tr><th>#</th><th>title</th><th>judge</th></tr>
-		<?php for ($i = 1; $i <= 10; $i++): ?>
+		<?php for ($i = 1; $i <= MAX_QUESTION; $i++): ?>
 			<tr>
 				<td><?php echo $i; ?></td>
 				<td><?php echo $songs[$correct[$i]]['Song']['artist'].' / '.$songs[$correct[$i]]['Song']['title']; ?></td>

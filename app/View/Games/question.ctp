@@ -18,10 +18,10 @@
 				</audio>
 			<table>
 				<tr>
-					<td colspan="4"><?php echo __($songs[$correct[$question]]['Song']['artist'] . ' / ' . $songs[$correct[$question]]['Song']['title']); ?></td>
+					<td colspan="<?php echo MAX_SELECT ?>"><?php echo __($songs[$correct[$question]]['Song']['artist'] . ' / ' . $songs[$correct[$question]]['Song']['title']); ?></td>
 				</tr>
 				<tr>
-					<?php for ($i = 1; $i <= 4; $i++): ?>
+					<?php for ($i = 1; $i <= MAX_SELECT; $i++): ?>
 						<td><?php echo $this->Form->postLink(__($songs[$select[$question][$i]]['Song']['artist'] . ' / ' . $songs[$select[$question][$i]]['Song']['title']), array('action' => 'answer', $i)); ?></td>
 					<?php endfor; ?>
 				</tr>

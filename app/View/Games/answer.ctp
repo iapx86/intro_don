@@ -6,7 +6,7 @@
 			<?php echo $songs[$correct[$question]]['Song']['artist'] . ' / ' . $songs[$correct[$question]]['Song']['title']; ?>
 			&nbsp;
 		</dd>
-		<?php for ($i = 1; $i <= 4; $i++): ?>
+		<?php for ($i = 1; $i <= MAX_SELECT; $i++): ?>
 			<dt><?php echo __('select' . $i); ?></dt>
 			<dd>
 				<?php echo $songs[$select[$question][$i]]['Song']['artist'] . ' / ' . $songs[$select[$question][$i]]['Song']['title']; ?>
@@ -25,7 +25,7 @@
 		</dd>
 	</dl>
 	<?php
-	if ($question < 10) {
+	if ($question < MAX_QUESTION) {
 		echo $this->Form->postLink(__('Next'), array('action' => 'question'));
 	} else {
 		echo $this->Form->postLink(__('Result'), array('action' => 'result'));
