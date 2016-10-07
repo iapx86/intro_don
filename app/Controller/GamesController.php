@@ -10,6 +10,8 @@ App::uses('AppController', 'Controller');
  */
 class GamesController extends AppController {
 
+	public $uses = Array('Game', 'Song');
+
 	public function beforeFilter() {
 		$this->Auth->allow();
 	}
@@ -126,11 +128,13 @@ class GamesController extends AppController {
 	public function start() {
 		if ($this->request->is('post')) {
 			$this->Game->create();
+			$songs = $this->Song->find('all');
+			$songs_count = count($songs);
 			for ($correct = [], $i = 1; $i <= 10; $i++) {
 				do {
-					$id = rand(1, 100);
-				} while (in_array($id, $correct));
-				$correct[$i] = $id;
+					$index = rand(0, $songs_count - 1);
+				} while (in_array($index, $correct));
+				$correct[$i] = $index;
 			}
 			for ($i = 1; $i <= 10; $i++) {
 				$select[$i][rand(1, 4)] = $correct[$i];
@@ -139,26 +143,25 @@ class GamesController extends AppController {
 						continue;
 					}
 					do {
-						$id = rand(1, 100);
-					} while (in_array($id, $select[$i]));
-					$select[$i][$j] = $id;
+						$index = rand(0, $songs_count - 1);
+					} while (in_array($index, $select[$i]));
+					$select[$i][$j] = $index;
 				}
 			}
 			for ($i = 1; $i <= 10; $i++) {
-				$this->request->data['Game']['question'.$i.'_correct_songid'] = $correct[$i];
+				$this->request->data['Game']['question'.$i.'_correct_songid'] = $songs[$correct[$i]]['Song']['id'];
 				for ($j = 1; $j <= 4; $j++) {
-					$this->request->data['Game']['question'.$i.'_select'.$j.'_songid'] = $select[$i][$j];
+					$this->request->data['Game']['question'.$i.'_select'.$j.'_songid'] = $songs[$select[$i][$j]]['Song']['id'];
 				}
 			}
 			if ($this->Game->save($this->request->data)) {
 				$this->Session->write('Game.id', $this->Game->id);
 				$this->Session->write('Game.question', 1);
-				for ($i = 1; $i <= 10; $i++) {
-					$this->Session->write('Game.question'.$i.'_correct_songid', $correct[$i]);
-					for ($j = 1; $j <= 4; $j++) {
-						$this->Session->write('Game.question'.$i.'_select'.$j.'_songid', $select[$i][$j]);
-					}
-				}
+				$this->Session->write('Game.correct', $correct);
+				$this->Session->write('Game.select', $select);
+				$this->Session->write('Game.songs', $songs);
+				$this->Session->write('Game.answer', []);
+				$this->Session->write('Game.judge', []);
 				return $this->redirect(array('action' => 'question'));
 			} else {
 				$this->Flash->error(__('The game could not be saved. Please, try again.'));
@@ -172,17 +175,13 @@ class GamesController extends AppController {
  * @return void
  */
 	public function question() {
-		$num = $this->Session->read('Game.question');
+		$this->set('question', $num = $this->Session->read('Game.question'));
 		if ($num > 10) {
 			return $this->redirect(array('action' => 'result'));
 		}
-		$correct = $this->Session->read('Game.question'.$num.'_correct_songid');
-		for ($i = 1; $i <= 4; $i++) {
-			$select[$i] = $this->Session->read('Game.question'.$num.'_select'.$i.'_songid');
-		}
-		$this->set('question', $num);
-		$this->set('correct', $correct);
-		$this->set('select', $select);
+		$this->set('correct', $this->Session->read('Game.correct'));
+		$this->set('select', $this->Session->read('Game.select'));
+		$this->set('songs', $this->Session->read('Game.songs'));
 	}
 
 /**
@@ -190,18 +189,17 @@ class GamesController extends AppController {
  *
  * @return void
  */
-	public function answer($answer = null) {
-		$num = $this->Session->read('Game.question');
-		$correct = $this->Session->read('Game.question'.$num.'_correct_songid');
-		for ($i = 1; $i <= 4; $i++) {
-			$select[$i] = $this->Session->read('Game.question'.$num.'_select'.$i.'_songid');
-		}
-		$judge = $correct === $select[$answer];
-		$this->Session->write('Game.question'.$num.'_judge', $judge);
-		$this->set('question', $num);
-		$this->set('correct', $correct);
-		$this->set('select', $select);
+	public function answer($id = null) {
+		$this->set('question', $num = $this->Session->read('Game.question'));
+		$this->set('correct', $correct = $this->Session->read('Game.correct'));
+		$this->set('select', $select = $this->Session->read('Game.select'));
+		$this->set('songs', $this->Session->read('Game.songs'));
+		$answer = $this->Session->read('Game.answer');
+		$judge = $this->Session->read('Game.judge');
+		$judge[$num] = $correct[$num] === $select[$num][$answer[$num] = $id];
+		$this->Session->write('Game.answer', $answer);
 		$this->set('answer', $answer);
+		$this->Session->write('Game.judge', $judge);
 		$this->set('judge', $judge);
 		$this->Session->write('Game.question', $num + 1);
 	}
@@ -212,14 +210,11 @@ class GamesController extends AppController {
  * @return void
  */
 	public function result($answer = null) {
-		$correct = [];
-		$judge = [];
-		for ($i = 1; $i <= 10; $i++) {
-			$correct[$i] = $this->Session->read('Game.question'.$i.'_correct_songid');
-			$judge[$i] = $this->Session->read('Game.question'.$i.'_judge');
-		}
-		$this->set('correct', $correct);
-		$this->set('judge', $judge);
+		$this->set('correct', $this->Session->read('Game.correct'));
+		$this->set('select', $this->Session->read('Game.select'));
+		$this->set('songs', $this->Session->read('Game.songs'));
+		$this->set('answer', $this->Session->read('Game.answer'));
+		$this->set('judge', $this->Session->read('Game.judge'));
 		$this->Session->delete('Game');
 	}
 }

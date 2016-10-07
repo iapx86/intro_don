@@ -164,13 +164,13 @@ public function isOwnedBy($post, $user) {
 	public function reNew(){
 
 		$users = $this->find('all');
-		for ($i=0; $i < count($users); $i++) { 
+		for ($i=0; $i < count($users); $i++) {
 
 
 		//合計の回答回数：sum_answer
-		$log_sum_count = $this->Log->find('count' , 
+		$log_sum_count = $this->Log->find('count' ,
 			array(
-				'conditions'=>array( 
+				'conditions'=>array(
 						'Log.user_id'=> $users[$i]['User']['id'])
 			)
 		);
@@ -179,7 +179,7 @@ public function isOwnedBy($post, $user) {
 
 
 		//合計の正解回数：sum_correct
-		$log_sum_correct = $this->Log->find('count' , 
+		$log_sum_correct = $this->Log->find('count' ,
 			array(
 				'conditions'=>array(
 					'and' =>array(
@@ -198,7 +198,7 @@ public function isOwnedBy($post, $user) {
 
 
 		//合計点:sum_score
-		$log_sum_score = $this->Log->find('first' , 
+		$log_sum_score = $this->Log->find('first' ,
 			array(
 				'fields' =>array(
 					'sum(Log.score) as log_sum_score'),
