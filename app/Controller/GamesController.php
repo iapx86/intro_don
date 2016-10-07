@@ -1,5 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
+define('MAX_QUESTION', 10);
+define('MAX_SELECT', 4);
 /**
  * Games Controller
  *
@@ -126,15 +128,17 @@ class GamesController extends AppController {
 	public function start() {
 		if ($this->request->is('post')) {
 			$this->Game->create();
-			for ($correct = [], $i = 1; $i <= 10; $i++) {
+			$songs = $this->Song->find('all');
+			$songs_count = count($songs);
+			for ($correct = [], $i = 1; $i <= MAX_QUESTION; $i++) {
 				do {
 					$id = rand(1, 100);
 				} while (in_array($id, $correct));
 				$correct[$i] = $id;
 			}
-			for ($i = 1; $i <= 10; $i++) {
-				$select[$i][rand(1, 4)] = $correct[$i];
-				for ($j = 1; $j <= 4; $j++) {
+			for ($i = 1; $i <= MAX_QUESTION; $i++) {
+				$select[$i][rand(1, MAX_SELECT)] = $correct[$i];
+				for ($j = 1; $j <= MAX_SELECT; $j++) {
 					if (array_key_exists($j, $select[$i])) {
 						continue;
 					}
@@ -144,10 +148,10 @@ class GamesController extends AppController {
 					$select[$i][$j] = $id;
 				}
 			}
-			for ($i = 1; $i <= 10; $i++) {
-				$this->request->data['Game']['question'.$i.'_correct_songid'] = $correct[$i];
-				for ($j = 1; $j <= 4; $j++) {
-					$this->request->data['Game']['question'.$i.'_select'.$j.'_songid'] = $select[$i][$j];
+			for ($i = 1; $i <= MAX_QUESTION; $i++) {
+				$this->request->data['Game']['question'.$i.'_correct_songid'] = $songs[$correct[$i]]['Song']['id'];
+				for ($j = 1; $j <= MAX_SELECT; $j++) {
+					$this->request->data['Game']['question'.$i.'_select'.$j.'_songid'] = $songs[$select[$i][$j]]['Song']['id'];
 				}
 			}
 			if ($this->Game->save($this->request->data)) {
@@ -172,8 +176,8 @@ class GamesController extends AppController {
  * @return void
  */
 	public function question() {
-		$num = $this->Session->read('Game.question');
-		if ($num > 10) {
+		$this->set('question', $num = $this->Session->read('Game.question'));
+		if ($num > MAX_QUESTION) {
 			return $this->redirect(array('action' => 'result'));
 		}
 		$correct = $this->Session->read('Game.question'.$num.'_correct_songid');

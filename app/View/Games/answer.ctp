@@ -1,31 +1,18 @@
 <div class="games answer">
-<h2><?php echo __('Answer '.$question); ?></h2>
+	<h2><?php echo __('Answer ' . $question); ?></h2>
 	<dl>
 		<dt><?php echo __('correct'); ?></dt>
 		<dd>
-			<?php echo $correct; ?>
+			<?php echo $songs[$correct[$question]]['Song']['artist'] . ' / ' . $songs[$correct[$question]]['Song']['title']; ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('select1'); ?></dt>
-		<dd>
-			<?php echo $select[1]; ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('select2'); ?></dt>
-		<dd>
-			<?php echo $select[2]; ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('select3'); ?></dt>
-		<dd>
-			<?php echo $select[3]; ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('select4'); ?></dt>
-		<dd>
-			<?php echo $select[4]; ?>
-			&nbsp;
-		</dd>
+		<?php for ($i = 1; $i <= MAX_SELECT; $i++): ?>
+			<dt><?php echo __('select' . $i); ?></dt>
+			<dd>
+				<?php echo $songs[$select[$question][$i]]['Song']['artist'] . ' / ' . $songs[$select[$question][$i]]['Song']['title']; ?>
+				&nbsp;
+			</dd>
+		<?php endfor; ?>
 		<dt><?php echo __('answer'); ?></dt>
 		<dd>
 			<?php echo $answer; ?>
@@ -38,10 +25,9 @@
 		</dd>
 	</dl>
 	<?php
-	if ($question < 10) {
+	if ($question < MAX_QUESTION) {
 		echo $this->Form->postLink(__('Next'), array('action' => 'question'));
-	}
-	else {
+	} else {
 		echo $this->Form->postLink(__('Result'), array('action' => 'result'));
 	}
 	?>

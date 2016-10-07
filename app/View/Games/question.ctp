@@ -16,22 +16,17 @@
 				<audio preload="auto" id="demo" controls >
 					<source src="http://audio.itunes.apple.com/apple-assets-us-std-000001/AudioPreview18/v4/b5/e4/e9/b5e4e99c-a228-8245-df8e-f98a5a2475a0/mzaf_2725412604837329319.plus.aac.p.m4a#t=0,0.3" type="audio/mp4">
 				</audio>
-	<table>
-		<tr><td colspan="4"><?php echo __('correct = '.$correct); ?></td></tr>
-		<tr>
-			<td><?php echo $this->Form->postLink(__('id = '.$select[1]), array('action' => 'answer', '1')); ?></td>
-		</tr>
-		<tr>
-			<td><?php echo $this->Form->postLink(__('id = '.$select[2]), array('action' => 'answer', '2')); ?></td>
-		</tr>
-		<tr>
-			<td><?php echo $this->Form->postLink(__('id = '.$select[3]), array('action' => 'answer', '3')); ?></td>
-		</tr>
-		<tr>
-			<td><?php echo $this->Form->postLink(__('id = '.$select[4]), array('action' => 'answer', '4')); ?></td>
-		</tr>
-	</table>
-　　	</div>
+			<table>
+				<tr>
+					<td colspan="<?php echo MAX_SELECT ?>"><?php echo __($songs[$correct[$question]]['Song']['artist'] . ' / ' . $songs[$correct[$question]]['Song']['title']); ?></td>
+				</tr>
+				<tr>
+					<?php for ($i = 1; $i <= MAX_SELECT; $i++): ?>
+						<td><?php echo $this->Form->postLink(__($songs[$select[$question][$i]]['Song']['artist'] . ' / ' . $songs[$select[$question][$i]]['Song']['title']), array('action' => 'answer', $i)); ?></td>
+					<?php endfor; ?>
+				</tr>
+			</table>
+		</div>
 	</div>
 </div>
 
