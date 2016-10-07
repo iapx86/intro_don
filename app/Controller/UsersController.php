@@ -15,21 +15,21 @@ class UsersController extends AppController {
 		// $this->Auth->allow('add', 'logout');
 		$this->Auth->allow();
 
-		$this->request->data = $this->User->reNew();
-		if($this->request->data){
-			$this->User->saveAll($this->request->data['User']);
+		$renew = $this->User->reNew();
+		if($renew){
+			$this->User->saveAll($renew['User']);
 		}
 
 	}
 
 	public function login() {
 		if ($this->request->is('post')) {
-				if ($this->Auth->login()) {
-						$this->redirect($this->Auth->redirect());
-				} else {
-						$this->Flash->error(__('ログインできません、再度入力お願いします。'));
-				}
+			if ($this->Auth->login()) {
+				$this->redirect($this->Auth->redirect());
+			} else {
+				$this->Flash->error(__('ログインできません、再度入力お願いします。'));
 			}
+		}
 	}
 
 	public function logout() {
