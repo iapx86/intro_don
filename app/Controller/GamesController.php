@@ -196,7 +196,7 @@ class GamesController extends AppController {
 	 *
 	 * @return void
 	 */
-	public function result($answer = null) {
+	public function result() {
 		$this->set('correct', $this->Session->read('Game.correct'));
 		$this->set('select', $this->Session->read('Game.select'));
 		$this->set('songs', $this->Session->read('Game.songs'));
