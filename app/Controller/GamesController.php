@@ -120,6 +120,10 @@ class GamesController extends AppController {
 			$this->Game->create();
 			$songs = $this->Song->find('all');
 			$songs_count = count($songs);
+			if ($songs_count < MAX_QUESTION) {
+				$this->Flash->error(__('The number of songs is not enough.'));
+				return $this->redirect(array('action' => 'start'));
+			}
 			for ($correct = [], $i = 1; $i <= MAX_QUESTION; $i++) {
 				do {
 					$index = rand(0, $songs_count - 1);
