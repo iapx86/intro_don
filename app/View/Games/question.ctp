@@ -14,7 +14,7 @@
 		<div id="wrap_question">
 			<p class="text_click">ボタンを押してね！</p>
 			<audio preload="auto" id="demo" controls >
-				<source src="http://audio.itunes.apple.com/apple-assets-us-std-000001/AudioPreview18/v4/b5/e4/e9/b5e4e99c-a228-8245-df8e-f98a5a2475a0/mzaf_2725412604837329319.plus.aac.p.m4a#t=0,0.3" type="audio/mp4">
+				<source src="<?php echo $songs[$correct[$question]]['Song']['preview']; ?>#t=0,0.3" type="audio/mp4">
 			</audio>
 			<table>
 				<tr>
