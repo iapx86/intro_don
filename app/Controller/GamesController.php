@@ -14,7 +14,9 @@ class GamesController extends AppController {
 	public $uses = Array('Game', 'Song', 'Log');
 	public function beforeFilter() {
 		$this->Auth->allow();
-		$this->layout = 'game';
+		if ($this->action !== 'index' && $this->action !== 'view' && $this->action !== 'add' && $this->action !== 'edit' && $this->action !== 'delete') {
+			$this->layout = 'game';
+		}
 	}
 	public function isAuthorized($user) {
 		// 登録済ユーザーは投稿できる
