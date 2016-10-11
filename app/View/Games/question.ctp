@@ -1,12 +1,4 @@
-<!DOCTYPE HTML>
-<html lang="ja">
-<head>
-	<meta charset="utf-8">
-	<link href="css/set.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-</head>
-<body>
-
+<?php echo $this->Html->script('http://code.jquery.com/jquery-2.0.0.min.js'); ?>
 <div class="games question">
 	<h2><?php echo __('問題'.$question); ?></h2>
 	<div id="main">
@@ -29,16 +21,3 @@
 		</div>
 	</div>
 </div>
-
-</body>
-</html>
-
-
-<!--
-			<ul id="song_list">
-				<li><button type="submit" name="song1">波乗りジョニー<span>桑田佳祐</span></button></li>
-				<li><button type="submit" name="song2">ボーイフレンド<span>aiko</span></button></li>
-				<li><button type="submit" name="song3">Wait&See～リスク～<span>宇多田ヒカル</span></button></li>
-				<li><button type="submit" name="song4">らいおんハート<span>SMAP</span></button></li>
-			</ul>
--->
