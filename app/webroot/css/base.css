@@ -46,8 +46,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 body {
     line-height: 1;
-    background-color: #fbd3ed;
-    margin: 20px 0 0;
+    background-color: #ffeb69;
 }
 ol, ul {
     list-style: none;

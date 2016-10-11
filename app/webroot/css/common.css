@@ -22,7 +22,6 @@
     color: #8cb531;
     font-weight: bold;
     font-size: 60px;
-    margin: 0 0 30px;
     text-align: center;
 }
 
@@ -92,46 +91,50 @@
     text-align: center;
     color: #4671f1;
     font-size: 20px;
-    margin: 0 0 20px;
+    margin: 0 0 50px;
 }
 
 .page_start h2 span{
     font-size: 30px;
     margin: 0 10px;
 }
-
 .page_start .btn1{
-     background-color: #ffffff;
-     display: block;
-     text-decoration: none;
-     color: #000000;
-     text-align: center;
-     border: 1px solid #8cb531;
-     font-size: 30px;
-     font-weight: bold;
-     width: 50%;
-     margin: 0 auto 20px;
-     padding: 15px 0;
- }
+    margin: 0 0 20px;
+}
 
-.page_start .btn2{
-    background-color: #ffffff;
+.page_start .btn1 a{
+    background-color: #75cae9;
+    display: block;
     text-decoration: none;
-    color: #000000;
+    color: #ffffff;
     text-align: center;
-    border: 1px solid #8cb531;
     font-size: 30px;
     font-weight: bold;
     width: 50%;
     margin: 0 auto;
     padding: 15px 0;
+ }
+
+.page_start .btn2{
+    background-color: #fbd4e1;
+    text-decoration: none;
+    color: #6d6d6c;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    width: 50%;
+    margin: 0 auto;
+    padding: 15px 0;
+    cursor: pointer;
 }
 
 .page_start #text{
     background-color: #ffffff;
-    padding: 20px;
-    margin: 15px 0 0px;
+    padding: 30px;
+    margin: 15px auto 0px;
     line-height: 1.5;
+    border-radius: 50px;
+    width: 367px;
     display: none;
 }
 
@@ -149,10 +152,12 @@
     font-weight: bold;
 }
 
+#wrap_question #wrap_audio{
+    text-align: center;
+}
+
 #wrap_question audio{
     margin: 30px auto;
-    width: 300px;
-    text-align: center;
 }
 
 #wrap_question #song_list li{
@@ -161,15 +166,16 @@
 }
 
 #wrap_question #song_list li button{
-    background-color: #1b65ce;
+    background-color: #5da5fb;
     color: #ffffff;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 23px;
     line-height: 1.4;
     padding: 10px 0;
     width: 60%;
     border: none;
     font-family: 'Quicksand', "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", 'メイリオ' , Meiryo , Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+    cursor: pointer;
 }
 
 #wrap_question #song_list li button span {
@@ -187,23 +193,32 @@
 }
 
 #wrap_answer .judge_text{
-    font-size: 40px;
+    font-size: 70px;
     font-weight: bold;
+    margin: 0 0 10px;
 }
 
-#wrap_answer .judge_img{
-    font-size: 118px;
-    font-weight: bold;
-    margin: 14px 0;
-    font-family: verdana;
+#wrap_answer .judge_text.correct{
+    color: #ff0000;
 }
 
-#wrap_answer .judge_img.correct{
+#wrap_answer .judge_text.wrong{
     color: #0070c0;
 }
 
-#wrap_answer .judge_img.wrong{
+#wrap_answer .judge_text .judge_img{
+    font-size: 118px;
+    font-weight: bold;
+    display: block;
+    font-family: verdana;
+}
+
+#wrap_answer .correct .judge_img{
     color: #ff0000;
+}
+
+#wrap_answer .wrong .judge_img{
+    color: #0070c0;
 }
 
 #wrap_answer .correct_answer{
@@ -219,17 +234,17 @@
 }
 
 #wrap_answer .next input{
-    background-color: #ffd966;
+    background-color: #75cae9;
     display: block;
-    color: #000000;
     font-weight: bold;
+    color: #ffffff;
     font-size: 35px;
     width: 50%;
+    border: none;
     margin: 0 auto;
     text-align: center;
     text-decoration: none;
     padding: 10px 0;
-    border: 1px solid black;
 }
 
 /* =====================
