@@ -184,7 +184,16 @@ class GamesController extends AppController {
 	 *
 	 * @return void
 	 */
-	public function answer($id = null) {
+	public function answer() {
+		for ($id = 1; $id <= MAX_SELECT; $id++) {
+			if (array_key_exists((string)$id, $this->request->data)) {
+				break;
+			}
+		}
+		if ($id > MAX_SELECT) {
+			$this->Flash->error(__('Illegal operation is detected.'));
+			return $this->redirect(array('action' => 'start'));
+		}
 		$this->set('question', $num = $this->Session->read('Game.question'));
 		$this->set('correct', $correct = $this->Session->read('Game.correct'));
 		$this->set('select', $select = $this->Session->read('Game.select'));
