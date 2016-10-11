@@ -1,7 +1,6 @@
 <div id="main">
 	<h1>
 		<?php echo $this->Html->link($this->Html->image('title.png'),array('controller'=>'/'),array('escape'=>false));?>
-		<span>～曲を聴いて曲名を当てよう！～</span>
 	</h1>
 	<div id="wrap_answer">
 		<?php echo $this->Form->create(array('url' => array('action' => $question < MAX_QUESTION ? 'question' : 'result'))); ?>
@@ -9,11 +8,9 @@
 				<source src="<?php echo $songs[$correct[$question]]['Song']['preview']; ?>" type="audio/mp4">
 			</audio>
 		<?php if ($judge[$question]): ?>
-			<p class="judge_text">正解！</p>
-			<p class="judge_img correct">◎</p>
+			<p class="judge_text correct">正解！<span class="judge_img">◎</span></p>
 		<?php else: ?>
-			<p class="judge_text">不正解！</p>
-			<p class="judge_img wrong">×</p>
+			<p class="judge_text wrong">不正解！<span class="judge_img">×</span></p>
 		<?php endif; ?>
 			<p><img src="<?php echo $songs[$correct[$question]]['Song']['jacket_img']; ?>"></p>
 			<p class="correct_answer"><?php echo $songs[$correct[$question]]['Song']['title']; ?><span><?php echo $songs[$correct[$question]]['Song']['artist']; ?></span></p>

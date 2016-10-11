@@ -2,7 +2,6 @@
 <div id="main">
 	<h1>
 		<?php echo $this->Html->link($this->Html->image('title.png'),array('controller'=>'/'),array('escape'=>false));?>
-		<span>～曲を聴いて曲名を当てよう！～</span>
 	</h1>
 	<div id="wrap_question">
 		<p class="text_click">ボタンを押してね！</p>

@@ -2,7 +2,6 @@
 <div id="main" class="page_start">
 	<h1>
 		<?php echo $this->Html->link($this->Html->image('title.png'),array('controller'=>'/'),array('escape'=>false));?>
-		<span>～曲を聴いて曲名を当てよう！～</span>
 	</h1>
 	<h2>こんにちは！<span>○○○</span>さん！</h2>
 	<div class="btn1"><?php echo $this->Form->postLink('遊ぶ', array('action' => 'start')); ?></div>
