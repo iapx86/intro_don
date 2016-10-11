@@ -1,34 +1,17 @@
-<div class="games answer">
-	<h2><?php echo __('Answer ' . $question); ?></h2>
-	<dl>
-		<dt><?php echo __('correct'); ?></dt>
-		<dd>
-			<?php echo $songs[$correct[$question]]['Song']['artist'] . ' / ' . $songs[$correct[$question]]['Song']['title']; ?>
-			&nbsp;
-		</dd>
-		<?php for ($i = 1; $i <= MAX_SELECT; $i++): ?>
-			<dt><?php echo __('select' . $i); ?></dt>
-			<dd>
-				<?php echo $songs[$select[$question][$i]]['Song']['artist'] . ' / ' . $songs[$select[$question][$i]]['Song']['title']; ?>
-				&nbsp;
-			</dd>
-		<?php endfor; ?>
-		<dt><?php echo __('answer'); ?></dt>
-		<dd>
-			<?php echo $answer[$question]; ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('judge'); ?></dt>
-		<dd>
-			<?php echo $judge[$question] ? 'correct' : 'wrong'; ?>
-			&nbsp;
-		</dd>
-	</dl>
-	<?php
-	if ($question < MAX_QUESTION) {
-		echo $this->Form->postLink(__('Next'), array('action' => 'question'));
-	} else {
-		echo $this->Form->postLink(__('Result'), array('action' => 'result'));
-	}
-	?>
+<div id="main">
+	<h1>♪イントロドン♪<span>～曲を聴いて曲名を当てよう！～</span></h1>
+	<div id="wrap_answer">
+		<?php echo $this->Form->create(array('url' => array('action' => $question < MAX_QUESTION ? 'question' : 'result'))); ?>
+		<?php if ($judge[$question]): ?>
+			<p class="judge_text">正解！</p>
+			<p class="judge_img correct">◎</p>
+		<?php else: ?>
+			<p class="judge_text">不正解！</p>
+			<p class="judge_img wrong">×</p>
+		<?php endif; ?>
+			<p><img src="<?php echo $songs[$correct[$question]]['Song']['jacket_img']; ?>"></p>
+			<p class="correct_answer"><?php echo $songs[$correct[$question]]['Song']['title']; ?><span><?php echo $songs[$correct[$question]]['Song']['artist']; ?></span></p>
+			<p class="next"><?php echo $this->Form->submit($question < MAX_QUESTION ? '次へ' : '結果発表', array('div' => false)); ?></p>
+		<?php echo $this->Form->end(); ?>
+	</div>
 </div>
