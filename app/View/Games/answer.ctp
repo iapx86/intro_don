@@ -1,5 +1,8 @@
 <div id="main">
-	<h1>♪イントロドン♪<span>～曲を聴いて曲名を当てよう！～</span></h1>
+	<h1>
+		<?php echo $this->Html->link($this->Html->image('title.png'),array('controller'=>'/'),array('escape'=>false));?>
+		<span>～曲を聴いて曲名を当てよう！～</span>
+	</h1>
 	<div id="wrap_answer">
 		<?php echo $this->Form->create(array('url' => array('action' => $question < MAX_QUESTION ? 'question' : 'result'))); ?>
 		<?php if ($judge[$question]): ?>
