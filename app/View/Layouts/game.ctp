@@ -19,10 +19,7 @@
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
-	<title>
-		<?php echo 'イントロドン' ?>:
-		<?php echo $this->fetch('title'); ?>
-	</title>
+	<title>イントロドン！</title>
 	<?php
 		echo $this->Html->meta('icon');
 
@@ -35,20 +32,12 @@
 </head>
 <body>
 	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link('イントロドン' , '/'); ?></h1>
-		</div>
 		<div id="content">
 
 			<?php echo $this->Flash->render(); ?>
 
 			<?php echo $this->fetch('content'); ?>
 		</div>
-		<div id="footer">
-			<p><?php echo $this->Html->link('ログアウト' , '/users/logout'); ?></p>
-
-		</div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
 </body>
 </html>
