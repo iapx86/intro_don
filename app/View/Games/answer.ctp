@@ -5,6 +5,9 @@
 	</h1>
 	<div id="wrap_answer">
 		<?php echo $this->Form->create(array('url' => array('action' => $question < MAX_QUESTION ? 'question' : 'result'))); ?>
+			<audio preload="auto" id="demo" autoplay>
+				<source src="<?php echo $songs[$correct[$question]]['Song']['preview']; ?>" type="audio/mp4">
+			</audio>
 		<?php if ($judge[$question]): ?>
 			<p class="judge_text">正解！</p>
 			<p class="judge_img correct">◎</p>
