@@ -13,14 +13,6 @@ class UsersController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		// $this->Auth->allow('add', 'logout');
-		$this->Auth->allow();
-
-		$this->request->data = $this->User->reNew();
-		if($this->request->data){
-			$this->User->saveAll($this->request->data['User']);
-		}
-
 	}
 
 	public function login() {
