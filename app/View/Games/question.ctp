@@ -7,9 +7,7 @@
 		<p class="text_click">ボタンを押してね！</p>
 		<?php echo $this->Form->create(array('url' => array('action' => 'answer'))); ?>
 		<div id="wrap_audio">
-			<audio preload="auto" controls >
-				<source src="<?php echo $songs[$correct[$question]]['Song']['preview']; ?>#t=0,0.3" type="audio/mp4">
-			</audio>
+			<p id="btn_play"><?php echo $this->Html->image('btn_play.png');?></p>
 		</div>
 		<ul id="song_list">
 			<?php for ($i = 1; $i <= MAX_SELECT; $i++): ?>
@@ -20,3 +18,13 @@
 		<?php echo $this->Form->end(); ?>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#btn_play").click(function(){
+			var audio = new Audio("<?php echo $songs[$correct[$question]]['Song']['preview']; ?>#t=0,0.3");
+			audio.play();
+			this.blur();
+		});
+	},false);
+</script>
