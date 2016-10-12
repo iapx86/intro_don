@@ -17,7 +17,11 @@
 				<span><?php echo $songs[$correct[$question]]['Song']['artist']; ?></span>
 				<img src="<?php echo $songs[$correct[$question]]['Song']['jacket_img']; ?>">
 			</div>
-			<p class="next"><?php echo $this->Form->submit($question < MAX_QUESTION ? '次へ' : '結果発表', array('div' => false, 'class' => $question < MAX_QUESTION ? 'btn_next': 'btn_result')); ?></p>
+			<?php if ($question < MAX_QUESTION): ?>
+				<p class="next"><?php echo $this->Form->submit('次へ', array('div' => false, 'class' => 'btn_next')); ?></p>
+			<?php else: ?>
+				<p class="next"><?php echo $this->Form->submit('結果発表', array('div' => false, 'class' => 'btn_result')); ?></p>
+			<?php endif; ?>
 		<?php echo $this->Form->end(); ?>
 	</div>
 </div>
