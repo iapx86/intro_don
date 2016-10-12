@@ -4,13 +4,11 @@
 		<?php echo $this->Html->link($this->Html->image('title.png'),array('controller'=>'/'),array('escape'=>false));?>
 	</h1>
 	<div id="wrap_question">
-		<p class="text_click">ボタンを押してね！</p>
 		<p class="question_number">第<?= $question; ?>問</p>
-
-
 		<?php echo $this->Form->create(array('url' => array('action' => 'answer'))); ?>
 		<div id="wrap_audio">
 			<p id="btn_play"><?php echo $this->Html->image('btn_play.png');?></p>
+			<p class="text_click">ボタンを押してね！</p>
 		</div>
 		<ul id="song_list">
 			<?php for ($i = 1; $i <= MAX_SELECT; $i++): ?>
