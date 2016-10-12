@@ -18,7 +18,8 @@ class UsersController extends AppController {
 	public function login() {
 		if ($this->request->is('post')) {
 				if ($this->Auth->login()) {
-						$this->redirect($this->Auth->redirect());
+//						$this->redirect($this->Auth->redirect());
+						$this->redirect(array('controller' => 'games', 'action' => 'start'));
 				} else {
 						$this->Flash->error(__('ログインできません、再度入力お願いします。'));
 				}
