@@ -1,6 +1,6 @@
 <?php
 App::uses('AppModel', 'Model');
-App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
+App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 /**
  * User Model
  *
@@ -9,21 +9,7 @@ App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
  */
 class User extends AppModel {
 
-public function beforeSave($options = array()) {
-	if (isset($this->data[$this->alias]['password'])) {
-		$passwordHasher = new BlowfishPasswordHasher();
-		$this->data[$this->alias]['password'] = $passwordHasher->hash(
-				$this->data[$this->alias]['password']
-		);
-	}
-	return true;
-}
-
-public function isOwnedBy($post, $user) {
-    return $this->field('id', array('id' => $post, 'user_id' => $user)) !== false;
-}
-
-
+public $displayField = 'username';
 
 /**
  * Validation rules
@@ -158,6 +144,23 @@ public function isOwnedBy($post, $user) {
 			'counterQuery' => ''
 		)
 	);
+
+
+// 認証用パスワード作成・保存
+public function beforeSave($options = array()) {
+	if (isset($this->data[$this->alias]['password'])) {
+		$passwordHasher = new SimplePasswordHasher(array('hashType' => 'sha256'));
+		$this->data[$this->alias]['password'] = $passwordHasher->hash(
+				$this->data[$this->alias]['password']
+		);
+	}
+	return true;
+}
+
+// 自分作成のデータに認証
+public function isOwnedBy($post, $user) {
+    return $this->field('id', array('id' => $post, 'user_id' => $user)) !== false;
+}
 
 
 	// ユーザー情報登録変更

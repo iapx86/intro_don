@@ -10,6 +10,7 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController {
 
+
 	public function beforeFilter() {
 		parent::beforeFilter();
 		// $this->Auth->allow('add', 'logout');
@@ -56,7 +57,7 @@ class UsersController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Flash');
+	// public $components = array('Paginator', 'Session', 'Flash');
 
 /**
  * index method
@@ -100,6 +101,7 @@ class UsersController extends AppController {
 				$this->Flash->error(__('The user could not be saved. Please, try again.'));
 			}
 		}
+
 	}
 
 /**
