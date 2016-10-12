@@ -256,28 +256,39 @@
 
 #box_result h2{
     text-align: center;
-    font-size: 40px;
-    margin: 0 0 20px;
-    color: #0a99e8;
+    font-size: 50px;
+    margin: 0 0 15px;
+    color: #f78cc6;
 }
 
 #box_result table{
-    width: 90%;
+    width: 100%;
     border-right: 1px solid #000000;
     border-bottom: 1px solid #000000;
     margin: 0 auto 20px;
-    background-color: #ffffff;
 }
 
 #box_result table td,
 #box_result table th{
     border-left: 1px solid #000000;
     border-top: 1px solid #000000;
-    padding: 7px;
+    padding: 5px;
+    vertical-align: middle;
+    background-color: #f3f6fd;
+}
+
+#box_result table th{
+    background-color: #75cae9;
+    padding: 10px 0;
+    color: white;
 }
 
 #box_result table td.cell_result{
-    font-size: 20px !important;
+    font-size: 25px !important;
+}
+
+#box_result table td .list{
+    font-size: 12px;
 }
 
 #box_result table td.true{
@@ -306,6 +317,10 @@
     margin: 0 10px;
 }
 
+#box_result table td .song_name{
+    font-weight:bold;
+}
+
  #box_result #btn_more{
     margin: 0 0 20px;
 }
@@ -314,7 +329,7 @@
     display: block;
     text-decoration: none;
     color: #ffffff;
-    background-color: #0a99e8;
+    background-color: #75cae9;
     width: 50%;
     margin: 0 auto;
     font-size: 26px;
@@ -330,7 +345,7 @@
     display: block;
     text-decoration: none;
     color: #ffffff;
-    background-color: #0a99e8;
+    background-color: #bcbebf;
     width: 50%;
     margin: 0 auto;
     font-size: 26px;
