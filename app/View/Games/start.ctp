@@ -3,7 +3,23 @@
 	<h1>
 		<?php echo $this->Html->link($this->Html->image('title.png'),array('controller'=>'/'),array('escape'=>false));?>
 	</h1>
-	<h2>こんにちは！<span>○○○</span>さん！</h2>
+	<h2>こんにちは！<span>
+	<?php 
+	if (isset($loginUser['username'])) {
+		echo $loginUser['username'];
+	}else{
+		echo '名無し';
+	}
+	 ?>
+</span>さん！</h2>
+	<?php 
+	if (!isset($loginUser['username'])) {
+		echo $this->Html->link(__('サインイン'), array('controller' => 'users' , 'action' => 'login')); 
+		echo '　　　　';
+		echo $this->Html->link(__('アカウントを作成'), array('controller' => 'users' , 'action' => 'add')); 
+	}
+	 ?>
+
 	<div class="btn1"><?php echo $this->Form->postLink('遊ぶ', array('action' => 'start')); ?></div>
 	<div class="btn2">説明</div>
 	<div id="text">

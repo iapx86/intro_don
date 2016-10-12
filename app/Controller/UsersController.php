@@ -84,18 +84,20 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function add() {
-		if ($this->request->is('post')) {
-			$this->User->create();
-			if ($this->User->save($this->request->data)) {
-				$this->Flash->success(__('The user has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Flash->error(__('The user could not be saved. Please, try again.'));
+		public function add() {
+			if ($this->request->is('post')) {
+				$this->User->create();
+				if ($this->User->save($this->request->data)) {
+					$this->Auth->login();
+					return $this->redirect(array('controller' => 'games' , 'action' => 'start'));
+				} else {
+					$this->Flash->error(__('The user could not be saved. Please, try again.'));
+				}
 			}
+
 		}
 
-	}
+
 
 /**
  * edit method

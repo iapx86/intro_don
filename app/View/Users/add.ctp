@@ -1,22 +1,13 @@
 <div class="users form">
 <?php echo $this->Form->create('User'); ?>
 	<fieldset>
-		<legend><?php echo __('ユーザー登録'); ?></legend>
+		<legend><?php echo __('アカウントを作成'); ?></legend>
 	<?php
-		echo $this->Form->input('username');
-		echo $this->Form->input('password');
+		echo $this->Form->input('username',array('label' => 'ユーザーネーム'));
+		echo $this->Form->input('password',array('label' => 'パスワード'));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('新規登録')); ?>
+<?php echo $this->Form->end(__('アカウントを作成')); ?>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
 
-		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Logs'), array('controller' => 'logs', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Log'), array('controller' => 'logs', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Rankings'), array('controller' => 'rankings', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Ranking'), array('controller' => 'rankings', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+
