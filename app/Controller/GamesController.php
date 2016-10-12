@@ -164,6 +164,9 @@ class GamesController extends AppController {
 				$this->Flash->error(__('The game could not be saved. Please, try again.'));
 			}
 		}
+
+		$this->set('loginUser', $this->Auth->user());
+
 	}
 	/**
 	 * question method
