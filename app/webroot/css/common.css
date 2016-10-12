@@ -153,6 +153,13 @@
     margin: 0 0 10px;
 }
 
+#wrap_question .question_number{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0 auto;
+}
+
 #wrap_question #wrap_audio{
     text-align: center;
 }
