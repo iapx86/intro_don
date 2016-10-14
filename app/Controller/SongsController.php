@@ -103,4 +103,32 @@ class SongsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+/**
+ * search method
+ *
+ * @return void
+ */
+	public function search() {
+		if ($this->request->is('post')) {
+			$url = 'http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?country=JP&entity=musicTrack&term=' . $this->request->data['Song']['term'];
+			$obj = json_decode($json = file_get_contents($url));
+			$this->log($obj);
+			foreach ($obj->results as $result) {
+				if (!property_exists($result, "trackName") || !property_exists($result, "artistName") || !property_exists($result, "primaryGenreName")
+					|| !property_exists($result, "collectionName") || !property_exists($result, "artworkUrl100") || !property_exists($result, "previewUrl"))
+					continue;
+				$song['Song']['title'] = $result->trackName;
+				$song['Song']['artist'] = $result->artistName;
+				$song['Song']['genre'] = $result->primaryGenreName;
+				$song['Song']['album'] = $result->collectionName;
+				$song['Song']['jacket_img'] = $result->artworkUrl100;
+				$song['Song']['preview'] = $result->previewUrl;
+				$songs[] = $song;
+			}
+			if (count($songs) > 0)
+				$this->Song->saveAll($songs);
+			return $this->redirect(array('action' => 'index'));
+		}
+	}
 }
