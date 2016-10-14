@@ -4,7 +4,17 @@
 		<?php echo $this->Html->link($this->Html->image('title.png'),array('controller'=>'/'),array('escape'=>false));?>
 	</h1>
 	<div id="wrap_question">
-		<p class="question_number">第<?= $question; ?>問</p>
+		<p class="question_number">第<span><?= $question; ?></span>問</p>
+		<p id="name">
+			<?php
+			if (isset($loginUser['username'])) {
+				echo $loginUser['username'];
+			}else{
+				echo '名無し';
+			}
+			?>
+			さん、がんばって！
+		</p>
 		<?php echo $this->Form->create(array('url' => array('action' => 'answer'))); ?>
 		<div id="wrap_audio">
 			<p id="btn_play"><?php echo $this->Html->image('btn_play.png');?></p>

@@ -39,50 +39,66 @@
 #wrap_login{
     background-color: #ffffff;
     padding: 40px;
+    margin: 0 0 30px;
 }
 
-#wrap_login h2{
-    font-size: 20px;
-    margin: 0 0 10px 0;
+#wrap_login .submit{
+    width: 80%;
+    margin: 0 auto;
 }
 
-#wrap_login p{
-    margin-bottom: 20px;
-    overflow: hidden;
+#wrap_login .input{
+    width: 80%;
+    margin: 0 auto 15px;
 }
 
-#wrap_login p input{
+#wrap_login input{
     width: 100%;
     padding: 10px;
     font-size: 28px;
     box-sizing: border-box;
+    border: 1px solid #999999;
 }
 
-#wrap_login .btn1 input{
-    background-color: #ffd966;
+#wrap_login label {
+    margin: 0 0 5px;
+    display: block;
+}
+#wrap_login input[type="text"]{
+    background-color: white !important;
     display: block;
     color: #000000;
     font-weight: bold;
-    font-size: 35px;
-    border: none;
-    text-align: center;
+    font-size: 30px;
     text-decoration: none;
-    padding: 10px 0;
-    border: 1px solid black;
+    padding: 10px;
 }
 
-#wrap_login .btn2 a{
+#wrap_login input[type="submit"]{
     text-decoration: none;
     text-align: center;
     display: block;
     background-color: #a6a6a6;
     color: #ffffff;
     font-size: 30px;
-    border: 1px solid black;
     font-weight: bold;
     padding: 13px 0;
+    cursor: pointer;
 }
 
+.btn_logout{
+    text-align: center;
+    margin: 0 0 30px;
+}
+
+.btn_logout a{}
+
+#caution{
+    margin: 5px 48px 0 0;
+    color: red;
+    font-size: 14px;
+    text-align: right;
+}
 /* =====================
   スタート画面
 ===================== */
@@ -91,7 +107,7 @@
     text-align: center;
     color: #4671f1;
     font-size: 20px;
-    margin: 0 0 50px;
+    margin: 0 0 30px;
 }
 
 .page_start h2 span{
@@ -143,7 +159,13 @@
 ===================== */
 #wrap_question{
     background-color: #ffffff;
-    padding: 30px 0;
+    padding: 15px 0 30px;
+    position: relative;
+}
+
+#name{
+    position: absolute;
+    right: 10px;
 }
 
 /* balloon */
@@ -177,6 +199,23 @@
 #wrap_question .question_number{
     text-align: center;
     font-size: 20px;
+    background-color: #888785;
+    color: #ffffff;
+    width: 70px;
+    margin: 0 0 15px;
+    position: absolute;
+    padding: 24px 0;
+    left: 0px;
+    top: 0;
+    font-size:15px;
+}
+
+#wrap_question .question_number span {
+    font-size: 27px;
+    font-weight: bold;
+    text-shadow: -2px 4px 0 rgba(0, 0, 0, 0.3);
+    margin: 0 3px;
+    font-family: verdana;
 }
 
 #wrap_question #wrap_audio{
@@ -195,36 +234,39 @@
 
 #wrap_question #btn_play{
     cursor: pointer;
-    margin: 10px 0px;
+    width: 150px;
+    margin: 10px auto 15px;
 }
 
-#wrap_question #song_list li button{
-    background-color: #5da5fb;
-    color: #ffffff;
+#wrap_question #btn_play:hover{
+    opacity: 0.8;
+}
+
+button {
+    position: relative;
+    background-color: #1abc9c;
+    border-radius: 15px;
+    color: #fff;
+    line-height: 1.5;
+    -webkit-transition: none;
+    width: 70%;
+    transition: none;
+    box-shadow: 0 3px 0 #0e8c73;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+    border: none;
     font-weight: bold;
     font-size: 23px;
-    line-height: 1.4;
-    padding: 10px 0;
-    width: 70%;
-    border: none;
-    font-family: 'Quicksand', "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", 'メイリオ' , Meiryo , Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
     cursor: pointer;
-    border-radius: 15px;
+    padding: 10px;
+    font-family:'Quicksand', "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", 'メイリオ' , Meiryo , Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 }
-
-#wrap_question #song_list li button:hover{
-    background-color: #3d92f7;
-    letter-spacing: 5px;
+button:hover {
+    background-color: #31c8aa;
+    box-shadow: 0 3px 0 #23a188;
 }
-
-button,
-button::before,
-button::after {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    -webkit-transition: all .1s;
-    transition: all .1s;
+button:active {
+    top: 3px;
+    box-shadow: none;
 }
 
 #wrap_question #song_list li button span {
@@ -406,4 +448,3 @@ button::after {
     font-weight: bold;
     padding: 20px;
 }
-
