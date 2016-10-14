@@ -196,6 +196,7 @@ class GamesController extends AppController {
 	 * @return void
 	 */
 	public function question() {
+        $this->set('loginUser', $this->Auth->user());
 		$this->set('question', $num = $this->Session->read('Game.question'));
 		if ($num > MAX_QUESTION) {
 			return $this->redirect(array('action' => 'result'));
