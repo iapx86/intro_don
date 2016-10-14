@@ -6,6 +6,7 @@
 	<div id="wrap_question">
 		<p class="question_number">第<span><?= $question; ?></span>問</p>
 		<p id="name">
+			<span>
 			<?php
 			if (isset($loginUser['username'])) {
 				echo $loginUser['username'];
@@ -13,7 +14,20 @@
 				echo '名無し';
 			}
 			?>
-			さん、がんばって！
+				</span>
+			さん、
+
+			<?php
+			if($question <= 3){
+				echo "がんばって！";
+			} else if($question <= 6){
+				echo "まだまだ！";
+			} else if($question <= 9){
+				echo "ラストスパート！";
+			} else if($question == 10){
+				echo "次で最後だよ！";
+			}
+			?>
 		</p>
 		<?php echo $this->Form->create(array('url' => array('action' => 'answer'))); ?>
 		<div id="wrap_audio">
