@@ -18,14 +18,16 @@
 			さん、
 
 			<?php
-			if($question <= 3){
+			if($question <= 2){
 				echo "がんばって！";
 			} else if($question <= 6){
 				echo "まだまだ！";
-			} else if($question <= 9){
+			} else if($question <= 8){
 				echo "ラストスパート！";
-			} else if($question == 10){
+			} else if($question == 9){
 				echo "次で最後だよ！";
+			} else if($question == 10){
+				echo "最後の曲だよ♪";
 			}
 			?>
 		</p>
