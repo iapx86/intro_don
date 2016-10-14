@@ -49,8 +49,6 @@ class UsersController extends AppController {
 	public function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
-
-		// debug($this->request->data);
 	}
 
 /**
@@ -70,22 +68,8 @@ class UsersController extends AppController {
 
 /**
  * add method
- *
- * @return void
+ *startに組み込んだため不要
  */
-		public function add() {
-			if ($this->request->is('post')) {
-				$this->User->create();
-				if ($this->User->save($this->request->data)) {
-					$this->Auth->login();
-					return $this->redirect(array('controller' => 'games' , 'action' => 'start'));
-				} else {
-					$this->Flash->error(__('The user could not be saved. Please, try again.'));
-				}
-			}
-
-		}
-
 
 
 /**

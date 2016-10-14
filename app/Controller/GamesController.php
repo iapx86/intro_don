@@ -113,6 +113,8 @@ class GamesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+
 	/**
 	 * start method
 	 *
@@ -137,6 +139,9 @@ class GamesController extends AppController {
 		}
 	}
 
+	/**
+	 * 問題作成
+	 */
 	private function __startGame(){
 		
 		$this->Game->create();
@@ -183,8 +188,6 @@ class GamesController extends AppController {
 			$this->Flash->error(__('問題作成に失敗しました。'));
 		}
 	}
-
-
 
 
 	/**
