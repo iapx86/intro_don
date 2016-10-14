@@ -12,15 +12,36 @@
 	}
 	 ?>
 </span>さん！</h2>
-	<?php 
-	if (!isset($loginUser['username'])) {
-		echo $this->Html->link(__('サインイン'), array('controller' => 'users' , 'action' => 'login')); 
-		echo '　　　　';
-		echo $this->Html->link(__('アカウントを作成'), array('controller' => 'users' , 'action' => 'add')); 
-	}
-	 ?>
 
-	<div class="btn1"><?php echo $this->Form->postLink('遊ぶ', array('action' => 'start')); ?></div>
+<?php if (!isset($loginUser['username'])): ?>
+<!-- ログインしていないなら -->
+
+<div class="users form">
+<?php echo $this->Flash->render('auth'); ?>
+<?php echo $this->Form->create('User'); ?>
+    <fieldset>
+        <legend>
+            <?php echo __('サインインor新規作成'); ?>
+        </legend>
+        <?php echo $this->Form->input('username',array('label' => 'ユーザーネーム'));
+        echo $this->Form->input('password',array('label' => 'パスワード'));
+    ?>
+    </fieldset>
+<?php echo $this->Form->end(__('サインインor新規作成')); ?>
+
+
+</div>
+<?php else: ?>
+<!-- ログインしてるなら -->
+
+<div class="btn1">
+	<?php echo $this->Form->postLink('遊ぶ', array('action' => 'start')); ?>
+	<br>
+	<?php echo $this->Html->link(__('ログアウト'), array('controller' => 'users' , 'action' => 'logout')); ?>
+</div>
+
+<?php endif ?>
+
 	<div class="btn2">説明</div>
 	<div id="text">
 		遊ぶボタンをクリックするとゲームが始まるよ。<br>

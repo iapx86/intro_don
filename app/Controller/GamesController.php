@@ -11,7 +11,7 @@ define('MAX_SELECT', 4);
  * @property FlashComponent $Flash
  */
 class GamesController extends AppController {
-	public $uses = Array('Game', 'Song', 'Log');
+	public $uses = Array('Game', 'Song', 'Log', 'User');
 	public function beforeFilter() {
 		$this->Auth->allow();
 		if ($this->action !== 'index' && $this->action !== 'view' && $this->action !== 'add' && $this->action !== 'edit' && $this->action !== 'delete') {
@@ -119,55 +119,74 @@ class GamesController extends AppController {
 	 * @return void
 	 */
 	public function start() {
-		if ($this->request->is('post')) {
-			$this->Game->create();
-			$songs = $this->Song->find('all');
-			$songs_count = count($songs);
-			if ($songs_count < MAX_QUESTION) {
-				$this->Flash->error(__('The number of songs is not enough.'));
-				return $this->redirect(array('action' => 'start'));
-			}
-			for ($correct = [], $i = 1; $i <= MAX_QUESTION; $i++) {
-				do {
-					$index = rand(0, $songs_count - 1);
-				} while (in_array($index, $correct));
-				$correct[$i] = $index;
-			}
-			for ($i = 1; $i <= MAX_QUESTION; $i++) {
-				$select[$i][rand(1, MAX_SELECT)] = $correct[$i];
-				for ($j = 1; $j <= MAX_SELECT; $j++) {
-					if (array_key_exists($j, $select[$i])) {
-						continue;
-					}
-					do {
-						$index = rand(0, $songs_count - 1);
-					} while (in_array($index, $select[$i]));
-					$select[$i][$j] = $index;
-				}
-			}
-			for ($i = 1; $i <= MAX_QUESTION; $i++) {
-				$this->request->data['Game']['question'.$i.'_correct_songid'] = $songs[$correct[$i]]['Song']['id'];
-				for ($j = 1; $j <= MAX_SELECT; $j++) {
-					$this->request->data['Game']['question'.$i.'_select'.$j.'_songid'] = $songs[$select[$i][$j]]['Song']['id'];
-				}
-			}
-			if ($this->Game->save($this->request->data)) {
-				$this->Session->write('Game.id', $this->Game->id);
-				$this->Session->write('Game.question', 1);
-				$this->Session->write('Game.correct', $correct);
-				$this->Session->write('Game.select', $select);
-				$this->Session->write('Game.songs', $songs);
-				$this->Session->write('Game.answer', []);
-				$this->Session->write('Game.judge', []);
-				return $this->redirect(array('action' => 'question'));
-			} else {
-				$this->Flash->error(__('The game could not be saved. Please, try again.'));
-			}
-		}
-
 		$this->set('loginUser', $this->Auth->user());
 
+		if ($this->request->is('post')) {
+
+			if ($this->Auth->login()) {
+				$this->__startGame();
+			}else{
+				$this->User->create();
+				if ($this->User->save($this->request->data)) {
+					$this->Auth->login();
+					$this->__startGame();
+				} else {
+					$this->Flash->error(__('ログインも新規作成もできません'));
+				}
+			}
+		}
 	}
+
+	private function __startGame(){
+		
+		$this->Game->create();
+		$songs = $this->Song->find('all');
+		$songs_count = count($songs);
+		if ($songs_count < MAX_QUESTION) {
+			$this->Flash->error(__('The number of songs is not enough.'));
+			return $this->redirect(array('action' => 'start'));
+		}
+		for ($correct = [], $i = 1; $i <= MAX_QUESTION; $i++) {
+			do {
+				$index = rand(0, $songs_count - 1);
+			} while (in_array($index, $correct));
+			$correct[$i] = $index;
+		}
+		for ($i = 1; $i <= MAX_QUESTION; $i++) {
+			$select[$i][rand(1, MAX_SELECT)] = $correct[$i];
+			for ($j = 1; $j <= MAX_SELECT; $j++) {
+				if (array_key_exists($j, $select[$i])) {
+					continue;
+				}
+				do {
+					$index = rand(0, $songs_count - 1);
+				} while (in_array($index, $select[$i]));
+				$select[$i][$j] = $index;
+			}
+		}
+		for ($i = 1; $i <= MAX_QUESTION; $i++) {
+			$this->request->data['Game']['question'.$i.'_correct_songid'] = $songs[$correct[$i]]['Song']['id'];
+			for ($j = 1; $j <= MAX_SELECT; $j++) {
+				$this->request->data['Game']['question'.$i.'_select'.$j.'_songid'] = $songs[$select[$i][$j]]['Song']['id'];
+			}
+		}
+		if ($this->Game->save($this->request->data)) {
+			$this->Session->write('Game.id', $this->Game->id);
+			$this->Session->write('Game.question', 1);
+			$this->Session->write('Game.correct', $correct);
+			$this->Session->write('Game.select', $select);
+			$this->Session->write('Game.songs', $songs);
+			$this->Session->write('Game.answer', []);
+			$this->Session->write('Game.judge', []);
+			return $this->redirect(array('action' => 'question'));
+		} else {
+			$this->Flash->error(__('問題作成に失敗しました。'));
+		}
+	}
+
+
+
+
 	/**
 	 * question method
 	 *

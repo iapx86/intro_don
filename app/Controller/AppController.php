@@ -42,10 +42,7 @@ class AppController extends Controller {
 				'controller' => 'games',
 				'action' => 'start'
 			),
-			'logoutRedirect' => array(
-				'controller' => 'users',
-				'action' => 'login'
-			),
+			'logoutRedirect' => '/',
 			'authenticate' => array(
 				'Form' => array(
 					'passwordHasher' => array(
