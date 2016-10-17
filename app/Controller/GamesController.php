@@ -30,7 +30,7 @@ class GamesController extends AppController {
 	 *
 	 * @var array
 	 */
-	public $components = array('Paginator', 'Session', 'Flash');
+	// public $components = array('Paginator', 'Session', 'Flash');
 	/**
 	 * index method
 	 *

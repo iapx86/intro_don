@@ -17,21 +17,22 @@ public $displayField = 'username';
  * @var array
  */
 	public $validate = array(
-		'username' => array(
-			'notBlank' => array(
-				'rule' => array('notBlank'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+	'username' => array(
+		'rule1' => array(
+			'rule' => 'notBlank',
+			'message' => 'ユーザー名は必須で入力してください'
 			),
+		'rule2' => array(
+			'rule' => 'isUnique',
+			'message' => '違うユーザー名でお願いします。すでに登録があります。'
+			)
 		),
+
 		'password' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
+				'message' => 'パスワードは必須で入力してください',
+				// 'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
