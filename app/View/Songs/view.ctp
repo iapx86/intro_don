@@ -55,5 +55,6 @@
 		<li><?php echo $this->Form->postLink(__('Delete Song'), array('action' => 'delete', $song['Song']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $song['Song']['id']))); ?> </li>
 		<li><?php echo $this->Html->link(__('List Songs'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Song'), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('iTunes Serach'), array('action' => 'search')); ?></li>
 	</ul>
 </div>
