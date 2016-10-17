@@ -104,11 +104,11 @@ class SongsController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 
-/**
- * search method
- *
- * @return void
- */
+	/**
+	 * search method
+	 *
+	 * @return void
+	 */
 	public function search() {
 		if ($this->request->is('post')) {
 			$url = 'http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/wa/wsSearch?country=JP&entity=musicTrack&term=' . $this->request->data['Song']['term'];
@@ -126,9 +126,28 @@ class SongsController extends AppController {
 				$song['Song']['preview'] = $result->previewUrl;
 				$songs[] = $song;
 			}
-			if (count($songs) > 0)
-				$this->Song->saveAll($songs);
-			return $this->redirect(array('action' => 'index'));
+			if (count($songs) == 0)
+				return $this->redirect(array('action' => 'index'));
+			$this->Session->write('Song.search_result', $songs);
+			$this->set('songs', $songs);
+			$this->render('search-result');
 		}
+	}
+
+/**
+ * addResult method
+ *
+ * @return void
+ */
+	public function addResult() {
+		if ($this->request->is('post')) {
+			$songs = $this->Session->read('Song.search_result');
+			$select = $this->request->data['Song'];
+			for ($n = count($select), $i = 0; $i < $n; $i++)
+				if (!$select[$i]['valid'])
+					unset($songs[$i]);
+			$this->Song->saveAll($songs);
+		}
+		$this->redirect(array('action' => 'index'));
 	}
 }
