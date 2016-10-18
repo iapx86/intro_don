@@ -10,8 +10,14 @@
 			</audio>
 		<?php if ($judge[$question]): ?>
 			<p class="judge_text correct"></p>
+            <audio preload="auto" id="demo" autoplay>
+                <source src="/intro_don/files/right.mp3" type="audio/mp3">
+            </audio>
 		<?php else: ?>
 			<p class="judge_text wrong"></p>
+            <audio preload="auto" id="demo" autoplay>
+                <source src="/intro_don/files/mistake.mp3" type="audio/mp3">
+            </audio>
 		<?php endif; ?>
 			<div class="correct_answer"><?php echo $songs[$correct[$question]]['Song']['title']; ?>
 				<span><?php echo $songs[$correct[$question]]['Song']['artist']; ?></span>
