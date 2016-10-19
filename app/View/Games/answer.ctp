@@ -5,11 +5,6 @@
 	</h1>
 	<div id="wrap_answer">
 		<?php echo $this->Form->create(array('url' => array('action' => $question < MAX_QUESTION ? 'question' : 'result'))); ?>
-		<?php if ($judge[$question]): ?>
-			<p class="judge_text correct"></p>
-		<?php else: ?>
-			<p class="judge_text wrong"></p>
-		<?php endif; ?>
 			<div class="correct_answer"><?php echo $songs[$correct[$question]]['Song']['title']; ?>
 				<span><?php echo $songs[$correct[$question]]['Song']['artist']; ?></span>
 				<img src="<?php echo $songs[$correct[$question]]['Song']['jacket_img']; ?>">
@@ -34,15 +29,12 @@
 		if (<?php echo $judge[$question] ? 1 : 0; ?>) {
 			var audio2 = new Audio("/intro_don/files/right.mp3");
 			audio2.play();
+            $("#wrap_answer").addClass("wrap_correct");
 		}
 		else {
 			var audio3 = new Audio("/intro_don/files/mistake.mp3");
 			audio3.play();
-		}
-		if($('.correct').length){
-			$("#wrap_answer").addClass("wrap_correct");
-		} else{
-			$("#wrap_answer").addClass("wrap_wrong");
+            $("#wrap_answer").addClass("wrap_wrong");
 		}
 	});
 </script>
