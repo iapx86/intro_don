@@ -5,19 +5,10 @@
 	</h1>
 	<div id="wrap_answer">
 		<?php echo $this->Form->create(array('url' => array('action' => $question < MAX_QUESTION ? 'question' : 'result'))); ?>
-			<audio preload="auto" id="demo" autoplay>
-				<source src="<?php echo $songs[$correct[$question]]['Song']['preview']; ?>" type="audio/mp4">
-			</audio>
 		<?php if ($judge[$question]): ?>
 			<p class="judge_text correct"></p>
-            <audio preload="auto" id="demo" autoplay>
-                <source src="/intro_don/files/right.mp3" type="audio/mp3">
-            </audio>
 		<?php else: ?>
 			<p class="judge_text wrong"></p>
-            <audio preload="auto" id="demo" autoplay>
-                <source src="/intro_don/files/mistake.mp3" type="audio/mp3">
-            </audio>
 		<?php endif; ?>
 			<div class="correct_answer"><?php echo $songs[$correct[$question]]['Song']['title']; ?>
 				<span><?php echo $songs[$correct[$question]]['Song']['artist']; ?></span>
@@ -34,6 +25,16 @@
 
 <script>
 	$(function(){
+		var audio = new Audio("<?php echo $songs[$correct[$question]]['Song']['preview']; ?>");
+		audio.play();
+		if (<?php echo $judge[$question] ? 1 : 0; ?>) {
+			var audio2 = new Audio("/intro_don/files/right.mp3");
+			audio2.play();
+		}
+		else {
+			var audio3 = new Audio("/intro_don/files/mistake.mp3");
+			audio3.play();
+		}
 		if($('.correct').length){
 			$("#wrap_answer").addClass("wrap_correct");
 		} else{
