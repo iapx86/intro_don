@@ -20,21 +20,18 @@
 
 <script>
 	$(function(){
-		var audio = new Audio("<?php echo $songs[$correct[$question]]['Song']['preview']; ?>");
+		var audio, audio2 = new Audio("<?php echo $songs[$correct[$question]]['Song']['preview']; ?>");
 
-		setTimeout( function () {
-		audio.play();
-		} , 1000 );
-
-		if (<?php echo $judge[$question] ? 1 : 0; ?>) {
-			var audio2 = new Audio("/intro_don/files/right.mp3");
-			audio2.play();
+		if (<?php echo $judge[$question] ? 'true' : 'false'; ?>) {
+			audio = new Audio("/intro_don/files/right.mp3");
+			audio.play();
             $("#wrap_answer").addClass("wrap_correct");
 		}
 		else {
-			var audio3 = new Audio("/intro_don/files/mistake.mp3");
-			audio3.play();
+			audio = new Audio("/intro_don/files/mistake.mp3");
+			audio.play();
             $("#wrap_answer").addClass("wrap_wrong");
 		}
+		setTimeout(function(){audio2.play()}, 1000);
 	});
 </script>
