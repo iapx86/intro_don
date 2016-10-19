@@ -99,6 +99,11 @@
     font-size: 14px;
     text-align: right;
 }
+
+.error-message{
+    color: #ff0000;
+    margin: 5px 0 0;
+}
 /* =====================
   スタート画面
 ===================== */
