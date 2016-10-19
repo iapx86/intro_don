@@ -4,10 +4,10 @@
 		<?php echo $this->Html->link($this->Html->image('title.png'),array('controller'=>'/'),array('escape'=>false));?>
 	</h1>
 	<div id="wrap_answer">
-		<?php echo $this->Form->create(array('url' => array('action' => $question < MAX_QUESTION ? 'question' : 'result'))); ?>
-			<div class="correct_answer"><?php echo $songs[$correct[$question]]['Song']['title']; ?>
-				<span><?php echo $songs[$correct[$question]]['Song']['artist']; ?></span>
-				<img src="<?php echo $songs[$correct[$question]]['Song']['jacket_img']; ?>">
+		<?php echo $this->Form->create(array('url' => array('action' => $question < MAX_QUESTION ? 'questionMulti' : 'resultMulti'))); ?>
+			<div class="correct_answer"><?php echo $correct['Song']['title']; ?>
+				<span><?php echo $correct['Song']['artist']; ?></span>
+				<img src="<?php echo $correct['Song']['jacket_img']; ?>">
 			</div>
 			<?php if ($question < MAX_QUESTION): ?>
 				<p class="next"><?php echo $this->Form->submit('次へ', array('div' => false, 'class' => 'btn_next')); ?></p>
@@ -20,9 +20,9 @@
 
 <script>
 	$(function(){
-		var audio, audio2 = new Audio("<?php echo $songs[$correct[$question]]['Song']['preview']; ?>");
+		var audio, audio2 = new Audio("<?php echo $correct['Song']['preview']; ?>");
 
-		if (<?php echo $judge[$question] ? 'true' : 'false'; ?>) {
+		if (<?php echo $judge ? 'true' : 'false'; ?>) {
 			audio = new Audio("/intro_don/files/right.mp3");
 			audio.play();
             $("#wrap_answer").addClass("wrap_correct");
