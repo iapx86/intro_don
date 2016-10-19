@@ -26,7 +26,11 @@
 <script>
 	$(function(){
 		var audio = new Audio("<?php echo $songs[$correct[$question]]['Song']['preview']; ?>");
+
+		setTimeout( function () {
 		audio.play();
+		} , 1000 );
+
 		if (<?php echo $judge[$question] ? 1 : 0; ?>) {
 			var audio2 = new Audio("/intro_don/files/right.mp3");
 			audio2.play();
