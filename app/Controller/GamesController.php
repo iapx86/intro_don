@@ -360,7 +360,7 @@ class GamesController extends AppController {
 	 * @return void
 	 */
 	public function startMulti() {
-		$options = ['order' => 'Game.id DESC', 'conditions' => ['Game.created >' => date('Y-m-d H:i:s', time() - 5 * 60), 'Game.host !=' => '']];
+		$options = ['order' => 'Game.id DESC', 'conditions' => ['Game.created >' => date('Y-m-d H:i:s', time() - 60), 'Game.host !=' => '']];
 		$game = $this->Game->find('first', $options);
 		if (count($game)) {
 			for ($i = 2; $i <= 5; $i++) {
