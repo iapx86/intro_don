@@ -196,7 +196,7 @@ class GamesController extends AppController {
 	 * @return void
 	 */
 	public function question() {
-        $this->set('loginUser', $this->Auth->user());
+				$this->set('loginUser', $this->Auth->user());
 		$this->set('question', $num = $this->Session->read('Game.question'));
 		if ($num > MAX_QUESTION) {
 			return $this->redirect(array('action' => 'result'));
@@ -204,6 +204,8 @@ class GamesController extends AppController {
 		$this->set('correct', $this->Session->read('Game.correct'));
 		$this->set('select', $this->Session->read('Game.select'));
 		$this->set('songs', $this->Session->read('Game.songs'));
+
+				debug($_SESSION['Game']);
 	}
 	/**
 	 * answer method
@@ -234,7 +236,7 @@ class GamesController extends AppController {
 		$this->Session->write('Game.question', $num + 1);
 		$this->Log->create();
 		$this->Log->save(['Log' => [
-//			'user_id' =>
+			'user_id' => $this->Auth->user()['id'],
 			'game_id' => $this->Session->read('Game.id'),
 			'score' => $judge[$num] ? 10 : 0,
 			'botton_number' => $answer[$num],
@@ -246,14 +248,111 @@ class GamesController extends AppController {
 	 *
 	 * @return void
 	 */
+	// public function result() {
+	// 	$this->set('correct', $this->Session->read('Game.correct'));
+	// 	$this->set('select', $this->Session->read('Game.select'));
+	// 	$this->set('songs', $this->Session->read('Game.songs'));
+	// 	$this->set('answer', $this->Session->read('Game.answer'));
+	// 	$this->set('judge', $this->Session->read('Game.judge'));
+	// 	$this->Session->delete('Game');
+	// }
+
+
 	public function result() {
+		// ゲームテーブルから該当レコードを取得
+		$gameContent = $this->Game->find('first' ,
+			array(
+				'conditions' => array(
+					'Game.id' => $this->Session->read('Game.id')
+					)
+				)
+			);
+
+		// ユーザー情報まとめ
+		$ranker = [];
+
+		for ($i= 1; $i <= 5; $i++) { 
+			if(isset($gameContent['Game']['entry_user'.$i])){
+
+				// ユーザーＩＤ取得
+				$ranker[$i] = ['id' => $gameContent['Game']['entry_user'.$i]];
+
+				// ユーザー名取得
+				 $this->User->unbindModel(
+					array('hasMany' => array('Log'))
+				);
+				 $username =  $this->User->find('first' , 
+					array(
+						'conditions'=>array(
+								'User.id'=> $gameContent['Game']['entry_user'.$i]
+						),
+						'fields' => array('User.username')
+					)
+				);
+				$ranker[$i] = ['username' => $username['User']['username']];
+
+				// 正解数の取得
+				$countCorrect = $this->Log->find('count' , 
+					array(
+						'conditions'=>array(
+							'and' =>array(
+								'Log.game_id' => $gameContent['Game']['id'],
+								'Log.correct' => 1,
+								'Log.user_id'=> $gameContent['Game']['entry_user'.$i]
+								)
+							)
+						)
+					);
+				$ranker[$i] += ['countCorrect' => $countCorrect];
+
+				// スコア合計
+				$sumScore = $this->Log->find('first' , 
+					array(
+						'fields' =>array(
+							'sum(Log.score) as sumScore'),
+						'conditions'=>array(
+							'and' =>array(
+								'Log.game_id' => $gameContent['Game']['id'],
+								'Log.correct' => 1,
+								'Log.user_id'=> $gameContent['Game']['entry_user'.$i]
+								)
+							)
+						)
+					);
+
+				$ranker[$i] += ['sumScore' => $sumScore[0]['sumScore']];
+
+			}else{
+				$ranker[$i] = null;
+			}
+		}
+
+		// 正解数の多い順番にソート
+		foreach ($ranker as $key => $value) {
+			$sort[$key] = $value['countCorrect'];
+			}
+		array_multisort($sort, SORT_DESC, $ranker);
+
+
+		$this->set('ranker', $ranker);
+
+
+
+
+
 		$this->set('correct', $this->Session->read('Game.correct'));
 		$this->set('select', $this->Session->read('Game.select'));
 		$this->set('songs', $this->Session->read('Game.songs'));
 		$this->set('answer', $this->Session->read('Game.answer'));
 		$this->set('judge', $this->Session->read('Game.judge'));
-		$this->Session->delete('Game');
+
+		// debug($this->Auth->user());
+		// debug($gameContent);
+		debug($ranker);
+		// debug($_SESSION['Game']);
+
 	}
+
 
 	/**
 	 * startMulti method
@@ -365,4 +464,5 @@ class GamesController extends AppController {
 			'correct' => $judge[$num] ? 1 : 0,
 		]]);
 	}
+
 }
