@@ -14,7 +14,7 @@ class GamesController extends AppController {
 	public $uses = Array('Game', 'Song', 'Log', 'User');
 	public function beforeFilter() {
 		$this->Auth->allow();
-		if ($this->action !== 'index' && $this->action !== 'view' && $this->action !== 'add' && $this->action !== 'edit' && $this->action !== 'delete') {
+		if ($this->action !== 'index' && $this->action !== 'view' && $this->action !== 'add' && $this->action !== 'edit' && $this->action !== 'delete' && $this->action !== 'startMulti') {
 			$this->layout = 'game';
 		}
 	}
@@ -253,5 +253,107 @@ class GamesController extends AppController {
 		$this->set('answer', $this->Session->read('Game.answer'));
 		$this->set('judge', $this->Session->read('Game.judge'));
 		$this->Session->delete('Game');
+	}
+
+	/**
+	 * startMulti method
+	 *
+	 * @return void
+	 */
+	public function startMulti() {
+		$options = ['order' => 'Game.id DESC', 'conditions' => ['Game.created >' => date('Y-m-d H:i:s', time() - 60), 'Game.host !=' => '']];
+		$game = $this->Game->find('first', $options);
+		if (count($game)) {
+			$this->set('game', $game);
+		}
+		else {
+			$songs = $this->Song->find('all');
+			$songs_count = count($songs);
+			if ($songs_count < MAX_QUESTION) {
+				$this->Flash->error(__('The number of songs is not enough.'));
+				$this->redirect(array('action' => 'index'));
+				return;
+			}
+			for ($correct = [], $i = 1; $i <= MAX_QUESTION; $i++) {
+				do {
+					$id = $songs[rand(0, $songs_count - 1)]['Song']['id'];
+				} while (in_array($id, $correct));
+				$correct[$i] = $id;
+			}
+			for ($i = 1; $i <= MAX_QUESTION; $i++) {
+				$select[$i][rand(1, MAX_SELECT)] = $correct[$i];
+				for ($j = 1; $j <= MAX_SELECT; $j++) {
+					if (array_key_exists($j, $select[$i])) {
+						continue;
+					}
+					do {
+						$id = $songs[rand(0, $songs_count - 1)]['Song']['id'];
+					} while (in_array($id, $select[$i]));
+					$select[$i][$j] = $id;
+				}
+			}
+			for ($i = 1; $i <= MAX_QUESTION; $i++) {
+				$game['Game']['question'.$i.'_correct_songid'] = $correct[$i];
+				for ($j = 1; $j <= MAX_SELECT; $j++) {
+					$game['Game']['question'.$i.'_select'.$j.'_songid'] = $select[$i][$j];
+				}
+			}
+			$game['Game']['host'] = $this->Auth->user() ? $this->Auth->user('id') : 0;
+			$this->Game->save($game);
+			$this->set('game', $game = $this->Game->find('first', ['conditions' => ['Game.id' => $this->Game->id]]));
+		}
+		$this->Session->write('Game.id', $game['Game']['id']);
+		$this->Session->write('Game.question', 1);
+		$this->redirect(array('action' => 'questionMulti'));
+	}
+
+	/**
+	 * questionMulti method
+	 *
+	 * @return void
+	 */
+	public function questionMulti() {
+		$this->set('loginUser', $this->Auth->user());
+		$this->set('question', $num = $this->Session->read('Game.question'));
+		if ($num > MAX_QUESTION) {
+			$this->redirect(array('action' => 'resultMulti'));
+			return;
+		}
+		$game = $this->Game->find('first', ['conditions' => ['Game.id' => $this->Session->read('Game.id')]]);
+		$this->set('correct', $this->Song->find('first', ['conditions' => ['Song.id' => $game['Game']['question'.$num.'_correct_songid']]]));
+		for ($select = [], $i = 1; $i <= 4; $i++)
+			$select[$i] = $this->Song->find('first', ['conditions' => ['Song.id' => $game['Game']['question'.$num.'_select'.$i.'_songid']]]);
+		$this->set('select', $select);
+	}
+
+	/**
+	 * answerMulti method
+	 *
+	 * @return void
+	 */
+	public function answerMulti() {
+		for ($id = 1; $id <= MAX_SELECT; $id++) {
+			if (array_key_exists((string)$id, $this->request->data)) {
+				break;
+			}
+		}
+		if ($id > MAX_SELECT) {
+			$this->Flash->error(__('Illegal operation is detected.'));
+			$this->redirect(array('action' => 'start'));
+			return;
+		}
+		$this->set('question', $num = $this->Session->read('Game.question'));
+		$game = $this->Game->find('first', ['conditions' => ['Game.id' => $this->Session->read('Game.id')]]);
+		$this->set('correct', $this->Song->find('first', ['conditions' => ['Song.id' => $game['Game']['question'.$num.'_correct_songid']]]));
+		$this->set('judge', $judge = $game['Game']['question'.$num.'_correct_songid'] === $game['Game']['question'.$num.'_select'.$id.'_songid']);
+		$this->Session->write('Game.question', $num + 1);
+		$this->Log->create();
+		$this->Log->save(['Log' => [
+			'user_id' => $this->Auth->user() ? $this->Auth->user('id') : 0,
+			'game_id' => $game['Game']['id'],
+			'score' => $judge ? 10 : 0,
+			'botton_number' => $id,
+			'correct' => $judge[$num] ? 1 : 0,
+		]]);
 	}
 }
