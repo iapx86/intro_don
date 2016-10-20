@@ -31,5 +31,46 @@
 		<p id="btn_more"><?php echo $this->Html->link(__('もう一度遊ぶ'), array('action' => 'start')); ?></p>
 		<p id="btn_leave"><?php echo $this->Html->link(__('やめる'), array('controller' => 'users', 'action' => 'logout')); ?></p>
 
+		<div id="ranking">
+		<h2>ランキング</h2>
+		<table cellpadding="0" cellspacing="0" border="0">
+			<tr>
+				<th>順位</th>
+				<th>ユーザー名</th>
+				<th>正解数</th>
+				<th>スコア</th>
+			</tr>
+			<?php for ($i = 0; $i <= 4; $i++): ?>
+				<tr>
+					<td><?php 
+					if($i === 0){
+						$ranknum = 1;
+						echo $ranknum;
+					}elseif($ranker[$i -1]['countCorrect'] === $ranker[$i]['countCorrect']){
+						echo $ranknum; 
+					}else{
+						$ranknum ++;
+						echo $ranknum;
+					}
+					?>番</td>
+
+					<td><?php echo $ranker[$i]['username']; ?></td>
+
+					<td><?php echo $ranker[$i]['countCorrect']; ?></td>
+
+					<td><?php echo $ranker[$i]['sumScore']; ?></td>
+
+				</tr>
+			<?php endfor; ?>
+		</table>
 	</div>
+
+
+	</div>
+
+
+
+
+
+
 </div>

@@ -205,7 +205,7 @@ class GamesController extends AppController {
 		$this->set('select', $this->Session->read('Game.select'));
 		$this->set('songs', $this->Session->read('Game.songs'));
 
-				debug($_SESSION['Game']);
+		// debug($_SESSION['Game']);
 	}
 	/**
 	 * answer method
@@ -348,7 +348,7 @@ class GamesController extends AppController {
 
 		// debug($this->Auth->user());
 		// debug($gameContent);
-		debug($ranker);
+		// debug($ranker);
 		// debug($_SESSION['Game']);
 
 	}
