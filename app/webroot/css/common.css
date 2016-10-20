@@ -14,7 +14,7 @@
 ===================== */
 #main {
     margin: 0 auto;
-    width: 600px;
+    width: 760px;
     padding: 10px;
 }
 
@@ -164,13 +164,15 @@
 ===================== */
 #wrap_question{
     background-color: #ffffff;
-    padding: 15px 0 30px;
+    padding: 90px 0 30px;
     position: relative;
+    min-height: 400px;
 }
 
 #name{
     position: absolute;
     right: 10px;
+    top: 10px;
     font-size: 14px;
     color: #307cde;
 }
@@ -232,11 +234,18 @@
 
 #wrap_question #wrap_audio{
     text-align: center;
-    margin: 0 0 15px;
+    margin: 30px 0 15px;
+    float: left;
+    width: 300px;
 }
 
 #wrap_question audio{
     margin: 30px auto;
+}
+
+#wrap_question #song_list{
+    float: right;
+    width: 460px;
 }
 
 #wrap_question #song_list li{
@@ -261,7 +270,7 @@ button {
     color: #fff;
     line-height: 1.5;
     -webkit-transition: none;
-    width: 70%;
+    width: 87%;
     transition: none;
     box-shadow: 0 3px 0 #0e8c73;
     text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
@@ -284,6 +293,37 @@ button:active {
 #wrap_question #song_list li button span {
     display: block;
     font-size: 16px;
+}
+
+#wrap_question form {
+    overflow: hidden;
+}
+
+#countDownWrap{
+    position: absolute;
+    left: 24%;
+    top: 26%;
+    font-size: 44px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#countDownWrap #viewCount{
+
+}
+
+#countDownWrap #viewCount #countDown{
+    font-size: 210px;
+    font-weight: bold;
+}
+
+#viewTextNext{
+    text-align: center;
+}
+
+#viewTextNext #countDown2{
+    font-size: 90px;
+    font-weight: bold;
 }
 
 /* =====================
@@ -460,3 +500,29 @@ button:active {
     font-weight: bold;
     padding: 20px;
 }
+
+/* =====================
+  募集画面
+===================== */
+
+#wrap_join{background-color: #edf9fb;padding: 30px;}
+
+#wrap_join #text_limit{font-size: 20px;margin: 0 0 40px 0;text-align: right;}
+
+#wrap_join #text_limit span{font-size: 37px;}
+
+#wrap_join #text_join{font-size: 45px;text-align: center;margin: 0 0 16px 0;}
+#wrap_join #text_join_finish{font-size: 45px;text-align: center;margin: 0 0 16px 0;
+    display: none;}
+
+#wrap_join #list_member{border: 1px solid #000000;padding: 30px;line-height: 2;background-color: #fffefe;height: 200px;}
+
+#wrap_join #list_member ul{
+
+}
+
+#wrap_join #list_member ul li{
+
+}
+
+#wrap_join #list_member ul li span{font-weight: bold;margin: 0 10px 0 0;}
