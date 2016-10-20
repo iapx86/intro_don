@@ -465,4 +465,7 @@ class GamesController extends AppController {
 		]]);
 	}
 
+    public function join(){
+
+    }
 }
