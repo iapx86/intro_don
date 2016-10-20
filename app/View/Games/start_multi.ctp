@@ -8,7 +8,7 @@
 		<p id="text_join">参加者募集中</p>
 		<p id="text_join_finish">募集締め切り</p>
 		<div id="list_member">
-			<ul>
+			<ul style="display:none">
 				<li><span>一郎</span>が参加しました。</li>
 				<li><span>次郎</span>が参加しました。</li>
 				<li><span>三郎</span>が参加しました。</li>
@@ -34,6 +34,7 @@
 		//残り秒数を表示させる関数
 		function textDisplay(){
 			$("#countDown").text(time);
+			update();
 		}
 
 		//カウントを1減らす関数（setIntervalで毎秒実行される関数）
@@ -62,6 +63,19 @@
 					countDown();
 				}
 			}, 1000);
+		}
+
+		function update(){
+			$.getJSON('get', function(game){
+				var html = '<ul>', i, j, id;
+				for (i = 1; i < 5 && (id = game.game.Game['entry_user' + i]) !== null; i++)
+					for (j = 0; j < game['users'].length; j++)
+						if (game['users'][j]['User']['id'] === id) {
+							html += '<li><span>' + game['users'][j]['User']['username'] + '</span>が参加しました。</li>';
+							break;
+						}
+				$('#list_member').html(html += '</ul>');
+			});
 		}
 
 		//実行処理-----------------------------------

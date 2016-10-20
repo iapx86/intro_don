@@ -363,11 +363,13 @@ class GamesController extends AppController {
 		$options = ['order' => 'Game.id DESC', 'conditions' => ['Game.created >' => date('Y-m-d H:i:s', time() - 60), 'Game.host !=' => '']];
 		$game = $this->Game->find('first', $options);
 		if (count($game)) {
-			for ($i = 2; $i <= 5; $i++) {
-				if (isset($game['Game']['entry_user' . $i]))
+			for ($i = 1; $i <= 5; $i++) {
+				if (!isset($game['Game']['entry_user' . $i])) {
+					$game['Game']['entry_user' . $i] = $this->Auth->user() ? $this->Auth->user('id') : 0;
+					$this->Game->save($game, true, ['entry_user' . $i]);
+				}
+				else if ($game['Game']['entry_user' . $i] !== ($this->Auth->user() ? $this->Auth->user('id') : 0))
 					continue;
-				$game['Game']['entry_user' . $i] = $this->Auth->user() ? $this->Auth->user('id') : 0;
-				$this->Game->save($game, true, ['entry_user' . $i]);
 				$this->set('game', $game);
 				$this->Session->write('Game.id', $game['Game']['id']);
 				$this->Session->write('Game.question', 1);
@@ -461,5 +463,24 @@ class GamesController extends AppController {
 			'botton_number' => $id,
 			'correct' => $judge[$num] ? 1 : 0,
 		]]);
+	}
+
+	/**
+	 * get method
+	 *
+	 * @return void
+	 */
+	public function get() {
+//		if (!$this->request->is('ajax')) {
+//			return $this->redirect('/');
+//		}
+		$this->viewClass = 'Json';
+		$game = $this->Game->find('first', ['conditions' => ['Game.id' => $this->Session->read('Game.id')]]);
+		for ($i = 1; $i <= 5 && ($id = $game['Game']['entry_user' . $i]) !== null; $i++)
+			$uids[] = $id;
+		$users = $this->User->find('all', ['conditions' => ['User.id' => $uids]]);
+//		$this->set('game', array_merge($game, $users));
+		$this->set('game', compact('game', 'users'));
+		$this->set('_serialize', 'game');
 	}
 }
