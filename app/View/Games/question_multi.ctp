@@ -18,25 +18,19 @@
 			</div>
 			<!-- 見えるボタン -->
 			<div id="view_button">
-				<button name="1"><?php echo $select[1]['Song']['title'] . $select[1]['Song']['artist'] ?></button>
-				<button name="2"><?php echo $select[2]['Song']['title'] . $select[2]['Song']['artist'] ?></button>
-				<button name="3"><?php echo $select[3]['Song']['title'] . $select[3]['Song']['artist'] ?></button>
-				<button name="4"><?php echo $select[4]['Song']['title'] . $select[4]['Song']['artist'] ?></button>
+				<?php for ($i = 1; $i <= MAX_SELECT; $i++): ?>
+				<button name="<?php echo $i ?>"><?php echo $select[$i]['Song']['title'] . $select[$i]['Song']['artist'] ?></button>
+				<?php endfor; ?>
 			</div>
 
 			<!-- 見えないボタン -->
-			<ul id="song_list" style="margin: 0 auto; float: none; display:none;">
-				<?php for ($i = 1; $i <= MAX_SELECT; $i++): ?>
-					<li><?php echo $this->Form->button($select[$i]['Song']['title'].'<span>'.$select[$i]['Song']['artist'].'</span>',
-							array('type' => 'submit', 'name' => (string)$i)); ?></li>
+			<ul id="song_list" style="display: none;">
+				<?php for ($i = 0; $i <= MAX_SELECT; $i++): ?>
+				<li><button name="<?php echo $i ?>"></button></li>
 				<?php endfor; ?>
-				<li style="display: none;"><?php echo $this->Form->button($select[1]['Song']['title'].'<span>'.$select[1]['Song']['artist'].'</span>',
-						array('type' => 'submit', 'name' => '0')); ?></li>
 			</ul>
 			<?php echo $this->Form->end(); ?>
-
 		</div>
-
 	</div>
 </div>
 
@@ -46,21 +40,21 @@
 
 	$(document).ready(function(){
 
-		//押されたボタンを記憶
+		//押されたボタンのnameをlastbuttonに代入
 		$('#view_button button').click(function () {
 			lastbutton = ($(this).attr('name'));
 			return false;
 		});
 
-		//曲が流れる（3秒）-----------------------------------
+		//曲が流れる（3秒後）-----------------------------------
 		setTimeout( function () {
 			var audio = new Audio("<?php echo $correct['Song']['preview']; ?>#t=0,3");
 			audio.play();
 		} , 5000 );
 
-		//正解画面へ遷移（10秒）-----------------------------------
+		//正解画面へ遷移（10秒後）-----------------------------------
 		setTimeout( function () {
-			$('button[name="'+lastbutton+'"]').click();
+			$('button[name="'+ lastbutton +'"]').click();
 		} , 14000 );
 
 
