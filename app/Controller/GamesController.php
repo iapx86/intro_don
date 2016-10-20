@@ -14,7 +14,7 @@ class GamesController extends AppController {
 	public $uses = Array('Game', 'Song', 'Log', 'User');
 	public function beforeFilter() {
 		$this->Auth->allow();
-		if ($this->action !== 'index' && $this->action !== 'view' && $this->action !== 'add' && $this->action !== 'edit' && $this->action !== 'delete' && $this->action !== 'startMulti') {
+		if ($this->action !== 'index' && $this->action !== 'view' && $this->action !== 'add' && $this->action !== 'edit' && $this->action !== 'delete') {
 			$this->layout = 'game';
 		}
 	}
@@ -412,7 +412,6 @@ class GamesController extends AppController {
 		$this->set('game', $game = $this->Game->find('first', ['conditions' => ['Game.id' => $this->Game->id]]));
 		$this->Session->write('Game.id', $game['Game']['id']);
 		$this->Session->write('Game.question', 1);
-		$this->redirect(array('action' => 'questionMulti'));
 	}
 
 	/**
