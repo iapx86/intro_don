@@ -438,7 +438,7 @@ class GamesController extends AppController {
 	 * @return void
 	 */
 	public function answerMulti() {
-		for ($id = 1; $id <= MAX_SELECT; $id++) {
+		for ($id = 0; $id <= MAX_SELECT; $id++) {
 			if (array_key_exists((string)$id, $this->request->data)) {
 				break;
 			}
@@ -451,7 +451,11 @@ class GamesController extends AppController {
 		$this->set('question', $num = $this->Session->read('Game.question'));
 		$game = $this->Game->find('first', ['conditions' => ['Game.id' => $this->Session->read('Game.id')]]);
 		$this->set('correct', $this->Song->find('first', ['conditions' => ['Song.id' => $game['Game']['question'.$num.'_correct_songid']]]));
-		$this->set('judge', $judge = $game['Game']['question'.$num.'_correct_songid'] === $game['Game']['question'.$num.'_select'.$id.'_songid']);
+        if ($id == 0)
+            $judge = false;
+        else
+           $judge = $game['Game']['question'.$num.'_correct_songid'] === $game['Game']['question'.$num.'_select'.$id.'_songid'];
+		$this->set('judge', $judge);
 		$this->Session->write('Game.question', $num + 1);
 		$this->Log->create();
 		$this->Log->save(['Log' => [
