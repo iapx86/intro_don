@@ -22,7 +22,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		//変数の設定-----------------------------------
-		var setSecond = 60; //タイマーの秒数
+		var setSecond = <?php echo $time; ?>; //タイマーの秒数
 		var time = setSecond;   //残り秒数を保存する変数　初期値はsetSecondと同じ数値
 		var timerID;    //setInterval用の変数
 
