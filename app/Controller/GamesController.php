@@ -463,8 +463,4 @@ class GamesController extends AppController {
 			'correct' => $judge[$num] ? 1 : 0,
 		]]);
 	}
-
-    public function join(){
-
-    }
 }
