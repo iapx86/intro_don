@@ -371,7 +371,6 @@ class GamesController extends AppController {
 				$this->set('game', $game);
 				$this->Session->write('Game.id', $game['Game']['id']);
 				$this->Session->write('Game.question', 1);
-				$this->redirect(array('action' => 'questionMulti'));
 				return;
 			}
 			unset($game);
