@@ -475,15 +475,14 @@ class GamesController extends AppController {
 	 * @return void
 	 */
 	public function get() {
-//		if (!$this->request->is('ajax')) {
-//			return $this->redirect('/');
-//		}
+		if (!$this->request->is('ajax')) {
+			return $this->redirect('/');
+		}
 		$this->viewClass = 'Json';
 		$game = $this->Game->find('first', ['conditions' => ['Game.id' => $this->Session->read('Game.id')]]);
 		for ($i = 1; $i <= 5 && ($id = $game['Game']['entry_user' . $i]) !== null; $i++)
 			$uids[] = $id;
 		$users = $this->User->find('all', ['conditions' => ['User.id' => $uids]]);
-//		$this->set('game', array_merge($game, $users));
 		$this->set('game', compact('game', 'users'));
 		$this->set('_serialize', 'game');
 	}
