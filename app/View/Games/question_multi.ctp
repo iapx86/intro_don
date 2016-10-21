@@ -77,6 +77,12 @@
 			}
 			setTimeout(loop, 100);
 		})();
+
+		//ボタンclickデザイン
+		$("#view_button button").click(function(){
+			$(this).addClass("active");
+			$(this).siblings().removeClass("active");
+		});
 	});
 
 </script>
