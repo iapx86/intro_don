@@ -2,6 +2,11 @@
 App::uses('AppController', 'Controller');
 define('MAX_QUESTION', 10);
 define('MAX_SELECT', 4);
+define('TIME_START1', 60);
+define('TIME_START2', 3);
+define('TIME_QUESTION1', 5);
+define('TIME_QUESTION2', 10);
+define('TIME_ANSWER', 5);
 /**
  * Games Controller
  *
@@ -262,7 +267,7 @@ class GamesController extends AppController {
 	 * @return void
 	 */
 	public function startMulti() {
-		$options = ['order' => 'Game.id DESC', 'conditions' => ['Game.created >' => date('Y-m-d H:i:s', time() - 60), 'Game.host !=' => '']];
+		$options = ['order' => 'Game.id DESC', 'conditions' => ['Game.created >' => date('Y-m-d H:i:s', time() - TIME_START1), 'Game.host !=' => '']];
 		$game = $this->Game->find('first', $options);
 		if (count($game)) {
 			for ($i = 1; $i <= 5; $i++) {
@@ -336,6 +341,7 @@ class GamesController extends AppController {
 		for ($select = [], $i = 1; $i <= 4; $i++)
 			$select[$i] = $this->Song->find('first', ['conditions' => ['Song.id' => $game['Game']['question'.$num.'_select'.$i.'_songid']]]);
 		$this->set('select', $select);
+		$this->set('starttime', strtotime($game['Game']['created']));
 	}
 
 	/**
@@ -371,6 +377,7 @@ class GamesController extends AppController {
 			'botton_number' => $id,
 			'correct' => $judge ? 1 : 0,
 		]]);
+		$this->set('starttime', strtotime($game['Game']['created']));
 	}
 
 	/**

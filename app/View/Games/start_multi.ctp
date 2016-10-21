@@ -21,6 +21,8 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		var TIME_START1 = <?php echo TIME_START1; ?>;
+		var TIME_START2 = <?php echo TIME_START2; ?>;
 		var starttime = <?php echo $starttime; ?>;
 		var dtime = -1;
 		var jump = false;
@@ -40,7 +42,7 @@
 
 		(function loop(){
 			var now = Math.floor(Date.now() / 1000);
-			var time = Math.max(starttime + 60 - now, 0);
+			var time = Math.max(starttime + TIME_START1 - now, 0);
 
 			if (dtime != time) {
 				$("#countDown").text(time);
@@ -51,7 +53,7 @@
 				}
 				dtime = time;
 			}
-			if (!jump && now >= starttime + 63) {
+			if (!jump && now >= starttime + TIME_START1 + TIME_START2) {
 				jump = true;
 				location.href = "questionMulti";
 			}
