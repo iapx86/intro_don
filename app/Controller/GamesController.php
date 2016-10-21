@@ -472,6 +472,110 @@ class GamesController extends AppController {
 	}
 
 	/**
+	 * resultMulti method
+	 *
+	 * @return void
+	 */
+	public function resultMulti() {
+		// ゲームテーブルから該当レコードを取得
+		$gameContent = $this->Game->find('first' ,
+			array(
+				'conditions' => array(
+					'Game.id' => $this->Session->read('Game.id')
+					)
+				)
+			);
+
+		// ユーザー情報まとめ
+		$ranker = [];
+
+		for ($i= 1; $i <= 5; $i++) { 
+			if(isset($gameContent['Game']['entry_user'.$i])){
+
+				// ユーザーＩＤ取得
+				$ranker[$i] = ['id' => $gameContent['Game']['entry_user'.$i]];
+
+				// ユーザー名取得
+				 $this->User->unbindModel(
+					array('hasMany' => array('Log'))
+				);
+				 $username =  $this->User->find('first' , 
+					array(
+						'conditions'=>array(
+								'User.id'=> $gameContent['Game']['entry_user'.$i]
+						),
+						'fields' => array('User.username')
+					)
+				);
+				$ranker[$i] = ['username' => $username['User']['username']];
+
+				// 正解数の取得
+				$countCorrect = $this->Log->find('count' , 
+					array(
+						'conditions'=>array(
+							'and' =>array(
+								'Log.game_id' => $gameContent['Game']['id'],
+								'Log.correct' => 1,
+								'Log.user_id'=> $gameContent['Game']['entry_user'.$i]
+								)
+							)
+						)
+					);
+				$ranker[$i] += ['countCorrect' => $countCorrect];
+
+				// スコア合計
+				$sumScore = $this->Log->find('first' , 
+					array(
+						'fields' =>array(
+							'sum(Log.score) as sumScore'),
+						'conditions'=>array(
+							'and' =>array(
+								'Log.game_id' => $gameContent['Game']['id'],
+								'Log.correct' => 1,
+								'Log.user_id'=> $gameContent['Game']['entry_user'.$i]
+								)
+							)
+						)
+					);
+
+				$ranker[$i] += ['sumScore' => $sumScore[0]['sumScore']];
+
+			}else{
+				$ranker[$i] = null;
+			}
+		}
+
+		// 正解数の多い順番にソート
+		foreach ($ranker as $key => $value) {
+			$sort[$key] = $value['countCorrect'];
+			}
+		array_multisort($sort, SORT_DESC, $ranker);
+
+
+		$this->set('ranker', $ranker);
+
+
+
+
+
+		$this->set('correct', $this->Session->read('Game.correct'));
+		$this->set('select', $this->Session->read('Game.select'));
+		$this->set('songs', $this->Session->read('Game.songs'));
+		$this->set('answer', $this->Session->read('Game.answer'));
+		$this->set('judge', $this->Session->read('Game.judge'));
+
+		// debug($this->Auth->user());
+		// debug($gameContent);
+		// debug($ranker);
+		// debug($_SESSION['Game']);
+
+	}
+
+
+
+
+
+	/**
 	 * get method
 	 *
 	 * @return void
@@ -490,3 +594,5 @@ class GamesController extends AppController {
 		$this->set('_serialize', 'game');
 	}
 }
+
+
