@@ -54,7 +54,7 @@
 					location.href = "questionMulti";
 				dtime = time;
 			}
-			setTimeout(loop, 1000);
+			setTimeout(loop, 100);
 		})();
 	});
 
