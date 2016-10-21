@@ -263,7 +263,7 @@
     opacity: 0.8;
 }
 
-button {
+#wrap_question button {
     position: relative;
     background-color: #1abc9c;
     border-radius: 15px;
@@ -281,16 +281,33 @@ button {
     padding: 10px;
     font-family:'Quicksand', "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", 'メイリオ' , Meiryo , Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 }
-button:hover {
+#wrap_question button:hover {
     background-color: #31c8aa;
     box-shadow: 0 3px 0 #23a188;
 }
-button:active {
+#wrap_question button:active {
     top: 3px;
     box-shadow: none;
 }
 
-#wrap_question #song_list li button span {
+#wrap_question button.active {
+    top: 3px;
+    box-shadow: none;
+    background-color: #f587c7;
+}
+
+#wrap_question{}
+
+#wrap_question #view_button{
+    text-align: center;
+}
+
+#wrap_question #view_button button{
+    margin: 0 0 10px;
+}
+
+
+#wrap_question button span {
     display: block;
     font-size: 16px;
 }

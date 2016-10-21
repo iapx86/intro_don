@@ -19,14 +19,14 @@
 			<!-- 見えるボタン -->
 			<div id="view_button">
 				<?php for ($i = 1; $i <= MAX_SELECT; $i++): ?>
-				<button name="<?php echo $i ?>"><?php echo $select[$i]['Song']['title'] . $select[$i]['Song']['artist'] ?></button>
+					<button name="<?php echo $i ?>"><?php echo $select[$i]['Song']['title'] ?><span><?php echo $select[$i]['Song']['artist'] ?></span></button>
 				<?php endfor; ?>
 			</div>
 
 			<!-- 見えないボタン -->
 			<ul id="song_list" style="display: none;">
 				<?php for ($i = 0; $i <= MAX_SELECT; $i++): ?>
-				<li><button name="<?php echo $i ?>"></button></li>
+					<li><button name="<?php echo $i ?>"></button></li>
 				<?php endfor; ?>
 			</ul>
 			<?php echo $this->Form->end(); ?>
@@ -72,8 +72,8 @@
 			if (time == 0 && dtime2 != time2) {
 				$("#countDown2").text(time2);
 				if (time2 == 0)
-					$('button[name="'+ lastbutton +'"]').click();
-				dtime2 = time2;
+				//$('button[name="'+ lastbutton +'"]').click();
+					dtime2 = time2;
 			}
 			setTimeout(loop, 100);
 		})();
