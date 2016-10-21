@@ -129,9 +129,8 @@ class GamesController extends AppController {
 		$this->set('loginUser', $this->Auth->user());
 
 		if ($this->request->is('post')) {
-
 			if ($this->Auth->login()) {
-				$this->__startGame();
+					$this->__startGame();
 			}else{
 				$this->User->create();
 				if ($this->User->save($this->request->data)) {
@@ -142,6 +141,8 @@ class GamesController extends AppController {
 				}
 			}
 		}
+
+
 	}
 
 	/**

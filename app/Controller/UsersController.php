@@ -13,7 +13,37 @@ class UsersController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
+		if ($this->action === 'login') {
+			$this->layout = 'game';
+		}
+
 	}
+
+	/**
+	 * login
+	 *
+	 * @return void
+	 */
+	public function login() {
+		if($this->Auth->user()){
+			return $this->redirect(array('controller' => 'games' , 'action' => 'start'));
+		}else{
+			if ($this->request->is('post')) {
+				if ($this->Auth->login()) {
+					return $this->redirect(array('controller' => 'games' , 'action' => 'start'));
+				}else{
+					$this->User->create();
+					if ($this->User->save($this->request->data)) {
+						$this->Auth->login();
+						return $this->redirect(array('controller' => 'games' , 'action' => 'start'));
+					} else {
+						$this->Flash->error(__('ログインも新規作成もできません'));
+					}
+				}
+			}
+		}
+	}
+
 
 	public function logout() {
 		$this->redirect($this->Auth->logout());
