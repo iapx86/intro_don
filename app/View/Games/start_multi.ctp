@@ -30,7 +30,7 @@
 		function update(){
 			$.getJSON('get', function(game){
 				var html = '<ul>', i, j, id;
-				for (i = 1; i < 5 && (id = game.game.Game['entry_user' + i]) !== null; i++)
+				for (i = 1; i < 5 && (id = game['game']['Game']['entry_user' + i]) !== null; i++)
 					for (j = 0; j < game['users'].length; j++)
 						if (game['users'][j]['User']['id'] === id) {
 							html += '<li><span>' + game['users'][j]['User']['username'] + '</span>が参加しました。</li>';
