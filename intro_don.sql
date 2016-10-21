@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: 2016 年 10 朁E21 日 10:55
+-- Generation Time: 2016 年 10 朁E21 日 11:22
 -- サーバのバージョン： 5.5.49-log
 -- PHP Version: 7.0.6
 
@@ -90,13 +90,11 @@ CREATE TABLE IF NOT EXISTS `games` (
   `silver_score` int(11) DEFAULT NULL,
   `bronze_score` int(11) DEFAULT NULL,
   `host` int(11) DEFAULT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 
---
-
--- --------------------------------------------------------
+--- --------------------------------------------------------
 
 --
 -- テーブルの構造 `logs`
@@ -114,7 +112,6 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=473 DEFAULT CHARSET=utf8;
 
--
 -- --------------------------------------------------------
 
 --
@@ -163,11 +160,10 @@ CREATE TABLE IF NOT EXISTS `songs` (
   `album` varchar(255) NOT NULL,
   `jacket_img` varchar(255) NOT NULL,
   `preview` text NOT NULL,
-  `created` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB AUTO_INCREMENT=1432 DEFAULT CHARSET=utf8;
 
---
 -- --------------------------------------------------------
 
 --
@@ -185,13 +181,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `gold_count` int(11) DEFAULT NULL,
   `silver_count` int(11) DEFAULT NULL,
   `blonze_count` int(11) DEFAULT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `modified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `created` timestamp NULL DEFAULT NULL,
+  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
-
---
--- テーブルのデータのダンプ `users`
---
 
 --
 -- Indexes for dumped tables
