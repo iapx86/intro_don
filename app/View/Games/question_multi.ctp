@@ -36,9 +36,16 @@
 
 <script type="text/javascript">
 
-	var lastbutton = 0;
-
 	$(document).ready(function(){
+		var TIME_START1 = <?php echo TIME_START1; ?>;
+		var TIME_START2 = <?php echo TIME_START2; ?>;
+		var TIME_QUESTION1 = <?php echo TIME_QUESTION1; ?>;
+		var TIME_QUESTION2 = <?php echo TIME_QUESTION2; ?>;
+		var TIME_ANSWER = <?php echo TIME_ANSWER; ?>;
+		var starttime = <?php echo $starttime; ?> + TIME_START1 + TIME_START2 + (TIME_QUESTION1 + TIME_QUESTION2 + TIME_ANSWER) * (<?php echo $question; ?> - 1);
+		var dtime = -1;
+		var dtime2 = -1;
+		var lastbutton = 0;
 
 		//押されたボタンのnameをlastbuttonに代入
 		$('#view_button button').click(function () {
@@ -46,68 +53,30 @@
 			return false;
 		});
 
-		//曲が流れる（3秒後）-----------------------------------
-		setTimeout( function () {
-			var audio = new Audio("<?php echo $correct['Song']['preview']; ?>#t=0,3");
-			audio.play();
-		} , 5000 );
+		(function loop(){
+			var audio;
+			var now = Math.floor(Date.now() / 1000);
+			var time = Math.max(starttime + TIME_QUESTION1 - now, 0);
+			var time2 = Math.max(starttime + TIME_QUESTION1 + TIME_QUESTION2 - now, 0);
 
-		//正解画面へ遷移（10秒後）-----------------------------------
-		setTimeout( function () {
-			$('button[name="'+ lastbutton +'"]').click();
-		} , 14000 );
-
-
-		//変数の設定-----------------------------------
-		var setSecond = 5; //タイマーの秒数
-		var time = setSecond;   //残り秒数を保存する変数　初期値はsetSecondと同じ数値
-		var timerID;    //setInterval用の変数
-
-		var setSecond2 = 10; //タイマーの秒数
-		var time2 = setSecond2;   //残り秒数を保存する変数　初期値はsetSecond2と同じ数値
-
-		//関数の設定-----------------------------------
-
-		//残り秒数を表示させる関数
-		function textDisplay(){
-			$("#countDown").text(time);
-		}
-		function textDisplay2(){
-			$("#countDown2").text(time2);
-		}
-
-		//カウントを1減らす関数（setIntervalで毎秒実行される関数）
-		function countDown(){
-			time--;  //残り秒数を1減らす
-			textDisplay();    //1減った残り秒数を表示
-		}
-		function countDown2(){
-			time2--;  //残り秒数を1減らす
-			textDisplay2();    //1減った残り秒数を表示
-		}
-
-		//タイマースタートの関数
-		function timerStart(){
-			timerID = setInterval(function(){
-				if(time <= 1) {
-					$("#countDown").text("0");
+			if (dtime != time) {
+				$("#countDown").text(time);
+				if (time == 0) {
 					$("#box_question").fadeIn();
 					$("#countDownWrap").hide();
-					if(time2 <= 1) {
-						$("#countDown2").text("0");
-					} else {
-						countDown2();
-					}
-				} else {
-					countDown();
+					audio = new Audio("<?php echo $correct['Song']['preview']; ?>#t=0,3");
+					audio.play();
 				}
-			}, 1000);
-		}
-
-		//実行処理-----------------------------------
-		textDisplay();
-		timerStart();
-
+				dtime = time;
+			}
+			if (time == 0 && dtime2 != time2) {
+				$("#countDown2").text(time2);
+				if (time2 == 0)
+					$('button[name="'+ lastbutton +'"]').click();
+				dtime2 = time2;
+			}
+			setTimeout(loop, 1000);
+		})();
 	});
 
 </script>

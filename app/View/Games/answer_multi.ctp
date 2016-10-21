@@ -23,6 +23,13 @@
 
 <script>
 	$(function(){
+		var TIME_START1 = <?php echo TIME_START1; ?>;
+		var TIME_START2 = <?php echo TIME_START2; ?>;
+		var TIME_QUESTION1 = <?php echo TIME_QUESTION1; ?>;
+		var TIME_QUESTION2 = <?php echo TIME_QUESTION2; ?>;
+		var TIME_ANSWER = <?php echo TIME_ANSWER; ?>;
+		var starttime = <?php echo $starttime; ?> + TIME_START1 + TIME_START2 + TIME_QUESTION1 + TIME_QUESTION2 + (TIME_QUESTION1 + TIME_QUESTION2 + TIME_ANSWER) * (<?php echo $question; ?> - 1);
+		var dtime = -1;
 		var audio, audio2 = new Audio("<?php echo $correct['Song']['preview']; ?>");
 
 		if (<?php echo $judge ? 'true' : 'false'; ?>) {
@@ -37,43 +44,18 @@
 		}
 		setTimeout(function(){audio2.play()}, 1000);
 
-		//次の問題へ遷移（5秒後）-----------------------------------
-		setTimeout( function () {
-			location.href = "/intro_don/games/questionMulti";
-		} , 5000 );
+		(function loop(){
+			var now = Math.floor(Date.now() / 1000);
+			var time = Math.max(starttime + TIME_ANSWER - now, 0);
 
-		//変数の設定-----------------------------------
-		var setSecond = 5; //タイマーの秒数
-		var time = setSecond;   //残り秒数を保存する変数　初期値はsetSecondと同じ数値
-		var timerID;    //setInterval用の変数
-
-		//関数の設定-----------------------------------
-
-		//残り秒数を表示させる関数
-		function textDisplay(){
-			$("#countDown").text(time);
-		}
-
-		//カウントを1減らす関数（setIntervalで毎秒実行される関数）
-		function countDown(){
-			time--;  //残り秒数を1減らす
-			textDisplay();    //1減った残り秒数を表示
-		}
-
-		//タイマースタートの関数
-		function timerStart(){
-			timerID = setInterval(function(){
-				if(time <= 1) {
-					$("#countDown").text("0");
-				} else {
-					countDown();
-				}
-			}, 1000);
-		}
-
-		//実行処理-----------------------------------
-		textDisplay();
-		timerStart();
+			if (dtime != time) {
+				$("#countDown").text(time);
+				if (time == 0)
+					location.href = "questionMulti";
+				dtime = time;
+			}
+			setTimeout(loop, 1000);
+		})();
 	});
 
 </script>
