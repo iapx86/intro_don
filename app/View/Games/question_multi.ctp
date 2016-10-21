@@ -75,7 +75,7 @@
 					$('button[name="'+ lastbutton +'"]').click();
 				dtime2 = time2;
 			}
-			setTimeout(loop, 1000);
+			setTimeout(loop, 100);
 		})();
 	});
 
