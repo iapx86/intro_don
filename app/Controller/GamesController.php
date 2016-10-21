@@ -14,7 +14,7 @@ class GamesController extends AppController {
 	public $uses = Array('Game', 'Song', 'Log', 'User');
 	public function beforeFilter() {
 		$this->Auth->allow();
-		if ($this->action !== 'index' && $this->action !== 'view' && $this->action !== 'add' && $this->action !== 'edit' && $this->action !== 'delete' && $this->action !== 'startMulti') {
+		if ($this->action !== 'index' && $this->action !== 'view' && $this->action !== 'add' && $this->action !== 'edit' && $this->action !== 'delete') {
 			$this->layout = 'game';
 		}
 	}
@@ -363,15 +363,17 @@ class GamesController extends AppController {
 		$options = ['order' => 'Game.id DESC', 'conditions' => ['Game.created >' => date('Y-m-d H:i:s', time() - 60), 'Game.host !=' => '']];
 		$game = $this->Game->find('first', $options);
 		if (count($game)) {
-			for ($i = 2; $i <= 5; $i++) {
-				if (isset($game['Game']['entry_user' . $i]))
+			for ($i = 1; $i <= 5; $i++) {
+				if (!isset($game['Game']['entry_user' . $i])) {
+					$game['Game']['entry_user' . $i] = $this->Auth->user() ? $this->Auth->user('id') : 0;
+					$this->Game->save($game, true, ['entry_user' . $i]);
+				}
+				else if ($game['Game']['entry_user' . $i] !== ($this->Auth->user() ? $this->Auth->user('id') : 0))
 					continue;
-				$game['Game']['entry_user' . $i] = $this->Auth->user() ? $this->Auth->user('id') : 0;
-				$this->Game->save($game, true, ['entry_user' . $i]);
 				$this->set('game', $game);
 				$this->Session->write('Game.id', $game['Game']['id']);
 				$this->Session->write('Game.question', 1);
-				$this->redirect(array('action' => 'questionMulti'));
+				$this->set('time', strtotime($game['Game']['created']) - time() + 60);
 				return;
 			}
 			unset($game);
@@ -412,7 +414,7 @@ class GamesController extends AppController {
 		$this->set('game', $game = $this->Game->find('first', ['conditions' => ['Game.id' => $this->Game->id]]));
 		$this->Session->write('Game.id', $game['Game']['id']);
 		$this->Session->write('Game.question', 1);
-		$this->redirect(array('action' => 'questionMulti'));
+		$this->set('time', 60);
 	}
 
 	/**
@@ -440,7 +442,7 @@ class GamesController extends AppController {
 	 * @return void
 	 */
 	public function answerMulti() {
-		for ($id = 1; $id <= MAX_SELECT; $id++) {
+		for ($id = 0; $id <= MAX_SELECT; $id++) {
 			if (array_key_exists((string)$id, $this->request->data)) {
 				break;
 			}
@@ -453,7 +455,11 @@ class GamesController extends AppController {
 		$this->set('question', $num = $this->Session->read('Game.question'));
 		$game = $this->Game->find('first', ['conditions' => ['Game.id' => $this->Session->read('Game.id')]]);
 		$this->set('correct', $this->Song->find('first', ['conditions' => ['Song.id' => $game['Game']['question'.$num.'_correct_songid']]]));
-		$this->set('judge', $judge = $game['Game']['question'.$num.'_correct_songid'] === $game['Game']['question'.$num.'_select'.$id.'_songid']);
+        if ($id == 0)
+            $judge = false;
+        else
+           $judge = $game['Game']['question'.$num.'_correct_songid'] === $game['Game']['question'.$num.'_select'.$id.'_songid'];
+		$this->set('judge', $judge);
 		$this->Session->write('Game.question', $num + 1);
 		$this->Log->create();
 		$this->Log->save(['Log' => [
@@ -465,4 +471,22 @@ class GamesController extends AppController {
 		]]);
 	}
 
+	/**
+	 * get method
+	 *
+	 * @return void
+	 */
+	public function get() {
+		if (!$this->request->is('ajax')) {
+			$this->redirect('/');
+			return;
+		}
+		$this->viewClass = 'Json';
+		$game = $this->Game->find('first', ['conditions' => ['Game.id' => $this->Session->read('Game.id')]]);
+		for ($uids = [], $i = 1; $i <= 5 && ($id = $game['Game']['entry_user' . $i]) !== null; $i++)
+			$uids[] = $id;
+		$users = $this->User->find('all', ['conditions' => ['User.id' => $uids]]);
+		$this->set('game', compact('game', 'users'));
+		$this->set('_serialize', 'game');
+	}
 }
