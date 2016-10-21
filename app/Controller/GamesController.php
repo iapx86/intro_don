@@ -373,7 +373,7 @@ class GamesController extends AppController {
 				$this->set('game', $game);
 				$this->Session->write('Game.id', $game['Game']['id']);
 				$this->Session->write('Game.question', 1);
-				$this->set('time', strtotime($game['Game']['created']) - time() + 60);
+				$this->set('starttime', strtotime($game['Game']['created']));
 				return;
 			}
 			unset($game);
@@ -414,7 +414,7 @@ class GamesController extends AppController {
 		$this->set('game', $game = $this->Game->find('first', ['conditions' => ['Game.id' => $this->Game->id]]));
 		$this->Session->write('Game.id', $game['Game']['id']);
 		$this->Session->write('Game.question', 1);
-		$this->set('time', 60);
+		$this->set('starttime', strtotime($game['Game']['created']));
 	}
 
 	/**

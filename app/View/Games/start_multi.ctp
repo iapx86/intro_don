@@ -21,49 +21,9 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		//変数の設定-----------------------------------
-		var setSecond = <?php echo $time; ?>; //タイマーの秒数
-		var time = setSecond;   //残り秒数を保存する変数　初期値はsetSecondと同じ数値
-		var timerID;    //setInterval用の変数
-
-		var setSecond2 = 3; //タイマーの秒数
-		var time2 = setSecond2;   //残り秒数を保存する変数　初期値はsetSecond2と同じ数値
-
-		//関数の設定-----------------------------------
-
-		//残り秒数を表示させる関数
-		function textDisplay(){
-			$("#countDown").text(time);
-			update();
-		}
-
-		//カウントを1減らす関数（setIntervalで毎秒実行される関数）
-		function countDown(){
-			time--;  //残り秒数を1減らす
-			textDisplay();    //1減った残り秒数を表示
-		}
-		function countDown2(){
-			time2--;  //残り秒数を1減らす
-		}
-
-		//タイマースタートの関数
-		function timerStart(){
-			timerID = setInterval(function(){
-				if(time <= 1) {
-					$("#countDown").text("0");
-					$("#text_join_finish").fadeIn();
-					$("#text_join").hide();
-					if(time2 <= 1) {
-						clearInterval(time2);
-						location.href = "/intro_don/games/questionMulti";
-					} else {
-						countDown2();
-					}
-				} else {
-					countDown();
-				}
-			}, 1000);
-		}
+		var starttime = <?php echo $starttime; ?>;
+		var dtime = -1;
+		var jump = false;
 
 		function update(){
 			$.getJSON('get', function(game){
@@ -78,9 +38,25 @@
 			});
 		}
 
-		//実行処理-----------------------------------
-		textDisplay();
-		timerStart();
+		(function loop(){
+			var now = Math.floor(Date.now() / 1000);
+			var time = Math.max(starttime + 60 - now, 0);
+
+			if (dtime != time) {
+				$("#countDown").text(time);
+				update();
+				if (time == 0) {
+					$("#text_join_finish").fadeIn();
+					$("#text_join").hide();
+				}
+				dtime = time;
+			}
+			if (!jump && now >= starttime + 63) {
+				jump = true;
+				location.href = "questionMulti";
+			}
+			setTimeout(loop, 100);
+		})();
 	});
 
 </script>
