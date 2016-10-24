@@ -361,6 +361,7 @@ class GamesController extends AppController {
 			$this->redirect(array('action' => 'start'));
 			return;
 		}
+		$elapse = $this->request->data['Game']['elapse'];
 		$this->set('question', $num = $this->Session->read('Game.question'));
 		$game = $this->Game->find('first', ['conditions' => ['Game.id' => $this->Session->read('Game.id')]]);
 		$this->set('correct', $this->Song->find('first', ['conditions' => ['Song.id' => $game['Game']['question'.$num.'_correct_songid']]]));
@@ -374,7 +375,7 @@ class GamesController extends AppController {
 		$this->Log->save(['Log' => [
 			'user_id' => $this->Auth->user() ? $this->Auth->user('id') : 0,
 			'game_id' => $game['Game']['id'],
-			'score' => $judge ? 10 : 0,
+			'score' => !$judge ? 0 : ($elapse <= 1 ? 50 : ($elapse <= 2 ? 40 : ($elapse <= 3 ? 30 : ($elapse <= 4 ? 20 : 10)))),
 			'botton_number' => $id,
 			'correct' => $judge ? 1 : 0,
 		]]);
