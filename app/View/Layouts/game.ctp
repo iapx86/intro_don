@@ -25,6 +25,13 @@
 
 		echo $this->Html->css('game');
 
+		echo $this->Html->meta(null, null, array(
+			'name' => 'viewport',
+			'content' => 'width=device-width, initial-scale=1, minimum-scale=1, user-scalable=no',
+			'inline' => false
+		));
+
+
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
