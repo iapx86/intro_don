@@ -13,3 +13,244 @@
 /* =====================
   共通style
 ===================== */
+
+
+#main {width: auto;padding: 0;}
+
+#main h1 {
+
+}
+
+#main h1 img {
+    width: 95%;
+}
+
+#main h1 span {
+
+}
+
+/* =====================
+  ログイン画面
+===================== */
+
+#wrap_login{padding: 15px 0 5px;margin: 0 0 10px;}
+
+#wrap_login .submit{width: 90%;}
+
+#wrap_login .input{width: 90%;}
+
+#wrap_login input{
+
+}
+
+#wrap_login label {
+
+}
+#wrap_login input[type="text"]{
+
+}
+
+#wrap_login input[type="submit"]{
+
+}
+
+.btn_logout{
+
+}
+
+.btn_logout a{}
+
+#caution{margin: 5px 10px 0 0;font-size: 12px;}
+
+.error-message{
+
+}
+
+/* =====================
+  スタート画面
+===================== */
+
+.page_start h2{
+    margin: 0 0 10px;
+
+}
+
+.page_start h2 span{
+
+}
+.page_start .btn1{
+
+}
+
+.page_start .btn1 a{
+    width: 94%;
+}
+
+.page_start .btn2{
+
+}
+
+.page_start #text{
+    padding: 11px 25px;
+    width: auto;
+    font-size: 10px;
+}
+
+/* =====================
+  回答画面（question）
+===================== */
+#wrap_question{padding: 49px 0 0;}
+
+#name{width: 211px;text-align: right;}
+
+#name span{
+
+}
+
+/* balloon */
+#wrap_question .text_click {
+
+}
+
+#wrap_question .text_click:after {
+
+}
+
+#wrap_question .question_number{width: 65px;font-size: 12px;padding: 10px 1px;}
+
+#wrap_question .question_number span {font-size: 20px;}
+
+#wrap_question #wrap_audio{margin: 0 0 20px;float: none;width: auto;}
+
+#wrap_question audio{
+
+}
+
+#wrap_question #song_list{width: auto;float: none;}
+
+#wrap_question #song_list li{
+
+}
+
+#wrap_question #btn_play{
+
+}
+
+#wrap_question #btn_play:hover{
+
+}
+
+#wrap_question button {width: 94%;font-size: 20px;}
+#wrap_question button:hover {
+
+}
+#wrap_question button:active {
+
+}
+
+#wrap_question button.active {
+
+}
+
+#wrap_question{}
+
+#wrap_question #view_button{
+
+}
+
+#wrap_question #view_button button{
+
+}
+
+
+#wrap_question button span {
+
+}
+
+#wrap_question form {
+
+}
+
+/* =====================
+  回答画面（answer）
+===================== */
+#wrap_answer{padding: 0 0 20px;background-size: 133%;}
+
+#wrap_answer form{
+
+}
+
+#wrap_answer .judge_text{
+
+}
+
+#wrap_answer .judge_text.correct{
+
+}
+
+#wrap_answer .judge_text.wrong{
+
+}
+
+#wrap_answer .correct_answer{padding: 10px 0 10px;margin: 0;font-size: 25px;}
+
+#wrap_answer .correct_answer span{font-size: 20px;}
+
+#wrap_answer .next input{
+
+}
+
+#wrap_answer .next input.btn_next{width: 90%;font-size: 20px;}
+
+#wrap_answer .next input.btn_result{width: 90%;font-size: 20px;}
+
+.wrap_correct{
+
+}
+
+.wrap_wrong{
+
+}
+
+/* =====================
+  集計画面
+===================== */
+
+#box_result h2{font-size: 25px;}
+
+#box_result table{font-size: 11px;}
+
+#box_result table td,
+#box_result table th{
+
+}
+
+#box_result table th{font-size: 12px;}
+
+#box_result table td.cell_result{font-size: 18px !important;}
+
+#box_result table td .list{
+
+}
+
+#box_result table td.true{
+
+}
+
+#box_result table td.false{
+
+}
+
+#box_result{padding: 10px;}
+
+#box_result #text{font-size: 20px;}
+
+#box_result #text span{font-size: 30px;}
+
+#box_result table td .song_name{font-size: 13px;}
+
+#box_result #btn_more{width: 100%;}
+
+#box_result #btn_more a{width: 86%;font-size: 20px;}
+
+#box_result #btn_leave a{width: 86%;font-size: 20px;}
