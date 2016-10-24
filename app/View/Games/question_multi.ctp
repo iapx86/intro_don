@@ -29,6 +29,7 @@
 					<li><button name="<?php echo $i ?>"></button></li>
 				<?php endfor; ?>
 			</ul>
+			<?php echo $this->Form->hidden('elapse'); ?>
 			<?php echo $this->Form->end(); ?>
 		</div>
 	</div>
@@ -46,10 +47,12 @@
 		var dtime = -1;
 		var dtime2 = -1;
 		var lastbutton = 0;
+		var elapse = 0;
 
 		//押されたボタンのnameをlastbuttonに代入
 		$('#view_button button').click(function () {
 			lastbutton = ($(this).attr('name'));
+			elapse = Math.floor(Date.now() / 1000) - (starttime + TIME_QUESTION1);
 			return false;
 		});
 
@@ -71,8 +74,10 @@
 			}
 			if (time == 0 && dtime2 != time2) {
 				$("#countDown2").text(time2);
-				if (time2 == 0)
+				if (time2 == 0) {
+					$("#GameElapse").val(elapse);
 					$('button[name="'+ lastbutton +'"]').click();
+				}
 				dtime2 = time2;
 			}
 			setTimeout(loop, 100);
