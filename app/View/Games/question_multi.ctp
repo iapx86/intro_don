@@ -72,8 +72,8 @@
 			if (time == 0 && dtime2 != time2) {
 				$("#countDown2").text(time2);
 				if (time2 == 0)
-				$('button[name="'+ lastbutton +'"]').click();
-					dtime2 = time2;
+					$('button[name="'+ lastbutton +'"]').click();
+				dtime2 = time2;
 			}
 			setTimeout(loop, 100);
 		})();
