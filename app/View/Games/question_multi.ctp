@@ -38,6 +38,7 @@
 <script type="text/javascript">
 
 	$(document).ready(function(){
+		var audio = new Audio("<?php echo $correct['Song']['preview']; ?>#t=0,3");
 		var TIME_START1 = <?php echo TIME_START1; ?>;
 		var TIME_START2 = <?php echo TIME_START2; ?>;
 		var TIME_QUESTION1 = <?php echo TIME_QUESTION1; ?>;
@@ -57,7 +58,6 @@
 		});
 
 		(function loop(){
-			var audio;
 			var now = Math.floor(Date.now() / 1000);
 			var time = Math.max(starttime + TIME_QUESTION1 - now, 0);
 			var time2 = Math.max(starttime + TIME_QUESTION1 + TIME_QUESTION2 - now, 0);
@@ -67,7 +67,6 @@
 				if (time == 0) {
 					$("#box_question").fadeIn();
 					$("#countDownWrap").hide();
-					audio = new Audio("<?php echo $correct['Song']['preview']; ?>#t=0,3");
 					audio.play();
 				}
 				dtime = time;
