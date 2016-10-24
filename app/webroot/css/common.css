@@ -518,6 +518,29 @@
     padding: 20px;
 }
 
+#box_result #ranking{}
+#box_result #ranking table{
+    border: none;
+}
+#box_result #ranking table th{
+    background-color: #4545e8 !important;
+}
+#box_result #ranking table td{
+    background-color: #ffffff;
+}
+#box_result #ranking table th, #box_result #ranking table td{
+    border: none;
+    border-bottom: 1px solid #cec9c9;
+    background-color: transparent;
+}
+
+#box_result #ranking table td.name {
+    font-size: 23px !important;
+    text-align: left;
+    font-weight: bold;
+}
+
+
 /* =====================
   募集画面
 ===================== */
