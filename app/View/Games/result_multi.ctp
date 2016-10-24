@@ -14,7 +14,7 @@
 
 			<?php for ($count = 0, $i = 1; $i <= MAX_QUESTION; $i++): ?>
 				<tr>
-					<td><?php echo $i; ?><span class="list">曲目</span></td>
+					<td><?php echo $i; ?><span class="list"></span></td>
 					<td><p class="song_name"><?php echo $songs[$i]['Song']['title']; ?></p></td>
 					<td><?php echo $songs[$i]['Song']['artist']; ?></td>
 
