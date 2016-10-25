@@ -64,6 +64,7 @@
     margin: 0 0 5px;
     display: block;
 }
+
 #wrap_login input[type="text"]{
     background-color: white !important;
     display: block;
@@ -162,9 +163,9 @@
  }
 
 .page_start .btn2{
-    background-color: #fbd4e1;
+    background-color: #f59dba;
     text-decoration: none;
-    color: #6d6d6c;
+    color: #f9f9f9;
     text-align: center;
     font-size: 30px;
     font-weight: bold;
@@ -228,8 +229,8 @@
     top: -10px; left: 50%;
     margin-left: -10px;
     display: block;
-    width: 0px;
-    height: 0px;
+    width: 0;
+    height: 0;
     border-style: solid;
     border-width: 0 10px 10px 10px;
     border-color: transparent transparent #fd7277 transparent;
@@ -237,14 +238,13 @@
 
 #wrap_question .question_number{
     text-align: center;
-    font-size: 20px;
     background-color: #888785;
     color: #ffffff;
     width: 70px;
     margin: 0 0 15px;
     position: absolute;
     padding: 24px 0;
-    left: 0px;
+    left: 0;
     top: 0;
     font-size:15px;
 }
@@ -350,10 +350,6 @@
     text-align: center;
 }
 
-#countDownWrap #viewCount{
-
-}
-
 #countDownWrap #viewCount #countDown{
     font-size: 210px;
     font-weight: bold;
@@ -361,11 +357,13 @@
 
 #viewTextNext{
     text-align: center;
+    margin: 0 0 10px;
 }
 
 #viewTextNext #countDown2{
     font-size: 90px;
     font-weight: bold;
+    margin: 0 10px;
 }
 
 /* =====================
@@ -378,10 +376,6 @@
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: 50%;
-}
-
-#wrap_answer form{
-
 }
 
 #wrap_answer .judge_text{
@@ -444,6 +438,17 @@
 .wrap_wrong{
     background-image: url(../img/img_wrong.png);
 }
+
+.next_q{
+    font-size: 30px;
+}
+
+.next_q #countDown{
+    font-size: 50px;
+    font-weight: bold;
+    margin: 0 10px;
+    color: #ef4f4f;
+}
 /* =====================
   集計画面
 ===================== */
@@ -453,11 +458,6 @@
     font-size: 50px;
     margin: 0 0 15px;
     color: #ef5151;
-}
-
-#box_result #detail_song{
-
-    display: none;
 }
 
 #box_result #detail_song table{
@@ -550,8 +550,6 @@
     padding: 20px;
 }
 
-#box_result #ranking{}
-
 #box_result #ranking table{
     border: none;
     width: 100%;
@@ -582,10 +580,6 @@
     font-weight: bold;
 }
 
-#box_result #ranking table td.score {
-
-}
-
 #box_result #ranking table td.score span {
     background-color: #f34052;
     color: #ffffff;
@@ -614,24 +608,111 @@
   募集画面
 ===================== */
 
-#wrap_join{background-color: #edf9fb;padding: 30px;}
-
-#wrap_join #text_limit{font-size: 20px;margin: 0 0 40px 0;text-align: right;}
-
-#wrap_join #text_limit span{font-size: 37px;}
-
-#wrap_join #text_join{font-size: 45px;text-align: center;margin: 0 0 16px 0;}
-#wrap_join #text_join_finish{font-size: 45px;text-align: center;margin: 0 0 16px 0;
-    display: none;}
-
-#wrap_join #list_member{border: 1px solid #000000;padding: 30px;line-height: 2;background-color: #fffefe;height: 200px;}
-
-#wrap_join #list_member ul{
-
+#wrap_join{
+    background-color: #f1f6f7;
+    padding: 30px;
+    position: relative;
+    z-index: 1;
 }
 
-#wrap_join #list_member ul li{
-
+#wrap_join #text_limit{
+    font-size: 26px;
+    text-align: center;
 }
 
-#wrap_join #list_member ul li span{font-weight: bold;margin: 0 10px 0 0;}
+#wrap_join #text_limit span{
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0 15px;
+    color: #f35151;
+}
+
+#wrap_join #text_join{
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    top: 25px;
+}
+
+#wrap_join #text_join_finish{
+    text-align: center;
+    font-weight: bold;
+    top: 25px;
+    font-size: 45px;
+    display: none;
+    padding: 100px 0;
+    background: gray !important;
+    color: #ffffff;
+    margin: 10px 0px 0;
+}
+
+#wrap_join #list_member{
+    border: 1px solid #f18c8a;
+    padding: 75px 30px 30px;
+    line-height: 2;
+    background-color: #fffefe;
+    height: 240px;
+    width: 90%;
+    margin: -40px auto 0;
+}
+
+#wrap_join #list_member ul li {
+    border-bottom: 1px dashed gray;
+    font-size: 24px;
+}
+
+#wrap_join #list_member ul li span {
+    font-weight: bold;
+    color: #4f4ff5;
+    margin: 0 10px 0 0;
+}
+
+
+/*----リボン----*/
+.ex-1{
+    position: relative;
+
+    /*リボンの色*/
+    background-color: lightcoral;/*グラデーションが表示されないブラウザ用*/
+
+    /*文字*/
+    color: white;
+    text-align: center;
+    text-shadow:0 1px 0 rgba(255,255,255,0.3);
+    -webkit-text-shadow:0 1px 0 rgba(255,255,255,0.3);
+
+    /*リボンの幅と高さ*/
+     line-height:  50px;
+
+    /*はみ出る部分*/
+    margin-left: -15px;
+    margin-right: -15px;
+
+    /*上側だけちょこっと角丸*/
+    border-radius:2px 2px 0 0;
+    -webkit-border-radius:2px 2px 0 0;
+
+    /*リボンが少し浮いて見えるようにうっすらとシャドウ*/
+    box-shadow:0 10px 30px -8px rgba(0,0,0,0.2);
+    -webkit-box-shadow:0 10px 30px -8px rgba(0,0,0,0.2);
+}
+
+.ex-1:before{
+    position: absolute;
+    top:50%;
+    left:-25px;
+    content: "";
+    border: 25px solid transparent;
+    border-right-color: indianred ;
+    z-index: -1;
+}
+
+.ex-1:after{
+    position: absolute;
+    top:50%;
+    right:-25px;
+    content: "";
+    border: 25px solid transparent;
+    border-left-color: indianred ;
+    z-index: -1;
+}

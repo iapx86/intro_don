@@ -14,56 +14,37 @@
   共通style
 ===================== */
 
-
-#main {width: auto;padding: 0;}
-
-#main h1 {
-
+#main {
+    width: auto;
+    padding: 0;
 }
 
 #main h1 img {
     width: 95%;
 }
 
-#main h1 span {
-
-}
-
 /* =====================
   ログイン画面
 ===================== */
 
-#wrap_login{padding: 15px 0 5px;margin: 0 0 10px;}
-
-#wrap_login .submit{width: 90%;}
-
-#wrap_login .input{width: 90%;}
-
-#wrap_login input{
-
+#wrap_login{
+    padding: 15px 0 5px;
+    margin: 0 0 10px;
 }
 
-#wrap_login label {
-
-}
-#wrap_login input[type="text"]{
-
+#wrap_login .submit{
+    width: 90%;
 }
 
-#wrap_login input[type="submit"]{
-
+#wrap_login .input{
+    width: 90%;
 }
 
-.btn_logout{
+.btn_logout a{ width: 94%; }
 
-}
-
-.btn_logout a{}
-
-#caution{margin: 5px 10px 0 0;font-size: 12px;}
-
-.error-message{
-
+#caution{
+    margin: 5px 10px 0 0;
+    font-size: 12px;
 }
 
 /* =====================
@@ -75,182 +56,204 @@
 
 }
 
-.page_start h2 span{
-
-}
-.page_start .btn1{
-
-}
-
 .page_start .btn1 a{
     width: 94%;
 }
 
-.page_start .btn2{
+.page_start .single a {
+    background-position: 97% 2px;
+}
 
+.page_start .multi a {
+    background-position: 94% 13px;
+}
+
+.page_start .btn2{
+    width: 94%;
 }
 
 .page_start #text{
     padding: 11px 25px;
-    width: auto;
     font-size: 10px;
+    width: 80%;
+    margin: 10px auto;
 }
 
 /* =====================
   回答画面（question）
 ===================== */
-#wrap_question{padding: 49px 0 0;}
-
-#name{width: 211px;text-align: right;}
-
-#name span{
-
+#wrap_question{
+    padding: 49px 0 0;
 }
 
-/* balloon */
-#wrap_question .text_click {
-
+#name{
+    width: 211px;
+    text-align: right;
 }
 
-#wrap_question .text_click:after {
-
+#wrap_question .question_number{
+    width: 65px;
+    font-size: 12px;
+    padding: 10px 1px;
 }
 
-#wrap_question .question_number{width: 65px;font-size: 12px;padding: 10px 1px;}
-
-#wrap_question .question_number span {font-size: 20px;}
-
-#wrap_question #wrap_audio{margin: 0 0 20px;float: none;width: auto;}
-
-#wrap_question audio{
-
+#wrap_question .question_number span {
+    font-size: 20px;
 }
 
-#wrap_question #song_list{width: auto;float: none;}
-
-#wrap_question #song_list li{
-
+#wrap_question #wrap_audio{
+    margin: 0 0 20px;
+    float: none;
+    width: auto;
 }
 
-#wrap_question #btn_play{
-
+#wrap_question #song_list{
+    width: auto;
+    float: none;
 }
 
-#wrap_question #btn_play:hover{
-
+#wrap_question button {
+    width: 94%;
+    font-size: 20px;
 }
 
-#wrap_question button {width: 94%;font-size: 20px;}
-#wrap_question button:hover {
+/*マルチ調整*/
 
-}
-#wrap_question button:active {
-
-}
-
-#wrap_question button.active {
-
+#countDownWrap {
+    position: static;
+    font-size: 24px;
+    margin: 30px 0 0;
 }
 
-#wrap_question{}
-
-#wrap_question #view_button{
-
+#countDownWrap #viewCount #countDown {
+    font-size: 110px;
 }
 
-#wrap_question #view_button button{
-
-}
-
-
-#wrap_question button span {
-
-}
-
-#wrap_question form {
-
+#viewTextNext #countDown2{
+    font-size: 30px;
 }
 
 /* =====================
   回答画面（answer）
 ===================== */
-#wrap_answer{padding: 0 0 20px;background-size: 133%;}
-
-#wrap_answer form{
-
+#wrap_answer{
+    padding: 0 0 20px;
+    background-size: 133%;
 }
 
-#wrap_answer .judge_text{
-
+#wrap_answer .correct_answer{
+    padding: 10px 0 10px;
+    margin: 0;
+    font-size: 25px;
 }
 
-#wrap_answer .judge_text.correct{
-
+#wrap_answer .correct_answer span{
+    font-size: 20px;
 }
 
-#wrap_answer .judge_text.wrong{
-
+#wrap_answer .next input.btn_next{
+    width: 90%;
+    font-size: 20px;
 }
 
-#wrap_answer .correct_answer{padding: 10px 0 10px;margin: 0;font-size: 25px;}
-
-#wrap_answer .correct_answer span{font-size: 20px;}
-
-#wrap_answer .next input{
-
-}
-
-#wrap_answer .next input.btn_next{width: 90%;font-size: 20px;}
-
-#wrap_answer .next input.btn_result{width: 90%;font-size: 20px;}
-
-.wrap_correct{
-
-}
-
-.wrap_wrong{
-
+#wrap_answer .next input.btn_result{
+    width: 90%;
+    font-size: 20px;
 }
 
 /* =====================
   集計画面
 ===================== */
 
-#box_result h2{font-size: 25px;}
+#box_result h2{
+    font-size: 25px;
+}
 
-#box_result table{font-size: 11px;}
+#box_result table{
+    font-size: 11px;
+}
 
-#box_result table td,
 #box_result table th{
-
+    font-size: 12px;
 }
 
-#box_result table th{font-size: 12px;}
-
-#box_result table td.cell_result{font-size: 18px !important;}
-
-#box_result table td .list{
-
+#box_result table td.cell_result{
+    font-size: 18px !important;
 }
 
-#box_result table td.true{
-
+#box_result{
+    padding: 10px;
 }
 
-#box_result table td.false{
-
+#box_result #text{
+    font-size: 20px;
 }
 
-#box_result{padding: 10px;}
+#box_result #text span{
+    font-size: 30px;
+}
 
-#box_result #text{font-size: 20px;}
+#box_result table td .song_name{
+    font-size: 13px;
+    margin: 0 0 5px;
+}
 
-#box_result #text span{font-size: 30px;}
+#box_result #btn_more{
+    width: 100%;
+}
 
-#box_result table td .song_name{font-size: 13px;}
+#box_result #btn_more a{
+    width: 86%;
+    font-size: 20px;
+}
 
-#box_result #btn_more{width: 100%;}
+#box_result #btn_leave a{
+    width: 86%;
+    font-size: 20px;
+}
 
-#box_result #btn_more a{width: 86%;font-size: 20px;}
+/*マルチ調整*/
+#box_result h2 img{
+    width: 100%;
+}
 
-#box_result #btn_leave a{width: 86%;font-size: 20px;}
+#box_result #ranking table th, #box_result #ranking table td{
+    font-size: 16px !important;
+}
+
+#show_detail{
+    width: 100%;
+    font-size: 20px;
+}
+
+#box_result #ranking table img{
+    width: 100%;
+}
+
+/* =====================
+  募集画面
+===================== */
+
+#wrap_join{
+    padding: 10px;
+}
+
+#wrap_join #list_member{
+    width: auto;
+    padding: 66px 10px 0;
+}
+
+#wrap_join #text_limit {
+    font-size: 20px;
+}
+
+#wrap_join #list_member ul li {
+    font-size: 18px;
+}
+
+#wrap_join #text_join_finish{
+    font-size: 30px;
+}
+
+#wrap_join .ex-1{margin: 0;}
+

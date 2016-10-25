@@ -55,7 +55,7 @@
         </div>
 
         <p id="show_detail">曲の正誤表を見る</p>
-        <div id="detail_song">
+        <div id="detail_song" style="display: none;">
             <table cellpadding="0" cellspacing="0" border="0">
                 <tr>
                     <th>曲目</th>

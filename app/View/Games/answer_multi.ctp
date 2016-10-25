@@ -11,9 +11,9 @@
 		</div>
 
 		<?php if ($question <= 9) {
-			echo '次の問題まで<span id="countDown"></span>秒';
+			echo '<p class="next_q">次の問題まで<span id="countDown"></span>秒</p>';
 		} else {
-			echo '結果発表まで<span id="countDown"></span>秒';
+			echo '<p class="next_q">結果発表まで<span id="countDown"></span>秒</p>';
 		}
 		?>
 
