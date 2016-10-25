@@ -14,6 +14,10 @@
   共通style
 ===================== */
 
+input[type="submit"] {
+    -webkit-appearance: none;
+}
+
 #main {
     width: auto;
     padding: 0;
