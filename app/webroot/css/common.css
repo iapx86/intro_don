@@ -430,41 +430,46 @@
     color: #ef5151;
 }
 
-#box_result table{
+#box_result #detail_song{
+
+    display: none;
+}
+
+#box_result #detail_song table{
     width: 100%;
     border-right: 1px solid #cec9c9;
     border-bottom: 1px solid #cec9c9;
     margin: 0 auto 20px;
 }
 
-#box_result table td,
-#box_result table th{
+#box_result #detail_song table td,
+#box_result #detail_song table th{
     border-left: 1px solid #cec9c9;
     border-top: 1px solid #cec9c9;
     padding: 5px;
     vertical-align: middle;
-    background-color: #f2fafd;
+    background-color: #ffffe3;
 }
 
-#box_result table th{
-    background-color: #75cae9;
+#box_result #detail_song table th{
+    background-color: #f9a27b;
     padding: 10px 0;
     color: white;
 }
 
-#box_result table td.cell_result{
-    font-size: 25px !important;
+#box_result #detail_song table td.cell_result{
+    font-size: 36px !important;
 }
 
-#box_result table td .list{
+#box_result #detail_song table td .list{
     font-size: 12px;
 }
 
-#box_result table td.true{
+#box_result #detail_song table td.true{
     color: blue;
 }
 
-#box_result table td.false{
+#box_result #detail_song table td.false{
     color: red;
 }
 
@@ -487,7 +492,9 @@
 }
 
 #box_result table td .song_name{
-    font-weight:bold;
+    font-weight: bold;
+    margin: 5px 0 5px;
+    font-size: 20px;
 }
 
  #box_result #btn_more{
@@ -498,7 +505,7 @@
     display: block;
     text-decoration: none;
     color: #ffffff;
-    background-color: #ef5151;
+    background-color: #75cae9;
     width: 50%;
     margin: 0 auto;
     font-size: 26px;
@@ -519,19 +526,28 @@
 }
 
 #box_result #ranking{}
+
 #box_result #ranking table{
     border: none;
+    width: 100%;
+    margin: 0 0 30px;
 }
+
 #box_result #ranking table th{
-    background-color: #4545e8 !important;
+    background-color: #4545e8;
+    color: #ffffff;
 }
+
 #box_result #ranking table td{
     background-color: #ffffff;
 }
+
 #box_result #ranking table th, #box_result #ranking table td{
     border: none;
     border-bottom: 1px solid #cec9c9;
-    background-color: transparent;
+    padding: 10px;
+    font-size: 23px !important;
+    vertical-align: middle;
 }
 
 #box_result #ranking table td.name {
@@ -540,6 +556,33 @@
     font-weight: bold;
 }
 
+#box_result #ranking table td.score {
+
+}
+
+#box_result #ranking table td.score span {
+    background-color: #f34052;
+    color: #ffffff;
+    display: block;
+    font-weight: bold;
+    font-size: 27px;
+    border-radius: 24px;
+    margin: 0 auto;
+    width: 60px;
+    text-align: center;
+    padding: 10px;
+}
+
+#show_detail{
+    cursor: pointer;
+    padding: 20px 0;
+    background-color: #f7673e;
+    font-weight: bold;
+    width: 55%;
+    color: #ffffff;
+    font-size: 26px;
+    margin: 0 auto 20px;
+}
 
 /* =====================
   募集画面
