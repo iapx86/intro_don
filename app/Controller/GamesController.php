@@ -469,6 +469,15 @@ class GamesController extends AppController {
 			}
 		}
 
+		// 配列から、nullを取り除く
+		$ranker = array_filter($ranker , function($ranker){
+			if($ranker !== null){
+				return true;
+			}else{
+				return false;
+			}
+		});
+
 		// 正解数の多い順番にソート
 		foreach ($ranker as $key => $value) {
 			$sort[$key] = $value['countCorrect'];
@@ -490,7 +499,7 @@ class GamesController extends AppController {
 				}
 		$this->set('auth', $this->Auth->user());
 		$this->set('songs', $songs);
-		$this->Session->delete('Game');
+		// $this->Session->delete('Game');
 
 	}
 
