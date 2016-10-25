@@ -87,11 +87,21 @@
 }
 
 .btn_logout{
-    text-align: center;
-    margin: 0 0 30px;
+    margin: 0 0 20px;
 }
 
-.btn_logout a{}
+.btn_logout a{
+    display: block;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #d1d1d4;
+    width: 50%;
+    margin: 0 auto;
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    padding: 15px 0;
+}
 
 #caution{
     margin: 5px 48px 0 0;
@@ -119,6 +129,21 @@
     font-size: 30px;
     margin: 0 10px;
 }
+
+.page_start .single a{
+    background-image: url(../img/icon_single.png);
+    background-repeat: no-repeat;
+    background-position: 93% -7px;
+    background-size: 17%;
+}
+
+.page_start .multi a{
+    background-image: url(../img/icon_multi.png);
+    background-repeat: no-repeat;
+    background-position: 91% 8px;
+    background-size: 12%;
+}
+
 .page_start .btn1{
     margin: 0 0 20px;
 }
@@ -449,6 +474,7 @@
     padding: 5px;
     vertical-align: middle;
     background-color: #ffffe3;
+    text-align: center;
 }
 
 #box_result #detail_song table th{
@@ -493,7 +519,6 @@
 
 #box_result table td .song_name{
     font-weight: bold;
-    margin: 5px 0 5px;
     font-size: 20px;
 }
 
@@ -548,6 +573,7 @@
     padding: 10px;
     font-size: 23px !important;
     vertical-align: middle;
+    text-align: center;
 }
 
 #box_result #ranking table td.name {
