@@ -418,6 +418,7 @@ class GamesController extends AppController {
 					)
 				);
 				$ranker[$i] += ['username' => $username['User']['username']];
+
 				// 正解数の取得
 				$countCorrect = $this->Log->find('count' , 
 					array(
@@ -478,9 +479,9 @@ class GamesController extends AppController {
 			}
 		});
 
-		// 正解数の多い順番にソート
+		// スコアの高い順にソート
 		foreach ($ranker as $key => $value) {
-			$sort[$key] = $value['countCorrect'];
+			$sort[$key] = $value['sumScore'];
 			}
 		array_multisort($sort, SORT_DESC, $ranker);
 		$this->set('ranker', $ranker);
@@ -499,7 +500,7 @@ class GamesController extends AppController {
 				}
 		$this->set('auth', $this->Auth->user());
 		$this->set('songs', $songs);
-		// $this->Session->delete('Game');
+		$this->Session->delete('Game');
 
 	}
 
