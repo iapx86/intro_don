@@ -13,7 +13,7 @@
                     <th>正解数</th>
                     <th>スコア</th>
                 </tr>
-                <?php for ($i = 0; $i <= 4; $i++): ?>
+                <?php for ($i = 0; $i < count($ranker); $i++): ?>
                     <tr>
                         <td>
                             <?php
@@ -53,7 +53,7 @@
                 <?php endfor; ?>
             </table>
         </div>
-        <p id="text"><?php echo MAX_QUESTION; ?>問中<span><?php echo $count; ?></span>問正解！</p>
+
         <p id="show_detail">曲の正誤表を見る</p>
         <div id="detail_song">
             <table cellpadding="0" cellspacing="0" border="0">
@@ -83,6 +83,8 @@
                 <?php endfor; ?>
             </table>
         </div>
+
+                <p id="text"><?php echo MAX_QUESTION; ?>問中<span><?php echo $count; ?></span>問正解！</p>
 
         <p id="btn_more"><?php echo $this->Html->link(__('もう一度遊ぶ'), array('action' => 'start')); ?></p>
         <p id="btn_leave"><?php echo $this->Html->link(__('やめる'), array('controller' => 'users', 'action' => 'logout')); ?></p>

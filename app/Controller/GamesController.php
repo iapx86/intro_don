@@ -501,8 +501,6 @@ class GamesController extends AppController {
 		$this->set('songs', $songs);
 		// $this->Session->delete('Game');
 
-		debug($ranker);
-
 	}
 
 
