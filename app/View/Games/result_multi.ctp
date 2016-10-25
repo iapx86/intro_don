@@ -1,3 +1,7 @@
+<?php var_dump(count($ranker));
+
+ ?>
+
 <div id="main">
 	<h1>
 		<?php echo $this->Html->link($this->Html->image('title.png'),array('controller'=>'/'),array('escape'=>false));?>
@@ -12,7 +16,7 @@
 					<th>正解数</th>
 					<th>スコア</th>
 				</tr>
-				<?php for ($i = 0; $i <= 4; $i++): ?>
+				<?php for ($i = 0; $i < count($ranker); $i++): ?>
 					<tr>
 						<td><?php echo $this->Html->image('img_rank3.png');?>
 
