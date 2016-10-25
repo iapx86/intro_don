@@ -55,5 +55,6 @@
 	<ul>
 		<li><?php echo $this->Html->link(__('New Song'), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('iTunes Serach'), array('action' => 'search')); ?></li>
+		<li><?php echo $this->Form->postLink(__('Delete Duplicated Songs'), array('action' => 'deleteDup')); ?></li>
 	</ul>
 </div>
