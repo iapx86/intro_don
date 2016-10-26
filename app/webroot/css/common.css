@@ -2,6 +2,7 @@
 
 /* ---------------------
     - common setting
+    - 曲設定画面
     - ログイン画面
     - スタート画面
     - 回答画面（question）
@@ -31,6 +32,38 @@
     color: #000000;
     line-height: 2;
     font-weight: normal;
+}
+
+.btn1{
+    margin: 0 0 20px;
+}
+
+.btn1 a{
+    background-color: #75cae9;
+    display: block;
+    text-decoration: none;
+    color: #ffffff;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    width: 50%;
+    margin: 0 auto;
+    padding: 15px 0;
+    border-radius: 30px;
+}
+
+.btn2{
+    background-color: #f59dba;
+    text-decoration: none;
+    color: #f9f9f9;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    width: 50%;
+    margin: 0 auto;
+    padding: 15px 0;
+    cursor: pointer;
+    border-radius: 30px;
 }
 
 /* =====================
@@ -79,7 +112,7 @@
     text-decoration: none;
     text-align: center;
     display: block;
-    background-color: #a6a6a6;
+    background-color: #e26262;
     color: #ffffff;
     font-size: 30px;
     font-weight: bold;
@@ -102,6 +135,7 @@
     text-align: center;
     font-weight: bold;
     padding: 15px 0;
+    border-radius: 30px;
 }
 
 #caution{
@@ -145,36 +179,6 @@
     background-size: 12%;
 }
 
-.page_start .btn1{
-    margin: 0 0 20px;
-}
-
-.page_start .btn1 a{
-    background-color: #75cae9;
-    display: block;
-    text-decoration: none;
-    color: #ffffff;
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
-    width: 50%;
-    margin: 0 auto;
-    padding: 15px 0;
- }
-
-.page_start .btn2{
-    background-color: #f59dba;
-    text-decoration: none;
-    color: #f9f9f9;
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
-    width: 50%;
-    margin: 0 auto;
-    padding: 15px 0;
-    cursor: pointer;
-}
-
 .page_start #text{
     background-color: #ffffff;
     padding: 30px;
@@ -184,6 +188,62 @@
     width: 367px;
     display: none;
 }
+
+/* =====================
+  曲設定画面
+===================== */
+#wrap_setting{
+    background-color: #ffffff;
+    padding: 30px;
+}
+
+#wrap_setting h2 {
+    background-color: #45a2cc;
+    color: #ffffff;
+    padding: 15px;
+    font-size: 22px;
+}
+
+#wrap_setting .input{
+    width: 100%;
+}
+
+#wrap_setting select{
+    border: 1px solid #717171;
+    width: 100%;
+    font-size: 18px;
+    padding: 10px;
+    font-family: 'Quicksand', "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", 'メイリオ' , Meiryo , Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+
+#wrap_setting .submit{
+    margin: 30px auto;
+}
+
+#wrap_setting .submit input[type="submit"]{
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    background-color: #75cae9;
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 13px 0;
+    cursor: pointer;
+    width: 90%;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 30px;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-image: url(../img/icon_search.png);
+    background-position: 86% center;
+}
+
+#wrap_setting .btn1 a{
+    width: 90%;
+}
+
 
 /* =====================
   回答画面（question）
@@ -499,19 +559,19 @@
     color: red;
 }
 
- #box_result{
+#box_result{
     background-color: #ffffff;
     text-align: center;
     padding: 20px;
 }
 
- #box_result #text{
+#box_result #text{
     font-size: 30px;
     font-weight: bold;
     margin: 0 0 20px;
 }
 
- #box_result #text span{
+#box_result #text span{
     color: #ff0000;
     font-size: 55px;
     margin: 0 10px;
@@ -522,11 +582,11 @@
     font-size: 20px;
 }
 
- #box_result #btn_more{
+#box_result #btn_more{
     margin: 0 0 20px;
 }
 
- #box_result #btn_more a{
+#box_result #btn_more a{
     display: block;
     text-decoration: none;
     color: #ffffff;
@@ -536,9 +596,10 @@
     font-size: 26px;
     font-weight: bold;
     padding: 20px;
+    border-radius: 30px;
 }
 
- #box_result #btn_leave a{
+#box_result #btn_leave a{
     display: block;
     text-decoration: none;
     color: #ffffff;
@@ -548,6 +609,7 @@
     font-size: 26px;
     font-weight: bold;
     padding: 20px;
+    border-radius: 30px;
 }
 
 #box_result #ranking table{
@@ -682,7 +744,7 @@
     -webkit-text-shadow:0 1px 0 rgba(255,255,255,0.3);
 
     /*リボンの幅と高さ*/
-     line-height:  50px;
+    line-height:  50px;
 
     /*はみ出る部分*/
     margin-left: -15px;
