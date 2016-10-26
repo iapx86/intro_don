@@ -523,6 +523,10 @@ class GamesController extends AppController {
 		$this->set('game', compact('game', 'users'));
 		$this->set('_serialize', 'game');
 	}
+
+	//設定画面表示の為に一旦記述
+    public function setting() {
+    }
 }
 
 
