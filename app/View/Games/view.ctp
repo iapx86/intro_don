@@ -331,19 +331,13 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Game'), array('action' => 'edit', $game['Game']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Game'), array('action' => 'delete', $game['Game']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $game['Game']['id']))); ?> </li>
 		<li><?php echo $this->Html->link(__('List Games'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Game'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Logs'), array('controller' => 'logs', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Log'), array('controller' => 'logs', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Rankings'), array('controller' => 'rankings', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Ranking'), array('controller' => 'rankings', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
 <div class="related">
-	<h3><?php echo __('Related Logs'); ?></h3>
 	<?php if (!empty($game['Log'])): ?>
+	<h3><?php echo __('Related Logs'); ?></h3>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php echo __('Id'); ?></th>
@@ -354,7 +348,6 @@
 		<th><?php echo __('Correct'); ?></th>
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($game['Log'] as $log): ?>
 		<tr>
@@ -366,25 +359,16 @@
 			<td><?php echo $log['correct']; ?></td>
 			<td><?php echo $log['created']; ?></td>
 			<td><?php echo $log['modified']; ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'logs', 'action' => 'view', $log['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'logs', 'action' => 'edit', $log['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'logs', 'action' => 'delete', $log['id']), array('confirm' => __('Are you sure you want to delete # %s?', $log['id']))); ?>
-			</td>
 		</tr>
 	<?php endforeach; ?>
 	</table>
 <?php endif; ?>
 
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Log'), array('controller' => 'logs', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
+
 </div>
 <div class="related">
-	<h3><?php echo __('Related Rankings'); ?></h3>
 	<?php if (!empty($game['Ranking'])): ?>
+	<h3><?php echo __('Related Rankings'); ?></h3>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php echo __('Id'); ?></th>
@@ -417,9 +401,5 @@
 	</table>
 <?php endif; ?>
 
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Ranking'), array('controller' => 'rankings', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
+
 </div>

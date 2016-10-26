@@ -260,4 +260,6 @@ input[type="submit"] {
 }
 
 #wrap_join .ex-1{margin: 0;}
+#wrap_join .ex-1:before{display: none;}
+#wrap_join .ex-1:after{display: none;}
 
