@@ -46,6 +46,42 @@
 		再生ボタンをクリックすると曲が流れるよ。<br>
 		表示されている選択肢の中から正解を選んでね。<br>
 	</div>
+
+<!-- 個人成績リスト作成（ログインユーザー） -->
+<?php if (isset($loginUser['username'])): ?>
+<div class="record">
+	<div id="box_result">
+		<div id="detail_song">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<th colspan="2"><?= $_SESSION['Auth']['User']['username'] ?>さんの記録</th>
+				</tr>
+				<tr>
+					<td>参加したゲーム回数</td>
+					<td><?= $record['gameSum'] ?>回</td>
+				</tr>
+				<tr>
+					<td>応えた問題の数</td>
+					<td><?= $record['questionSum'] ?>問</td>
+				</tr>
+				<tr>
+					<td>正解した回数</td>
+					<td><?= $record['correctSum'] ?>問</td>
+				</tr>
+				<tr>
+					<td>正解率</td>
+					<td><?= $record['rate'] * 100 ?>％</td>
+				</tr>
+				<tr>
+					<td>総獲得スコア</td>
+					<td><?= $record['scoreSum'] ?>点</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+<?php endif ?>
+
 </div>
 <script>
 	$(function(){

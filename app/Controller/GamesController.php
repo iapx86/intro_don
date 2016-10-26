@@ -142,6 +142,46 @@ class GamesController extends AppController {
 			}
 		}
 
+		// 個人成績作成
+		if(isset($_SESSION['Auth']['User']['id'])){
+			$logdata =  $this->Log->find('all' , 
+				array(
+					'conditions'=>array(
+						'Log.user_id'=> $_SESSION['Auth']['User']['id']
+						),
+					)
+				);
+			
+			$record = [];
+
+		// 問題数
+			$record['questionSum'] = count($logdata);
+		// 正解数
+			$record['correctSum'] = 0;
+			for ($i=0; $i < count($logdata) ; $i++) { 
+				$record['correctSum'] += $logdata[$i]['Log']['correct'];
+			}
+		// 正解率
+			if ($record['questionSum'] !== 0) {
+				$record['rate'] = round($record['correctSum'] / $record['questionSum'] , 2);
+			}else{
+				$record['rate'] = 0;
+			}
+		// 総スコア数
+			$record['scoreSum'] = 0;
+			for ($i=0; $i < count($logdata) ; $i++) { 
+				$record['scoreSum'] += $logdata[$i]['Log']['score'];
+			}
+		// ゲーム回数
+			$record['gameSum'] = [];
+			for ($i=0; $i < count($logdata) ; $i++) { 
+				$record['gameSum'][] = $logdata[$i]['Log']['game_id'];
+			}
+			$record['gameSum'] = array_unique($record['gameSum']);
+			$record['gameSum'] = count($record['gameSum']);
+
+			$this->set('record', $record);
+		}
 
 	}
 
