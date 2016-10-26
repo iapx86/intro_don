@@ -35,7 +35,7 @@ class GamesController extends AppController {
 	 *
 	 * @var array
 	 */
-	// public $components = array('Paginator', 'Session', 'Flash');
+
 	/**
 	 * index method
 	 *
@@ -45,6 +45,7 @@ class GamesController extends AppController {
 		$this->Game->recursive = 0;
 		$this->set('games', $this->Paginator->paginate());
 	}
+
 	/**
 	 * view method
 	 *
@@ -59,22 +60,23 @@ class GamesController extends AppController {
 		$options = array('conditions' => array('Game.' . $this->Game->primaryKey => $id));
 		$this->set('game', $this->Game->find('first', $options));
 	}
+
 	/**
 	 * add method
 	 *
 	 * @return void
 	 */
-	public function add() {
-		if ($this->request->is('post')) {
-			$this->Game->create();
-			if ($this->Game->save($this->request->data)) {
-				$this->Flash->success(__('The game has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Flash->error(__('The game could not be saved. Please, try again.'));
-			}
-		}
-	}
+	// public function add() {
+	// 	if ($this->request->is('post')) {
+	// 		$this->Game->create();
+	// 		if ($this->Game->save($this->request->data)) {
+	// 			$this->Flash->success(__('The game has been saved.'));
+	// 			return $this->redirect(array('action' => 'index'));
+	// 		} else {
+	// 			$this->Flash->error(__('The game could not be saved. Please, try again.'));
+	// 		}
+	// 	}
+	// }
 	/**
 	 * edit method
 	 *
@@ -82,43 +84,42 @@ class GamesController extends AppController {
 	 * @param string $id
 	 * @return void
 	 */
-	public function edit($id = null) {
-		if (!$this->Game->exists($id)) {
-			throw new NotFoundException(__('Invalid game'));
-		}
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Game->save($this->request->data)) {
-				$this->Flash->success(__('The game has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Flash->error(__('The game could not be saved. Please, try again.'));
-			}
-		} else {
-			$options = array('conditions' => array('Game.' . $this->Game->primaryKey => $id));
-			$this->request->data = $this->Game->find('first', $options);
-		}
-	}
+	// public function edit($id = null) {
+	// 	if (!$this->Game->exists($id)) {
+	// 		throw new NotFoundException(__('Invalid game'));
+	// 	}
+	// 	if ($this->request->is(array('post', 'put'))) {
+	// 		if ($this->Game->save($this->request->data)) {
+	// 			$this->Flash->success(__('The game has been saved.'));
+	// 			return $this->redirect(array('action' => 'index'));
+	// 		} else {
+	// 			$this->Flash->error(__('The game could not be saved. Please, try again.'));
+	// 		}
+	// 	} else {
+	// 		$options = array('conditions' => array('Game.' . $this->Game->primaryKey => $id));
+	// 		$this->request->data = $this->Game->find('first', $options);
+	// 	}
+	// }
 	/**
 	 * delete method
 	 *
 	 * @throws NotFoundException
 	 * @param string $id
 	 * @return void
-	 */
-	public function delete($id = null) {
-		$this->Game->id = $id;
-		if (!$this->Game->exists()) {
-			throw new NotFoundException(__('Invalid game'));
-		}
-		$this->request->allowMethod('post', 'delete');
-		if ($this->Game->delete()) {
-			$this->Flash->success(__('The game has been deleted.'));
-		} else {
-			$this->Flash->error(__('The game could not be deleted. Please, try again.'));
-		}
-		return $this->redirect(array('action' => 'index'));
-	}
-
+	//  */
+	// public function delete($id = null) {
+	// 	$this->Game->id = $id;
+	// 	if (!$this->Game->exists()) {
+	// 		throw new NotFoundException(__('Invalid game'));
+	// 	}
+	// 	$this->request->allowMethod('post', 'delete');
+	// 	if ($this->Game->delete()) {
+	// 		$this->Flash->success(__('The game has been deleted.'));
+	// 	} else {
+	// 		$this->Flash->error(__('The game could not be deleted. Please, try again.'));
+	// 	}
+	// 	return $this->redirect(array('action' => 'index'));
+	// }
 
 	/**
 	 * start method
@@ -189,7 +190,7 @@ class GamesController extends AppController {
 	 * 問題作成
 	 */
 	private function __startGame(){
-		
+
 		$this->Game->create();
 		$songs = $this->Song->find('all');
 		$songs_count = count($songs);
@@ -235,7 +236,6 @@ class GamesController extends AppController {
 		}
 	}
 
-
 	/**
 	 * question method
 	 *
@@ -251,6 +251,7 @@ class GamesController extends AppController {
 		$this->set('select', $this->Session->read('Game.select'));
 		$this->set('songs', $this->Session->read('Game.songs'));
 	}
+
 	/**
 	 * answer method
 	 *
@@ -427,7 +428,6 @@ class GamesController extends AppController {
 	 *
 	 * @return void
 	 */	
-
 	public function resultMulti() {
 		// ゲームテーブルから該当レコードを取得
 		$gameContent = $this->Game->find('first' ,
@@ -541,9 +541,7 @@ class GamesController extends AppController {
 		$this->set('auth', $this->Auth->user());
 		$this->set('songs', $songs);
 		$this->Session->delete('Game');
-
 	}
-
 
 	/**
 	 * get method
