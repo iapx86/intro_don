@@ -33,7 +33,7 @@
 <!-- ログインしてるなら -->
 
 <div class="btn1 single"><?php echo $this->Form->postLink('ひとりで遊ぶ', array('action' => 'setting')); ?></div>
-<div class="btn1 multi"><?php echo $this->Form->postLink('みんなで遊ぶ', array('action' => 'startMulti')); ?></div>
+<div class="btn1 multi"><?php echo $this->Form->postLink('みんなで遊ぶ', array('action' => 'settingMulti')); ?></div>
 <div class="btn_logout"><?php echo $this->Html->link(__('ログアウト'), array('controller' => 'users' , 'action' => 'logout')); ?></div>
 
 

@@ -334,7 +334,14 @@ class GamesController extends AppController {
 			}
 			unset($game);
 		}
-		$songs = $this->Song->find('all');
+		if (isset($this->request->data['Game']['select']) && $this->request->data['Game']['select'] !== '') {
+			$artists = $this->Session->read('Game.artists');
+			$artists = [$artists[$this->request->data['Game']['select']]];
+			$songs = $this->Song->find('all', array('conditions' => array('Song.artist' => $artists)));
+			if (count($songs) < MAX_QUESTION)
+				$songs = $this->Song->find('all');
+		} else
+			$songs = $this->Song->find('all');
 		$songs_count = count($songs);
 		if ($songs_count < MAX_QUESTION) {
 			$this->Flash->error(__('The number of songs is not enough.'));
@@ -574,11 +581,24 @@ class GamesController extends AppController {
 	 *
 	 * @return void
 	 */
-    public function setting() {
+	public function setting() {
 		$result = $this->Song->find('all', Array('fields' => 'DISTINCT Song.artist', 'order' => 'Song.artist ASC'));
 		foreach($result as $record)
 			$artists[] = $record['Song']['artist'];
 		$this->set('artists', $artists);
 		$this->Session->write('Game.artists', $artists);
-    }
+	}
+
+	/**
+	 * setting method
+	 *
+	 * @return void
+	 */
+	public function settingMulti() {
+		$result = $this->Song->find('all', Array('fields' => 'DISTINCT Song.artist', 'order' => 'Song.artist ASC'));
+		foreach($result as $record)
+			$artists[] = $record['Song']['artist'];
+		$this->set('artists', $artists);
+		$this->Session->write('Game.artists', $artists);
+	}
 }
