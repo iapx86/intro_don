@@ -129,8 +129,13 @@ class GamesController extends AppController {
 		$this->set('loginUser', $this->Auth->user());
 
 		if ($this->request->is('post')) {
+			$artists = $this->Session->read('Game.artists');
+			if (isset($this->request->data['Game']['select']) && $this->request->data['Game']['select'] !== '')
+				$artists = [$artists[$this->request->data['Game']['select']]];
+			else
+				$artists = null;
 			if ($this->Auth->login()) {
-					$this->__startGame();
+					$this->__startGame($artists);
 			}else{
 				$this->User->create();
 				if ($this->User->save($this->request->data)) {
@@ -148,10 +153,12 @@ class GamesController extends AppController {
 	/**
 	 * 問題作成
 	 */
-	private function __startGame(){
-		
+	private function __startGame($artists = null){
 		$this->Game->create();
-		$songs = $this->Song->find('all');
+		if ($artists === null)
+			$songs = $this->Song->find('all');
+		else if (count($songs = $this->Song->find('all', array('conditions'=>array('Song.artist'=> $artists)))) < MAX_QUESTION)
+			$songs = $this->Song->find('all');
 		$songs_count = count($songs);
 		if ($songs_count < MAX_QUESTION) {
 			$this->Flash->error(__('The number of songs is not enough.'));
@@ -524,9 +531,16 @@ class GamesController extends AppController {
 		$this->set('_serialize', 'game');
 	}
 
-	//設定画面表示の為に一旦記述
+	/**
+	 * setting method
+	 *
+	 * @return void
+	 */
     public function setting() {
+		$result = $this->Song->find('all', Array('fields' => 'DISTINCT Song.artist', 'order' => 'Song.artist ASC'));
+		foreach($result as $record)
+			$artists[] = $record['Song']['artist'];
+		$this->set('artists', $artists);
+		$this->Session->write('Game.artists', $artists);
     }
 }
-
-

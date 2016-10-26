@@ -6,52 +6,19 @@
 
 	<div id="wrap_setting">
 
-		<?php echo $this->Form->create('#'); ?>
+		<?php echo $this->Form->create(array('url' => array('action' => 'start'))); ?>
 		<fieldset>
 			<?php
-			echo $this->Form->input(' ', array(
-				'options' => array(
-					"サザンオールスターズ",
-					"福山雅治",
-					"宇多田ヒカル",
-					"浜崎あゆみ",
-					"絢香",
-					"プッチモニ",
-					"宇多田ヒカル",
-					"浜崎あゆみ",
-					"桑田佳祐",
-					"モーニング娘。",
-					"コブクロ",
-					"三木道三",
-					"ポルノグラフィティ",
-					"スキマスイッチ",
-					"宇多田ヒカル",
-					"森山直太朗",
-					"RUI",
-					"IWiSH",
-					"DREAMSCOMETRUE",
-					"ゆず",
-					"福山雅治",
-					"秦基博",
-					"AI",
-					"MYLITTLELOVER",
-					"桑田佳祐",
-					"岡本真夜",
-					"スピッツ",
-					"B'z",
-					"秦基博",
-					"globe"),
-				'empty' => 'アーティストを選んでね'
+			echo $this->Form->input('select', array(
+				'options' => $artists,
+				'empty' => 'アーティストを選んでね',
+				'label' => false,
 			));
 			?>
 		</fieldset>
 		<?php echo $this->Form->end(__('絞ってSTART')); ?>
 
-		<!-- 「ひとりで遊ぶ」から遷移してきた場合 -->
-		<!-- <div class="btn1"><?php echo $this->Form->postLink('ランダムでSTART', array('action' => 'start')); ?></div> -->
-
-		<!-- 「みんなで遊ぶ」から遷移してきた場合 -->
-		<div class="btn1"><?php echo $this->Form->postLink('ランダムでSTART', array('action' => 'startMulti')); ?></div>
+		<div class="btn1"><?php echo $this->Form->postLink('ランダムでSTART', array('action' => 'start')); ?></div>
 	</div>
 </div>
 
