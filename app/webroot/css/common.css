@@ -52,6 +52,10 @@
     border-radius: 30px;
 }
 
+.btn1 a:hover{
+    background-color: #9acfe2;
+}
+
 .btn2{
     background-color: #f59dba;
     text-decoration: none;
@@ -189,6 +193,51 @@
     display: none;
 }
 
+.page_start #record{
+    margin: 20px 0 0;
+    font-size: 21px;
+}
+
+.page_start #record table{
+    width: 47%;
+    margin: 0 auto 20px;
+}
+
+.page_start #record table .name{
+    text-align: center;
+    margin: 0 0 10px;
+    color: white;
+    background-color: #959696;
+}
+
+.page_start #record table .name span{
+    font-size: 30px !important;
+    font-weight: bold;
+    margin: 0 10px;}
+
+.page_start #record table th,
+.page_start #record table td{
+    border: none;
+    padding: 10px;
+    font-size: 15px !important;
+    background-color: #f7f7f7;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.page_start #record table th{
+    background-color: #eeeeee;
+    padding: 10px 0;
+    color: #303030;
+    font-weight: normal;
+    width: 63%;
+}
+
+.page_start #record table td{
+    font-weight: bold;
+    font-size: 22px;
+}
+
 /* =====================
   曲設定画面
 ===================== */
@@ -214,6 +263,9 @@
     font-size: 18px;
     padding: 10px;
     font-family: 'Quicksand', "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", 'メイリオ' , Meiryo , Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+
+#wrap_setting select option {
 }
 
 #wrap_setting .submit{
@@ -366,10 +418,12 @@
     padding: 10px;
     font-family:'Quicksand', "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", 'メイリオ' , Meiryo , Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 }
+
 #wrap_question button:hover {
     background-color: #31c8aa;
     box-shadow: 0 3px 0 #23a188;
 }
+
 #wrap_question button:active {
     top: 3px;
     box-shadow: none;
@@ -468,6 +522,7 @@
 }
 
 #wrap_answer .next input{
+    border-radius: 30px;
     display: block;
     font-weight: bold;
     color: #ffffff;
