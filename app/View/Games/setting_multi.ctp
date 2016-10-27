@@ -11,7 +11,7 @@
 			<?php
 			echo $this->Form->input('select', array(
 				'options' => $artists,
-				'empty' => 'アーティストを選んでね',
+				'multiple' => true,
 				'label' => false,
 			));
 			?>

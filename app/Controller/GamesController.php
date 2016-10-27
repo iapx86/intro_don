@@ -131,8 +131,14 @@ class GamesController extends AppController {
 
 		if ($this->request->is('post')) {
 			$artists = $this->Session->read('Game.artists');
-			if (isset($this->request->data['Game']['select']) && $this->request->data['Game']['select'] !== '')
-				$artists = [$artists[$this->request->data['Game']['select']]];
+			if (isset($this->request->data['Game']['select'])) {
+				for ($n = count($artists), $i = 0; $i < $n; $i++)
+					if (!in_array($i, $this->request->data['Game']['select']))
+						unset($artists[$i]);
+				$artists = array_merge($artists);
+				if (count($artists) == 0)
+					$artists = null;
+			}
 			else
 				$artists = null;
 			if ($this->Auth->login()) {
@@ -198,8 +204,10 @@ class GamesController extends AppController {
 		$this->Game->create();
 		if ($artists === null)
 			$songs = $this->Song->find('all');
-		else if (count($songs = $this->Song->find('all', array('conditions'=>array('Song.artist'=> $artists)))) < MAX_QUESTION)
+		else if (count($songs = $this->Song->find('all', array('conditions'=>array('Song.artist'=> $artists)))) < MAX_QUESTION) {
+			$this->Flash->error(__('全体から出題します。'));
 			$songs = $this->Song->find('all');
+		}
 		$songs_count = count($songs);
 		if ($songs_count < MAX_QUESTION) {
 			$this->Flash->error(__('The number of songs is not enough.'));
@@ -334,12 +342,17 @@ class GamesController extends AppController {
 			}
 			unset($game);
 		}
-		if (isset($this->request->data['Game']['select']) && $this->request->data['Game']['select'] !== '') {
+		if (isset($this->request->data['Game']['select'])) {
 			$artists = $this->Session->read('Game.artists');
-			$artists = [$artists[$this->request->data['Game']['select']]];
+			for ($n = count($artists), $i = 0; $i < $n; $i++)
+				if (!in_array($i, $this->request->data['Game']['select']))
+					unset($artists[$i]);
+			$artists = array_merge($artists);
 			$songs = $this->Song->find('all', array('conditions' => array('Song.artist' => $artists)));
-			if (count($songs) < MAX_QUESTION)
+			if (count($songs) < MAX_QUESTION) {
+				$this->Flash->error(__('全体から出題します。'));
 				$songs = $this->Song->find('all');
+			}
 		} else
 			$songs = $this->Song->find('all');
 		$songs_count = count($songs);
