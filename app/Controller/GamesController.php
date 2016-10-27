@@ -205,7 +205,7 @@ class GamesController extends AppController {
 		if ($artists === null)
 			$songs = $this->Song->find('all');
 		else if (count($songs = $this->Song->find('all', array('conditions'=>array('Song.artist'=> $artists)))) < MAX_QUESTION) {
-			$this->Flash->error(__('全体から出題します。'));
+			$this->Flash->error(__('曲数が少ない為ランダムで出題します'));
 			$songs = $this->Song->find('all');
 		}
 		$songs_count = count($songs);
@@ -350,7 +350,7 @@ class GamesController extends AppController {
 			$artists = array_merge($artists);
 			$songs = $this->Song->find('all', array('conditions' => array('Song.artist' => $artists)));
 			if (count($songs) < MAX_QUESTION) {
-				$this->Flash->error(__('全体から出題します。'));
+				$this->Flash->error(__('曲数が少ない為ランダムで出題します'));
 				$songs = $this->Song->find('all');
 			}
 		} else
