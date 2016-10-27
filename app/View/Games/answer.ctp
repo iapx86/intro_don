@@ -19,7 +19,7 @@
 		?>
 		<?php if($browser == 'sp'){ ?>
 			<div id="wrap_audio" class="sp">
-				<p id="btn_play"><?php echo $this->Html->image('btn_play.png');?></p>
+				<p id="btn_play" onclick = "countUp();"><?php echo $this->Html->image('btn_play.png');?></p>
 				<p class="text_click">clickで再生♪</p>
 			</div>
 		<?php } ?>
@@ -51,11 +51,15 @@
 		setTimeout(function(){audio2.play()}, 1000);
 	});
 
-	//スマホアクセス時のみ
-	$(function(){
-		$("#btn_play").click(function(){
+	//スマホアクセス時のみボタンで曲再生
+	var count = 0;
+	function countUp() {
+		if (count == 0) {
+			++count;
 			var audio = new Audio("<?php echo $songs[$correct[$question]]['Song']['preview']; ?>");
 			audio.play();
-		});
-	},false);
+		} else {
+			++count;
+		}
+	}
 </script>
