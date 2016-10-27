@@ -56,7 +56,7 @@ input[type="submit"] {
 ===================== */
 
 .page_start h2{
-    margin: 0 0 10px;
+    margin: 0 0 30px;
 
 }
 
@@ -65,7 +65,7 @@ input[type="submit"] {
 }
 
 .page_start .single a {
-    background-position: 97% 2px;
+    background-position: 90% -5px;
 }
 
 .page_start .multi a {

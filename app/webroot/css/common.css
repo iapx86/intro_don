@@ -574,10 +574,9 @@ p.error em {
 }
 
 #countDownWrap{
-    position: absolute;
-    left: 24%;
-    top: 26%;
-    font-size: 44px;
+    color: #349ad8;
+    font-size: 300px;
+    margin: 40px 0 0;
     font-weight: bold;
     text-align: center;
 }
@@ -753,6 +752,7 @@ p.error em {
 #box_result table td .song_name{
     font-weight: bold;
     font-size: 20px;
+    margin: 0 0 5px;
 }
 
 #box_result #btn_more{
