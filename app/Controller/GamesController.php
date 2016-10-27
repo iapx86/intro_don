@@ -4,7 +4,7 @@ define('MAX_QUESTION', 10);
 define('MAX_SELECT', 4);
 define('TIME_START1', 60);
 define('TIME_START2', 3);
-define('TIME_QUESTION1', 5);
+define('TIME_QUESTION1', 4);
 define('TIME_QUESTION2', 10);
 define('TIME_ANSWER', 5);
 /**

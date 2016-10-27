@@ -5,7 +5,7 @@
 	<div id="wrap_question">
 		<p class="question_number">第<span><?= $question; ?></span>問</p>
 		<div id="countDownWrap">
-			<div id="viewCount">曲が流れるまで、あと<br><span id="countDown"></span>秒</div>
+			<div id="viewCount"><span id="countDown"></span></div>
 		</div>
 
 		<div id="box_question" style="display: none;">
@@ -60,9 +60,11 @@
 			var now = Math.floor(Date.now() / 1000);
 			var time = Math.max(starttime + TIME_QUESTION1 - now, 0);
 			var time2 = Math.max(starttime + TIME_QUESTION1 + TIME_QUESTION2 - now, 0);
+			var imgtable = ['①','②','③'];
 
 			if (dtime != time) {
 				$("#countDown").text(time);
+				$('#viewCount').html(imgtable[time-1]);
 				if (time == 0) {
 					$("#box_question").fadeIn();
 					$("#countDownWrap").hide();

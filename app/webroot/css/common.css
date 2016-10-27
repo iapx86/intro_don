@@ -68,8 +68,15 @@
     padding: 15px 0;
     cursor: pointer;
     border-radius: 30px;
+    background-image: url(../img/icon_plus.png);
+    background-repeat: no-repeat;
+    background-position: 90% 11px;
+    background-size: 10%;
 }
 
+.btn2.active {
+    background-image: url(../img/icon_minus.png);
+}
 
 #btn_play{
     cursor: pointer;
@@ -169,6 +176,10 @@
 }
 
 .btn_logout a{
+    background-image: url(../img/icon_logout.png);
+    background-repeat: no-repeat;
+    background-position: 90% 10px;
+    background-size: 10%;
     display: block;
     text-decoration: none;
     color: #ffffff;
@@ -574,10 +585,9 @@ p.error em {
 }
 
 #countDownWrap{
-    position: absolute;
-    left: 24%;
-    top: 26%;
-    font-size: 44px;
+    color: #349ad8;
+    font-size: 300px;
+    margin: 40px 0 0;
     font-weight: bold;
     text-align: center;
 }
@@ -753,6 +763,7 @@ p.error em {
 #box_result table td .song_name{
     font-weight: bold;
     font-size: 20px;
+    margin: 0 0 5px;
 }
 
 #box_result #btn_more{
@@ -844,7 +855,7 @@ p.error em {
 ===================== */
 
 #wrap_join{
-    background-color: #f1f6f7;
+    background-color: #dbf9f8;
     padding: 30px;
     position: relative;
     z-index: 1;
@@ -882,7 +893,6 @@ p.error em {
 }
 
 #wrap_join #list_member{
-    border: 1px solid #f18c8a;
     padding: 75px 30px 30px;
     line-height: 2;
     background-color: #fffefe;
