@@ -23,16 +23,9 @@ class GamesController extends AppController {
 			$this->layout = 'game';
 		}
 	}
-	public function isAuthorized($user) {
-		// 登録済ユーザーは投稿できる
-		if ($this->action === 'add') {
-			return true;
-		}
-		return parent::isAuthorized($user);
-	}
+
 	/**
 	 * Components
-	 *
 	 * @var array
 	 */
 
@@ -63,7 +56,6 @@ class GamesController extends AppController {
 
 	/**
 	 * add method
-	 *
 	 * @return void
 	 */
 	// public function add() {
@@ -79,7 +71,6 @@ class GamesController extends AppController {
 	// }
 	/**
 	 * edit method
-	 *
 	 * @throws NotFoundException
 	 * @param string $id
 	 * @return void
@@ -102,7 +93,6 @@ class GamesController extends AppController {
 	// }
 	/**
 	 * delete method
-	 *
 	 * @throws NotFoundException
 	 * @param string $id
 	 * @return void
@@ -194,7 +184,6 @@ class GamesController extends AppController {
 
 			$this->set('record', $record);
 		}
-
 	}
 
 	/**

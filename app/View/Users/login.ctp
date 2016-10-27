@@ -3,7 +3,7 @@
 	<h1>
 		<?php echo $this->Html->link($this->Html->image('title.png'),array('controller'=>'/'),array('escape'=>false));?>
 	</h1>
-	<h2>こんにちは！<span>
+<!-- 	<h2>こんにちは！<span>
 	<?php
 	if (isset($loginUser['username'])) {
 		echo $loginUser['username'];
@@ -11,7 +11,9 @@
 		echo '名無し';
 	}
 	 ?>
-</span>さん！</h2>
+</span>さん！</h2> -->
+
+<h2><span>ログイン・ユーザー登録してください♪</span></h2>
 
 <div id="wrap_login" class="users form">
 <?php echo $this->Flash->render('auth'); ?>

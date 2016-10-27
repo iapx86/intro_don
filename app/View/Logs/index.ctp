@@ -10,7 +10,6 @@
 			<th><?php echo $this->Paginator->sort('botton_number'); ?></th>
 			<th><?php echo $this->Paginator->sort('correct'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -28,11 +27,8 @@
 		<td><?php echo h($log['Log']['botton_number']); ?>&nbsp;</td>
 		<td><?php echo h($log['Log']['correct']); ?>&nbsp;</td>
 		<td><?php echo h($log['Log']['created']); ?>&nbsp;</td>
-		<td><?php echo h($log['Log']['modified']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $log['Log']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $log['Log']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $log['Log']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $log['Log']['id']))); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -55,10 +51,7 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Log'), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Games'), array('controller' => 'games', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Game'), array('controller' => 'games', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

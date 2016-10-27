@@ -49,21 +49,6 @@ class UsersController extends AppController {
 		$this->redirect($this->Auth->logout());
 	}
 
-// public function isAuthorized($user) {
-// 	 $loginuser = $this->Auth->user();
-
-//     // 投稿のオーナーは編集や削除ができる
-//     if (in_array($this->action, array('edit'))) {
-//         $postId = (int) $this->request->params['pass'][0];
-//         if ($this->Users->isOwnedBy($postId, $user['id'])) {
-//             return true;
-//         }
-//     }
-
-//     return parent::isAuthorized($user);
-// }
-
-
 /**
  * Components
  *
@@ -108,42 +93,42 @@ class UsersController extends AppController {
  * @throws NotFoundException
  * @param string $id
  * @return void
- */
-	public function edit($id = null) {
-		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->User->save($this->request->data)) {
-				$this->Flash->success(__('The user has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Flash->error(__('The user could not be saved. Please, try again.'));
-			}
-		} else {
-			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-			$this->request->data = $this->User->find('first', $options);
-		}
-	}
+//  */
+// 	public function edit($id = null) {
+// 		if (!$this->User->exists($id)) {
+// 			throw new NotFoundException(__('Invalid user'));
+// 		}
+// 		if ($this->request->is(array('post', 'put'))) {
+// 			if ($this->User->save($this->request->data)) {
+// 				$this->Flash->success(__('The user has been saved.'));
+// 				return $this->redirect(array('action' => 'index'));
+// 			} else {
+// 				$this->Flash->error(__('The user could not be saved. Please, try again.'));
+// 			}
+// 		} else {
+// 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+// 			$this->request->data = $this->User->find('first', $options);
+// 		}
+// 	}
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function delete($id = null) {
-		$this->User->id = $id;
-		if (!$this->User->exists()) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-		$this->request->allowMethod('post', 'delete');
-		if ($this->User->delete()) {
-			$this->Flash->success(__('The user has been deleted.'));
-		} else {
-			$this->Flash->error(__('The user could not be deleted. Please, try again.'));
-		}
-		return $this->redirect(array('action' => 'index'));
-	}
+// /**
+//  * delete method
+//  *
+//  * @throws NotFoundException
+//  * @param string $id
+//  * @return void
+//  */
+// 	public function delete($id = null) {
+// 		$this->User->id = $id;
+// 		if (!$this->User->exists()) {
+// 			throw new NotFoundException(__('Invalid user'));
+// 		}
+// 		$this->request->allowMethod('post', 'delete');
+// 		if ($this->User->delete()) {
+// 			$this->Flash->success(__('The user has been deleted.'));
+// 		} else {
+// 			$this->Flash->error(__('The user could not be deleted. Please, try again.'));
+// 		}
+// 		return $this->redirect(array('action' => 'index'));
+// 	}
 }
