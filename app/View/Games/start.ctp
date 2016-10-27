@@ -89,11 +89,13 @@
     <?php endif ?>
 
 </div>
+
 <script>
     $(function(){
-        $(".btn2").click(function(){
-            $("#text").fadeToggle();
+        $(".btn2").on("click", function() {
+            $(this).next().slideToggle("fast");
+            $(this).toggleClass("active");
         });
-    });
+     });
 </script>
 

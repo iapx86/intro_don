@@ -69,7 +69,7 @@ input[type="submit"] {
 }
 
 .page_start .multi a {
-    background-position: 94% 13px;
+    background-position: 90% 13px;
 }
 
 .page_start .btn2{
@@ -78,7 +78,7 @@ input[type="submit"] {
 
 .page_start #text{
     padding: 11px 25px;
-    font-size: 10px;
+    font-size: 14px;
     width: 80%;
     margin: 10px auto;
 }
