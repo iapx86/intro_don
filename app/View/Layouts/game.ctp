@@ -20,6 +20,7 @@
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>イントロドン！</title>
+	<?php echo $this->Html->script('http://code.jquery.com/jquery-2.0.0.min.js'); ?>
 	<?php
 		echo $this->Html->meta('icon');
 
@@ -46,5 +47,12 @@
 			<?php echo $this->fetch('content'); ?>
 		</div>
 	</div>
+	<script>
+		$(function (){
+			setTimeout(function(){
+				$('#flashMessage').fadeOut("slow");
+			}, 800);
+		});
+	</script>
 </body>
 </html>

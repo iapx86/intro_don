@@ -1,4 +1,3 @@
-<?php echo $this->Html->script('http://code.jquery.com/jquery-2.0.0.min.js'); ?>
 <div id="main">
 	<h1>
 		<?php echo $this->Html->link($this->Html->image('title.png'),array('controller'=>'/'),array('escape'=>false));?>
