@@ -47,7 +47,7 @@
         表示されている選択肢の中から正解を選んでね。<br>
     </div>
 
-    <<!-- 個人成績リスト作成（ログインユーザー） -->
+    <!-- 個人成績リスト作成（ログインユーザー） -->
     <?php if (isset($loginUser['username'])): ?>
         <div id="record">
             <table cellpadding="0" cellspacing="0" border="0">

@@ -83,6 +83,10 @@ input[type="submit"] {
     margin: 10px auto;
 }
 
+.page_start #record table {
+    width: 90%;
+}
+
 /* =====================
   回答画面（question）
 ===================== */
