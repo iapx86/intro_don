@@ -33,7 +33,20 @@
         <!-- ログインしてるなら -->
 
         <div class="btn1 single"><?php echo $this->Form->postLink('ひとりで遊ぶ', array('action' => 'setting')); ?></div>
-        <div class="btn1 multi"><?php echo $this->Form->postLink('みんなで遊ぶ', array('action' => 'settingMulti')); ?></div>
+
+        <!-- スマホアクセス時のみ表示 -->
+        <?php
+        $ua=$_SERVER['HTTP_USER_AGENT'];
+        $browser = ((strpos($ua,'iPhone')!==false)||(strpos($ua,'iPod')!==false)||(strpos($ua,'Android')!==false));
+        if ($browser == true){
+            $browser = 'sp';
+        }
+        ?>
+        <?php if($browser !== 'sp'){ ?>
+            <div class="btn1 multi"><?php echo $this->Form->postLink('みんなで遊ぶ', array('action' => 'settingMulti')); ?></div>
+        <?php } ?>
+        <!-- //スマホアクセス時のみ表示 -->
+
         <div class="btn_logout"><?php echo $this->Html->link(__('ログアウト'), array('controller' => 'users' , 'action' => 'logout')); ?></div>
 
 
