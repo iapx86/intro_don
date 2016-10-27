@@ -88,6 +88,25 @@ input[type="submit"] {
 }
 
 /* =====================
+  曲設定画面
+===================== */
+#main.wrap_setting{
+    width: auto;
+}
+
+.wrap_setting select option {
+    font-size: 14px;
+}
+
+.wrap_setting .submit input[type="submit"]{
+    font-size: 24px;
+}
+
+.wrap_setting .btn1 a{
+    font-size: 24px;
+}
+
+/* =====================
   回答画面（question）
 ===================== */
 #wrap_question{
@@ -157,6 +176,7 @@ input[type="submit"] {
 
 #wrap_answer .correct_answer span{
     font-size: 20px;
+    margin: 0 0 10px;
 }
 
 #wrap_answer .next input.btn_next{
@@ -167,6 +187,19 @@ input[type="submit"] {
 #wrap_answer .next input.btn_result{
     width: 90%;
     font-size: 20px;
+}
+
+
+#wrap_audio.sp{
+    margin: 0 0 10px;
+}
+
+#wrap_audio.sp img{
+    width: 50%;
+}
+
+#btn_play {
+    margin: 0px auto 10px;
 }
 
 /* =====================
