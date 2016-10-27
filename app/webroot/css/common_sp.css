@@ -107,7 +107,8 @@ input[type="submit"] {
 }
 
 #flashMessage{
-
+    width: 90%;
+    font-size: 18px;
 }
 /* =====================
   回答画面（question）
