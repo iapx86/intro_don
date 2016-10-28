@@ -3,7 +3,7 @@
 		<?php echo $this->Html->link($this->Html->image('title.png'),array('controller'=>'/'),array('escape'=>false));?>
 	</h1>
 	<div id="wrap_question">
-		<p class="question_number">第<span><?= $question; ?></span>問</p>
+		<p class="question_number"><span><?= $question; ?></span>/ 10</p>
 		<p id="name">
 			<span>
 			<?php
@@ -53,4 +53,11 @@
 			this.blur();
 		});
 	},false);
+
+	$( '#wrap_question button' )
+		.bind( 'touchstart', function(){
+			$( this ).addClass( 'hover' );
+		}).bind( 'touchend', function(){
+		$( this ).addClass( 'hover' );
+	});
 </script>

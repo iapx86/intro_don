@@ -3,17 +3,11 @@
 		<?php echo $this->Html->link($this->Html->image('title.png'),array('controller'=>'/'),array('escape'=>false));?>
 	</h1>
 	<div id="wrap_join">
-		<p id="text_limit">締め切りまであと<span id="countDown">●●</span>秒</p>
-		<p id="text_join" class="ex-1">参加者募集中</p>
-		<p id="text_join_finish">募集締め切り</p>
+		<p id="text_limit">締め切りまであと<span id="countDown"></span>秒</p>
+		<p id="text_join" class="ex-1">あそぶメンバー</p>
+		<p id="text_join_finish"><span>TIME OVER</span><?php echo $this->Html->image('img_timeout.png');?></p>
 		<div id="list_member">
-
-			<ul style="display:none">
-				<li><span>一郎</span>が参加しました。</li>
-				<li><span>次郎</span>が参加しました。</li>
-				<li><span>三郎</span>が参加しました。</li>
-				<li><span>四朗</span>が参加しました。</li>
-				<li><span>五郎丸</span>が参加しました。</li>
+			<ul>
 			</ul>
 		</div>
 	</div>
@@ -51,6 +45,7 @@
 				if (time == 0) {
 					$("#text_join_finish").fadeIn();
 					$("#text_join").hide();
+					$("#text_limit").hide();
 					$("#wrap_join #list_member").hide();
 				}
 				dtime = time;

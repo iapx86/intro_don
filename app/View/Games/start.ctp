@@ -59,7 +59,7 @@
 
     <!-- 個人成績リスト作成（ログインユーザー） -->
     <?php if (isset($loginUser['username'])): ?>
-        <div class="btn3">これまでの記録</div>
+        <div class="btn3">これまでの成績</div>
         <div id="record">
             <table cellpadding="0" cellspacing="0" border="0">
                 <tr>

@@ -3,7 +3,7 @@
 		<?php echo $this->Html->link($this->Html->image('title.png'),array('controller'=>'/'),array('escape'=>false));?>
 	</h1>
 	<div id="wrap_question">
-		<p class="question_number">第<span><?= $question; ?></span>問</p>
+		<p class="question_number"><span><?= $question; ?></span>/ 10</p>
 		<div id="countDownWrap">
 			<div id="viewCount"><span id="countDown"></span></div>
 		</div>
@@ -61,11 +61,9 @@
 			var now = Math.floor((Date.now() - time_diff) / 1000);
 			var time = Math.max(starttime + TIME_QUESTION1 - now, 0);
 			var time2 = Math.max(starttime + TIME_QUESTION1 + TIME_QUESTION2 - now, 0);
-			var imgtable = ['①','②','③'];
 
 			if (dtime != time) {
 				$("#countDown").text(time);
-				$('#viewCount').html(imgtable[time-1]);
 				if (time == 0) {
 					$("#box_question").fadeIn();
 					$("#countDownWrap").hide();
