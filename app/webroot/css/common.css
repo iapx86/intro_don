@@ -64,7 +64,7 @@
     font-size: 30px;
     font-weight: bold;
     width: 50%;
-    margin: 0 auto;
+    margin: 0 auto 20px;
     padding: 15px 0;
     cursor: pointer;
     border-radius: 30px;
@@ -75,6 +75,28 @@
 }
 
 .btn2.active {
+    background-image: url(../img/icon_minus.png);
+}
+
+.btn3{
+    background-color: #925d39;
+    text-decoration: none;
+    color: #f9f9f9;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    width: 50%;
+    margin: 0 auto;
+    padding: 15px 0;
+    cursor: pointer;
+    border-radius: 30px;
+    background-image: url(../img/icon_plus.png);
+    background-repeat: no-repeat;
+    background-position: 90% 11px;
+    background-size: 10%;
+}
+
+.btn3.active {
     background-image: url(../img/icon_minus.png);
 }
 
@@ -237,7 +259,7 @@
 .page_start #text{
     background-color: #ffffff;
     padding: 30px;
-    margin: 15px auto 0;
+    margin: 15px auto 20px;
     line-height: 1.5;
     border-radius: 50px;
     width: 367px;
@@ -247,6 +269,7 @@
 .page_start #record{
     margin: 20px 0 0;
     font-size: 21px;
+    display: none;
 }
 
 .page_start #record table{
@@ -254,39 +277,20 @@
     margin: 0 auto 20px;
 }
 
-.page_start #record table .name{
-    text-align: center;
-    margin: 0 0 10px;
-    color: white;
-    background-color: #959696;
-}
-
-.page_start #record table .name span{
-    font-size: 30px !important;
-    font-weight: bold;
-    margin: 0 10px;}
-
 .page_start #record table th,
 .page_start #record table td{
     border: none;
+    color: #6b340f;
     padding: 10px;
-    font-size: 15px !important;
-    background-color: #f7f7f7;
-    vertical-align: middle;
+    font-size: 16px !important;
+    background-color: #ffe3cf;
     text-align: center;
 }
 
 .page_start #record table th{
-    background-color: #eeeeee;
-    padding: 10px 0;
-    color: #303030;
+    background-color: #d8b49b;
     font-weight: normal;
-    width: 63%;
-}
-
-.page_start #record table td{
-    font-weight: bold;
-    font-size: 22px;
+    width: 66%;
 }
 
 /* =====================

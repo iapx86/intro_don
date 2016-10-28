@@ -14,6 +14,10 @@
   共通style
 ===================== */
 
+a  {
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+
 input[type="submit"] {
     -webkit-appearance: none;
 }
@@ -32,7 +36,7 @@ input[type="submit"] {
 ===================== */
 
 #wrap_login{
-    padding: 15px 0 5px;
+    padding: 15px 0;
     margin: 0 0 10px;
 }
 
@@ -47,7 +51,7 @@ input[type="submit"] {
 .btn_logout a{ width: 94%; }
 
 #caution{
-    margin: 5px 10px 0 0;
+    margin: 5px 20px 0 0;
     font-size: 12px;
 }
 
@@ -56,8 +60,11 @@ input[type="submit"] {
 ===================== */
 
 .page_start h2{
-    margin: 0 0 30px;
+    margin: 40px 0 10px;
+}
 
+.page_start h2 span {
+    font-size: 18px;
 }
 
 .page_start .btn1 a{
@@ -65,7 +72,7 @@ input[type="submit"] {
 }
 
 .page_start .single a {
-    background-position: 90% -5px;
+    background-position: 93% -5px;
 }
 
 .page_start .multi a {
@@ -73,6 +80,10 @@ input[type="submit"] {
 }
 
 .page_start .btn2{
+    width: 94%;
+}
+
+.page_start .btn3{
     width: 94%;
 }
 
@@ -100,10 +111,17 @@ input[type="submit"] {
 
 .wrap_setting .submit input[type="submit"]{
     font-size: 24px;
+    width: 100%;
+    background-size: 7%;
+    padding: 15px 0;
+    line-height: 1;
 }
 
 .wrap_setting .btn1 a{
     font-size: 24px;
+    width: 100%;
+    padding: 15px 0;
+    line-height: 1;
 }
 
 #flashMessage{

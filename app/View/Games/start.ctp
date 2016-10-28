@@ -48,22 +48,20 @@
 
         <div class="btn_logout"><?php echo $this->Html->link(__('ログアウト'), array('controller' => 'users' , 'action' => 'logout')); ?></div>
 
-
+        <div class="btn2">説明</div>
+        <div id="text">
+            遊ぶボタンをクリックするとゲームが始まるよ。<br>
+            問題は全部で１０問あるよ。<br>
+            再生ボタンをクリックすると曲が流れるよ。<br>
+            表示されている選択肢の中から正解を選んでね。<br>
+        </div>
     <?php endif ?>
-
-    <div class="btn2">説明</div>
-    <div id="text">
-        遊ぶボタンをクリックするとゲームが始まるよ。<br>
-        問題は全部で１０問あるよ。<br>
-        再生ボタンをクリックすると曲が流れるよ。<br>
-        表示されている選択肢の中から正解を選んでね。<br>
-    </div>
 
     <!-- 個人成績リスト作成（ログインユーザー） -->
     <?php if (isset($loginUser['username'])): ?>
+        <div class="btn3">これまでの記録</div>
         <div id="record">
             <table cellpadding="0" cellspacing="0" border="0">
-                <tr><th colspan="2" class="name"><span><?= $_SESSION['Auth']['User']['username'] ?></span>さんの記録</th></tr>
                 <tr>
                     <th>参加したゲーム回数</th>
                     <td><?= $record['gameSum'] ?>回</td>
@@ -96,6 +94,10 @@
             $(this).next().slideToggle("fast");
             $(this).toggleClass("active");
         });
-     });
+        $(".btn3").on("click", function() {
+            $(this).next().slideToggle("fast");
+            $(this).toggleClass("active");
+        });
+    });
 </script>
 
