@@ -13,8 +13,6 @@
 	 ?>
 </span>さん！</h2> -->
 
-<h2><span>ログイン・ユーザー登録してください♪</span></h2>
-
 <div id="wrap_login" class="users form">
 <?php echo $this->Flash->render('auth'); ?>
 <?php echo $this->Form->create('User'); ?>
@@ -23,7 +21,7 @@
         echo $this->Form->input('password',array('label' => 'パスワード'));
     ?>
     </fieldset>
-<?php echo $this->Form->end(__('ゲームSTART')); ?>
+<?php echo $this->Form->end(__('ログイン')); ?>
 	<p id="caution">※新規の人は自動的にアカウントが作成されるよ！</p>
 </div>
 </div>

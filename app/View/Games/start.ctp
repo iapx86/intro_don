@@ -23,7 +23,7 @@
                 echo $this->Form->input('password',array('label' => 'パスワード'));
                 ?>
             </fieldset>
-            <?php echo $this->Form->end(__('ゲームSTART')); ?>
+            <?php echo $this->Form->end(__('ログイン')); ?>
             <p id="caution">※新規の人は自動的にアカウントが作成されるよ！</p>
 
 
