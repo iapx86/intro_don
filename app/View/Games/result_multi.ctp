@@ -19,7 +19,7 @@
                             if($i === 0){
                                 $ranknum = 1;
                                 echo $this->Html->image('img_rank1.png');
-                            }elseif($ranker[$i -1]['countCorrect'] === $ranker[$i]['countCorrect']){
+                            }elseif($ranker[$i -1]['sumScore'] === $ranker[$i]['sumScore']){
 
                                 if($ranknum === 1){
                                     echo $this->Html->image('img_rank1.png');

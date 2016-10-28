@@ -560,7 +560,7 @@ class GamesController extends AppController {
 				}
 		$this->set('auth', $this->Auth->user());
 		$this->set('songs', $songs);
-		$this->Session->delete('Game');
+		// $this->Session->delete('Game');
 	}
 
 	/**
