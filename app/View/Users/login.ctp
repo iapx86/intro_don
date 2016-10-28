@@ -26,20 +26,4 @@
 <?php echo $this->Form->end(__('ゲームSTART')); ?>
 	<p id="caution">※新規の人は自動的にアカウントが作成されるよ！</p>
 </div>
-
-	<div class="btn2">説明</div>
-	<div id="text">
-		遊ぶボタンをクリックするとゲームが始まるよ。<br>
-		問題は全部で１０問あるよ。<br>
-		再生ボタンをクリックすると曲が流れるよ。<br>
-		表示されている選択肢の中から正解を選んでね。<br>
-	</div>
 </div>
-<script>
-	$(function(){
-		$(".btn2").click(function(){
-			$("#text").fadeToggle();
-		});
-	});
-</script>
-
