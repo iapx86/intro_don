@@ -94,6 +94,7 @@
     $(function(){
         $("#show_detail").on("click", function() {
             $("#detail_song").slideToggle();
+            $(this).toggleClass("active");
         });
     });
 </script>

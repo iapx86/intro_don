@@ -864,8 +864,16 @@ p.error em {
     color: #ffffff;
     font-size: 26px;
     margin: 0 auto 20px;
+    background-image: url(../img/icon_plus.png);
+    background-repeat: no-repeat;
+    background-position: 90% 11px;
+    background-size: 10%;
+    border-radius: 30px;
 }
 
+#show_detail.active {
+    background-image: url(../img/icon_minus.png);
+}
 /* =====================
   募集画面
 ===================== */
