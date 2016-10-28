@@ -53,4 +53,11 @@
 			this.blur();
 		});
 	},false);
+
+	$( '#wrap_question button' )
+		.bind( 'touchstart', function(){
+			$( this ).addClass( 'hover' );
+		}).bind( 'touchend', function(){
+		$( this ).addClass( 'hover' );
+	});
 </script>
