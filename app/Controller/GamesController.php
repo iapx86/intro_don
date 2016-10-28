@@ -327,6 +327,7 @@ class GamesController extends AppController {
 				$this->Session->write('Game.id', $game['Game']['id']);
 				$this->Session->write('Game.question', 1);
 				$this->set('starttime', strtotime($game['Game']['created']));
+				$this->set('now', floor(microtime(true) * 1000));
 				return;
 			}
 			unset($game);
@@ -380,6 +381,7 @@ class GamesController extends AppController {
 		$this->Session->write('Game.id', $game['Game']['id']);
 		$this->Session->write('Game.question', 1);
 		$this->set('starttime', strtotime($game['Game']['created']));
+		$this->set('now', floor(microtime(true) * 1000));
 	}
 
 	/**
@@ -400,6 +402,7 @@ class GamesController extends AppController {
 			$select[$i] = $this->Song->find('first', ['conditions' => ['Song.id' => $game['Game']['question'.$num.'_select'.$i.'_songid']]]);
 		$this->set('select', $select);
 		$this->set('starttime', strtotime($game['Game']['created']));
+		$this->set('now', floor(microtime(true) * 1000));
 	}
 
 	/**
@@ -437,6 +440,7 @@ class GamesController extends AppController {
 			'correct' => $judge ? 1 : 0,
 		]]);
 		$this->set('starttime', strtotime($game['Game']['created']));
+		$this->set('now', floor(microtime(true) * 1000));
 	}
 
 	/**

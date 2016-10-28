@@ -24,6 +24,7 @@
 		var TIME_START1 = <?php echo TIME_START1; ?>;
 		var TIME_START2 = <?php echo TIME_START2; ?>;
 		var starttime = <?php echo $starttime; ?>;
+		var time_diff = Date.now() - <?php echo $now; ?>;
 		var dtime = -1;
 		var jump = false;
 
@@ -41,7 +42,7 @@
 		}
 
 		(function loop(){
-			var now = Math.floor(Date.now() / 1000);
+			var now = Math.floor((Date.now() - time_diff) / 1000);
 			var time = Math.max(starttime + TIME_START1 - now, 0);
 
 			if (dtime != time) {

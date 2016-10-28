@@ -28,6 +28,7 @@
 		var TIME_QUESTION2 = <?php echo TIME_QUESTION2; ?>;
 		var TIME_ANSWER = <?php echo TIME_ANSWER; ?>;
 		var starttime = <?php echo $starttime; ?> + TIME_START1 + TIME_START2 + TIME_QUESTION1 + TIME_QUESTION2 + (TIME_QUESTION1 + TIME_QUESTION2 + TIME_ANSWER) * (<?php echo $question; ?> - 1);
+		var time_diff = Date.now() - <?php echo $now; ?>;
 		var dtime = -1;
 		var audio, audio2 = new Audio("<?php echo $correct['Song']['preview']; ?>");
 
@@ -44,7 +45,7 @@
 		setTimeout(function(){audio2.play()}, 1000);
 
 		(function loop(){
-			var now = Math.floor(Date.now() / 1000);
+			var now = Math.floor((Date.now() - time_diff) / 1000);
 			var time = Math.max(starttime + TIME_ANSWER - now, 0);
 
 			if (dtime != time) {

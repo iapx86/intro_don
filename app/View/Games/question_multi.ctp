@@ -44,6 +44,7 @@
 		var TIME_QUESTION2 = <?php echo TIME_QUESTION2; ?>;
 		var TIME_ANSWER = <?php echo TIME_ANSWER; ?>;
 		var starttime = <?php echo $starttime; ?> + TIME_START1 + TIME_START2 + (TIME_QUESTION1 + TIME_QUESTION2 + TIME_ANSWER) * (<?php echo $question; ?> - 1);
+		var time_diff = Date.now() - <?php echo $now; ?>;
 		var dtime = -1;
 		var dtime2 = -1;
 		var lastbutton = 0;
@@ -52,12 +53,12 @@
 		//押されたボタンのnameをlastbuttonに代入
 		$('#view_button button').click(function () {
 			lastbutton = ($(this).attr('name'));
-			elapse = Math.floor(Date.now() / 1000) - (starttime + TIME_QUESTION1);
+			elapse = Math.floor((Date.now() - time_diff) / 1000) - (starttime + TIME_QUESTION1);
 			return false;
 		});
 
 		(function loop(){
-			var now = Math.floor(Date.now() / 1000);
+			var now = Math.floor((Date.now() - time_diff) / 1000);
 			var time = Math.max(starttime + TIME_QUESTION1 - now, 0);
 			var time2 = Math.max(starttime + TIME_QUESTION1 + TIME_QUESTION2 - now, 0);
 			var imgtable = ['①','②','③'];
