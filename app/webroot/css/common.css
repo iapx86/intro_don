@@ -192,6 +192,7 @@
     padding: 13px 0;
     cursor: pointer;
     border: none;
+    font-family: 'Comic Sans MS',sans-serif;
 }
 
 .btn_logout{
@@ -241,7 +242,7 @@
 .page_start h2 span{
     font-size: 30px;
     margin: 0 10px;
-    font-family: 'Comic Sans MS';
+    font-family: 'Comic Sans MS',sans-serif;
 }
 
 .page_start .single a{
@@ -340,6 +341,7 @@
     display: block;
     background-color: #75cae9;
     color: #ffffff;
+    line-height: 1;
     font-size: 30px;
     font-weight: bold;
     padding: 13px 0;
@@ -352,6 +354,7 @@
     background-repeat: no-repeat;
     background-image: url(../img/icon_search.png);
     background-position: 86% center;
+    font-family: 'Comic Sans MS',sans-serif;
 }
 
 .wrap_setting .submit input[type="submit"]:hover{
@@ -360,6 +363,7 @@
 
 .wrap_setting .btn1 a{
     width: 90%;
+    font-family: 'Comic Sans MS',sans-serif;
 }
 
 /** Notices and Errors **/
@@ -493,7 +497,7 @@ p.error em {
 }
 
 #wrap_question .question_number{
-    font-family: 'Comic Sans MS';
+    font-family: 'Comic Sans MS',sans-serif;
     text-align: center;
     width: 100px;
     margin: 0 0 15px;
@@ -508,7 +512,7 @@ p.error em {
 #wrap_question .question_number span {
     font-weight: bold;
     margin: 0 3px;
-    font-family: 'Comic Sans MS';
+    font-family: 'Comic Sans MS',sans-serif;
     font-size: 35px;
 }
 
@@ -598,7 +602,7 @@ p.error em {
 #countDownWrap #viewCount #countDown{
     font-size: 210px;
     font-weight: bold;
-    font-family: 'Comic Sans MS';
+    font-family: 'Comic Sans MS',sans-serif;
 }
 
 #viewTextNext{
@@ -611,7 +615,7 @@ p.error em {
     font-size: 90px;
     font-weight: bold;
     margin: 0 10px;
-    font-family: 'Comic Sans MS';
+    font-family: 'Comic Sans MS',sans-serif;
     color: #ef4f4f;
 }
 
@@ -698,7 +702,7 @@ p.error em {
     font-weight: bold;
     margin: 0 10px;
     color: #ef4f4f;
-    font-family: 'Comic Sans MS';
+    font-family: 'Comic Sans MS',sans-serif;
 }
 /* =====================
   集計画面
@@ -766,7 +770,7 @@ p.error em {
     color: #ff0000;
     font-size: 55px;
     margin: 0 10px;
-    font-family: 'Comic Sans MS';
+    font-family: 'Comic Sans MS',sans-serif;
 }
 
 #box_result table td .song_name{
@@ -827,14 +831,14 @@ p.error em {
     font-size: 23px !important;
     vertical-align: middle;
     text-align: center;
-    font-family: 'Comic Sans MS';
+    font-family: 'Comic Sans MS',sans-serif;
 }
 
 #box_result #ranking table td.name {
     font-size: 23px !important;
     text-align: left;
     font-weight: bold;
-    font-family: 'Comic Sans MS';
+    font-family: 'Comic Sans MS',sans-serif;
 }
 
 #box_result #ranking table td.score span {
@@ -848,7 +852,7 @@ p.error em {
     width: 60px;
     text-align: center;
     padding: 10px;
-    font-family: 'Comic Sans MS';
+    font-family: 'Comic Sans MS',sans-serif;
 }
 
 #show_detail{
@@ -883,7 +887,7 @@ p.error em {
     font-weight: bold;
     margin: 0 15px;
     color: #f35151;
-    font-family: 'Comic Sans MS';
+    font-family: 'Comic Sans MS',sans-serif;
 }
 
 #wrap_join #text_join{
@@ -900,7 +904,7 @@ p.error em {
 
 #wrap_join #text_join_finish span{
     display: block;
-    font-family: 'Comic Sans MS';
+    font-family: 'Comic Sans MS',sans-serif;
     font-size: 60px;
     font-weight: bold;
 }
@@ -929,7 +933,7 @@ p.error em {
     color: #4f4ff5;
     margin: 0 10px 0 0;
     font-size: 30px !important;
-    font-family: 'Comic Sans MS';
+    font-family: 'Comic Sans MS',sans-serif;
 }
 
 
