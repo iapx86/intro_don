@@ -199,7 +199,7 @@ class GamesController extends AppController {
 		}
 		$songs_count = count($songs);
 		if ($songs_count < MAX_QUESTION) {
-			$this->Flash->error(__('The number of songs is not enough.'));
+			$this->Flash->error(__('登録曲が少なすぎるため、問題作成できません。'));
 			return $this->redirect(array('action' => 'start'));
 		}
 		for ($correct = [], $i = 1; $i <= MAX_QUESTION; $i++) {
@@ -347,7 +347,7 @@ class GamesController extends AppController {
 			$songs = $this->Song->find('all');
 		$songs_count = count($songs);
 		if ($songs_count < MAX_QUESTION) {
-			$this->Flash->error(__('The number of songs is not enough.'));
+			$this->Flash->error(__('登録曲が少なすぎるため、問題作成できません。'));
 			$this->redirect(array('action' => 'index'));
 			return;
 		}
