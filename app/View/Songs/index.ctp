@@ -29,8 +29,6 @@
 		<td><?php echo h($song['Song']['modified']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $song['Song']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $song['Song']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $song['Song']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $song['Song']['id']))); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -53,7 +51,6 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Song'), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('iTunes Serach'), array('action' => 'search')); ?></li>
 		<li><?php echo $this->Form->postLink(__('Delete Duplicated Songs'), array('action' => 'deleteDup')); ?></li>
 	</ul>
